@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+*.cmake
+
+*.vcxproj
+
+*.vcproj
+
+cal_fp01_CLion/lib/
+
+cal_fp01_CLion/cmake-build-debug/
+
+cal_fp01_CLion/cmake-build-debug/
+
+cal_fp01_CLion/.idea/
