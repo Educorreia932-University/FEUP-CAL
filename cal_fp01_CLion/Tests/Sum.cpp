@@ -37,10 +37,7 @@ string calcSum(int* sequence, int size) {
 
 // Exercise 3. b)
 void generate_graph() {
-    ofstream file;
-    file.open ("time.txt");
-
-    for (int i = 10; i < 500; i += 10) {
+    for (int i = 10; i <= 500; i += 10) {
         double total_time = 0;
 
         for (int j = 0; j < 1000; j++) {
@@ -49,7 +46,7 @@ void generate_graph() {
             srand(time(nullptr));
 
             for (int k = 0; k < i; k++)
-                sequence[i] = rand();
+                sequence[i] = rand()%(10 * i - 1) + 1;
 
             auto start = chrono::high_resolution_clock::now();
 
@@ -64,10 +61,5 @@ void generate_graph() {
         double time = total_time / 1000;
 
         cout << time << "\n";
-
-        file << time << "\n";
     }
-
-    file.close();
-
 }
