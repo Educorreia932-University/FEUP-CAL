@@ -4,6 +4,8 @@
 
 #include "Sum.h"
 #include <chrono>
+#include <fstream>
+#include <iostream>
 
 // Exercise 3. a)
 string calcSum(int* sequence, int size) {
@@ -34,20 +36,38 @@ string calcSum(int* sequence, int size) {
 }
 
 // Exercise 3. b)
-int main() {
-    for (int i = 0; i < 500; i++) {
-        int* sequence = new int[i];
+void generate_graph() {
+    ofstream file;
+    file.open ("time.txt");
 
-        srand(time(nullptr));
+    for (int i = 10; i < 500; i += 10) {
+        double total_time = 0;
 
-        for (int j = 0; j < i; j++)
-            sequence[i] = rand();
+        for (int j = 0; j < 1000; j++) {
+            int *sequence = new int[i];
 
-        auto start = chrono::high_resolution_clock::now();
+            srand(time(nullptr));
 
-        calcSum(sequence, i);
+            for (int k = 0; k < i; k++)
+                sequence[i] = rand();
 
-        auto finish = chrono::high_resolution_clock::now();
-        auto mili = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+            auto start = chrono::high_resolution_clock::now();
+
+            calcSum(sequence, i);
+
+            auto finish = chrono::high_resolution_clock::now();
+            auto mili = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+
+            total_time += mili;
+        }
+
+        double time = total_time / 1000;
+
+        cout << time << "\n";
+
+        file << time << "\n";
     }
+
+    file.close();
+
 }
