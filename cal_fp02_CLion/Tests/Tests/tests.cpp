@@ -15,14 +15,10 @@
 using namespace std;
 using testing::Eq;
 
-
-void compareSudokus(int in[9][9], int out[9][9])
-{
+void compareSudokus(int in[9][9], int out[9][9]) {
     for (int i = 0; i < 9; i++)
-    {
         for (int a = 0; a < 9; a++)
             ASSERT_EQ(in[i][a], out[i][a]);
-    }
 }
 
 TEST(CAL_FP02, testLabirinth) {
@@ -57,7 +53,6 @@ TEST(CAL_FP02, testLabirinth) {
     EXPECT_EQ(l2.findGoal(1, 1),false);
 }
 
-/*
 TEST(CAL_FP02, testSudokuAlreadySolved) {
     int in[9][9] =
             {{8, 6, 2, 3, 4, 1, 7, 9, 5},
@@ -83,7 +78,6 @@ TEST(CAL_FP02, testSudokuAlreadySolved) {
     compareSudokus(in, out);
 
 }
-
 
 TEST(CAL_FP02, testSudokuNoneBackStepsRequired) {
     int in[9][9] =
@@ -121,7 +115,6 @@ TEST(CAL_FP02, testSudokuNoneBackStepsRequired) {
     compareSudokus(out, sout);
 }
 
-
 TEST(CAL_FP02, testSudokuSomeBackStepsRequired) {
     int in[9][9] =
             {{7, 0, 5, 2, 6, 3, 4, 0, 9},
@@ -157,7 +150,6 @@ TEST(CAL_FP02, testSudokuSomeBackStepsRequired) {
 
     compareSudokus(out, sout);
 }
-
 
 TEST(CAL_FP02, testSudokuManyBackStepsRequired) {
     int in[9][9] =
@@ -195,7 +187,6 @@ TEST(CAL_FP02, testSudokuManyBackStepsRequired) {
     compareSudokus(out, sout);
 }
 
-
 TEST(CAL_FP02, testSudokuWithMinimalClues) {
     int in[9][9] =
             {{7, 0, 0, 1, 0, 8, 0, 0, 0},
@@ -232,12 +223,9 @@ TEST(CAL_FP02, testSudokuWithMinimalClues) {
     compareSudokus(out, sout);
 }
 
-
 TEST(CAL_FP02, testSudokuWithMultipleSolutions) {
     int in[9][9] =
-            {{0*/
-/*7*//*
-, 0, 0, 1, 0, 8, 0, 0, 0},
+            {{0, /*7*/ 0, 0, 1, 0, 8, 0, 0, 0},
              {0, 9, 0, 0, 0, 0, 0, 3, 2},
              {0, 0, 0, 0, 0, 5, 0, 0, 0},
              {0, 0, 0, 0, 0, 0, 1, 0, 0},
@@ -256,7 +244,6 @@ TEST(CAL_FP02, testSudokuWithMultipleSolutions) {
                 EXPECT_EQ(in[i][j], out[i][j]);
 }
 
-
 TEST(CAL_FP02, testSudokuEmpty) {
     int in[9][9] =
             {{0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -274,13 +261,10 @@ TEST(CAL_FP02, testSudokuEmpty) {
     EXPECT_EQ(s.isComplete(), true);
 }
 
-
 TEST(CAL_FP02, testSudokuImpossible) {
     int in[9][9] =
             {{7, 0, 0, 1, 0, 8, 0, 0, 0},
-             {4*/
-/*0*//*
-, 9, 0, 0, 0, 0, 0, 3, 2},
+             {4, /*0*/ 9, 0, 0, 0, 0, 0, 3, 2},
              {0, 0, 0, 0, 0, 5, 0, 0, 0},
              {0, 0, 0, 0, 0, 0, 1, 0, 0},
              {9, 6, 0, 0, 2, 0, 0, 0, 0},
@@ -301,8 +285,3 @@ TEST(CAL_FP02, testSudokuImpossible) {
 
     compareSudokus(in, out);
 }
-
-
-
-*/
-

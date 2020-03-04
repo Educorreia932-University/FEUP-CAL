@@ -75,7 +75,39 @@ bool Sudoku::isComplete() {
  * Retorna indicação de sucesso ou insucesso (sudoku impossível).
  */
 bool Sudoku::solve() {
-	return false;
+    for (int y = 0; y <= 8; y++) {
+        for (int x = 0; x <= 8; x++) {
+            int number = numbers[y][x];
+
+            // Unassigned cell
+            if (!number) {
+                for (int i = 1; i < 10; i++) {
+                    if (lineHasNumber[y][i] || columnHasNumber[x][i] || block3x3HasNumber[y / 3][x / 3][i])
+                        continue;
+
+                    countFilled++;
+                    numbers[y][x] = i;
+                    lineHasNumber[y][i] = true;
+                    columnHasNumber[x][i] = true;
+                    block3x3HasNumber[y / 3][x / 3][i] = true;
+
+                    if (solve())
+                        break;
+
+                    countFilled--;
+                    numbers[y][x] = 0;
+                    lineHasNumber[y][i] = false;
+                    columnHasNumber[x][i] = false;
+                    block3x3HasNumber[y / 3][x / 3][i] = false;
+                }
+
+                if (!numbers[y][x])
+                    return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 /**
