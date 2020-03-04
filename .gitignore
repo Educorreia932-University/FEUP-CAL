@@ -37,10 +37,8 @@
 
 *.vcproj
 
-cal_fp01_CLion/lib/
+**/cmake-build-debug/
 
-cal_fp01_CLion/cmake-build-debug/
+**/.idea/
 
-cal_fp01_CLion/cmake-build-debug/
-
-cal_fp01_CLion/.idea/
+**/lib
