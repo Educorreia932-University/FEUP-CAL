@@ -1,0 +1,41 @@
+@startuml exemplo
+
+class POI {
+    name
+    time_spent
+}
+
+class Category {
+
+}
+
+class Graph {
+
+}
+
+class Node {
+    latitude
+    longitude
+}
+
+class Edge {
+
+}
+
+class Street {
+    name
+    available
+}
+
+POI *-- "1" Node
+POI o-- "1" Category
+
+Street *-- Node
+
+Graph *-- Node
+
+Node *-- Edge
+
+Edge *-- "1" Node : dest
+
+@enduml
