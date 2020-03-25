@@ -36,3 +36,6 @@ TourMateApp/.idea/
 TourMateApp/cmake-build-debug/CMakeFiles/
 
 TourMateApp/cmake-build-debug/
+.idea/ 
+*cache/ 
+*data/ 
