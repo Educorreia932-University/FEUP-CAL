@@ -196,7 +196,6 @@ bool Graph<T>::removeVertex(const T &in) {
     return false;
 }
 
-
 /****************** 2a) dfs ********************/
 
 /*
@@ -206,9 +205,16 @@ bool Graph<T>::removeVertex(const T &in) {
  */
 template <class T>
 vector<T> Graph<T>::dfs() const {
-	// TODO (7 lines)
 	vector<T> res;
-	return res;
+
+	for (Vertex<T>* v : vertexSet)
+        v->visited = false;
+
+    for (Vertex<T>* v : vertexSet)
+        if (!v->visited)
+            dfsVisit(v, res);
+
+    return res;
 }
 
 /*
@@ -217,7 +223,13 @@ vector<T> Graph<T>::dfs() const {
  */
 template <class T>
 void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
-	// TODO (7 lines)
+	v->visited = true;
+
+	res.push_back(v->info);
+
+	for (Edge<T> w : v->adj)
+	    if (!w.dest->visited)
+	        dfsVisit(w.dest, res);
 }
 
 /****************** 2b) bfs ********************/
@@ -230,10 +242,28 @@ void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
  */
 template <class T>
 vector<T> Graph<T>::bfs(const T & source) const {
-	// TODO (22 lines)
-	// HINT: Use the flag "visited" to mark newly discovered vertices .
-	// HINT: Use the "queue<>" class to temporarily store the vertices.
 	vector<T> res;
+	queue<Vertex<T>*> Q;
+
+    for (Vertex<T>* v : vertexSet)
+        v->visited = false;
+
+    Vertex<T>* src = findVertex(source);
+    Vertex<T>* v;
+    Q.push(src);
+
+    while (!Q.empty()) {
+        v = Q.front();
+        Q.pop();
+        res.push_back(v->info);
+
+        for (Edge<T> w : v->adj)
+            if (!w.dest->visited) {
+                Q.push(w.dest);
+                w.dest->visited = true;
+            }
+    }
+
 	return res;
 }
 
@@ -248,8 +278,40 @@ vector<T> Graph<T>::bfs(const T & source) const {
 
 template<class T>
 vector<T> Graph<T>::topsort() const {
-	// TODO (26 lines)
 	vector<T> res;
+
+    for (Vertex<T>* v : vertexSet)
+        v->indegree = 0;
+
+    for (Vertex<T>* v : vertexSet)
+        for (Edge<T> w : v->adj)
+            w.dest->indegree++;
+
+    queue<Vertex<T>*> C;
+
+    for (Vertex<T>* v : vertexSet)
+        if (!v->indegree)
+            C.push(v);
+
+    Vertex<T>* v;
+
+    while (!C.empty()) {
+        v = C.front();
+        C.pop();
+
+        res.push_back(v->info);
+
+        for (Edge<T> w : v->adj) {
+            w.dest->indegree--;
+
+            if (!w.dest->indegree)
+                C.push(w.dest);
+        }
+    }
+
+    if (res.size() != vertexSet.size())
+        res.clear();
+
 	return res;
 }
 

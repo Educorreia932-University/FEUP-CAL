@@ -89,21 +89,19 @@ TEST(CAL_FP04, test_removeEdge) {
 }
 
 TEST(CAL_FP04, test_dfs) {
-    /* //uncomment test body below!
     Graph<Person> net1;
     createNetwork(net1);
     vector<Person> v1 = net1.dfs();
     string names[] = {"Ana", "Carlos", "Maria", "Rui", "Filipe", "Vasco", "Ines"};
+
     for (unsigned i = 0; i < 7; i++)
         if (i < v1.size())
             EXPECT_EQ(names[i], v1[i].getName());
         else
             EXPECT_EQ(names[i], "(null)");
-     */
 }
 
 TEST(CAL_FP04, test_bfs) {
-    /* //uncomment test body below!
     Graph<Person> net1;
     createNetwork(net1);
     vector<Person> v1 = net1.bfs(Person("Ana",19));
@@ -113,24 +111,22 @@ TEST(CAL_FP04, test_bfs) {
             EXPECT_EQ(names[i], v1[i].getName());
         else
             EXPECT_EQ(names[i], "(null)");
-     */
 }
 
 TEST(CAL_FP04, test_removeVertex_Again) {
-    /* //uncomment test body below!
     Graph<Person> net1;
     createNetwork(net1);
     Person p2("Carlos",33);
     EXPECT_EQ(true, net1.removeVertex(p2));
     vector<Person> v1=net1.dfs();
     string names[] = {"Ana", "Filipe", "Rui", "Vasco", "Ines", "Maria"};
+
     for (unsigned i = 0; i < 6; i++)
         EXPECT_EQ(names[i], v1[i].getName());
-     */
 }
 
 TEST(CAL_FP04, test_removeEdge_Again) {
-    /* //uncomment test body below!
+     //uncomment test body below!
     Graph<Person> net1;
     createNetwork(net1);
     Person p5("Maria", 24);
@@ -138,9 +134,9 @@ TEST(CAL_FP04, test_removeEdge_Again) {
     EXPECT_EQ(true, net1.removeEdge(p5,p6));
     vector<Person> v1=net1.dfs();
     string names[] = {"Ana", "Carlos", "Maria", "Filipe", "Rui", "Vasco", "Ines"};
+
     for (unsigned i = 0; i < 7; i++)
         EXPECT_EQ(names[i], v1[i].getName());
-     */
 }
 
 TEST(CAL_FP04, test_maxNewChildren) {
@@ -201,7 +197,6 @@ TEST(CAL_FP04, test_isDAG) {
 }
 
 TEST(CAL_FP04, test_topsort) {
-    /* //uncomment test body below!
     Graph<int> myGraph;
     myGraph.addVertex(1); myGraph.addVertex(2); myGraph.addVertex(3); myGraph.addVertex(4);
     myGraph.addVertex(5); myGraph.addVertex(6); myGraph.addVertex(7);
@@ -234,6 +229,5 @@ TEST(CAL_FP04, test_topsort) {
     for( unsigned int i = 0; i < topOrder.size(); i++)
         ss << topOrder[i] << " ";
     EXPECT_EQ("", ss.str());
-     */
 }
 
