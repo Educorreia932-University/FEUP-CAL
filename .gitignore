@@ -31,10 +31,8 @@
 *.out
 *.app
 
-
-TourMateApp/.idea/
-TourMateApp/cmake-build-debug/CMakeFiles/
-TourMateApp/cmake-build-debug/
-.idea/ 
+# IDE's folders
+**/cmake-build-debug/
+**/.idea/ 
 *cache/ 
 *data/ 
