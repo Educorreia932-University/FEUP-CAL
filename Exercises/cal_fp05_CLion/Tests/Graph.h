@@ -201,18 +201,50 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
     }
 }
 
-
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
-	// TODO
-}
+    for (Vertex<T>* v : vertexSet) {
+        v->dist = numeric_limits<double>::max();
+        v->path = NULL;
+        v->visited = false;
+    }
 
+    Vertex<T>* s = findVertex(origin);
+
+    if (s == NULL)
+        return;
+
+    s->dist = 0;
+    s->queueIndex = 0;
+    s->visited = true;
+
+    MutablePriorityQueue<Vertex<T> > Q;
+    Q.insert(s);
+
+    while (!Q.empty()) {
+        Vertex<T>* v = Q.extractMin();
+
+        for (Edge<T> w : v->adj) {
+            if (w.dest->getDist() > v->getDist() + w.weight) {
+                w.dest->dist = v->getDist() + w.weight;
+                w.dest->path = v;
+
+                if (!w.dest->visited) {
+                    w.dest->visited = true;
+                    Q.insert(w.dest);
+                }
+
+                else
+                    Q.decreaseKey(w.dest);
+            }
+        }
+    }
+}
 
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
 	// TODO
 }
-
 
 template<class T>
 vector<T> Graph<T>::getPathTo(const T &dest) const {
@@ -232,8 +264,6 @@ vector<T> Graph<T>::getPathTo(const T &dest) const {
 
 	return res;
 }
-
-
 
 /**************** All Pairs Shortest Path  ***************/
 

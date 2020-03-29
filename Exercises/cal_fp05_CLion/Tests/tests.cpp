@@ -96,7 +96,6 @@ TEST(CAL_FP05, test_unweightedShortestPath) {
     checkSinglePath(myGraph.getPathTo(6), "5 7 6 ");
 }
 
-/* //Uncomment the test below...
 TEST(CAL_FP05, test_dijkstra) {
     Graph<int> myGraph = CreateTestGraph();
 
@@ -113,8 +112,6 @@ TEST(CAL_FP05, test_dijkstra) {
     myGraph.dijkstraShortestPath(7);
     checkSinglePath(myGraph.getPathTo(1), "7 6 4 3 1 ");
 }
-*/
-
 
  /* //Uncomment the test below...
 TEST(CAL_FP05, test_performance_dijkstra) {
