@@ -36,3 +36,5 @@
 **/.idea/ 
 *cache/ 
 *data/ 
+
+*.gz
