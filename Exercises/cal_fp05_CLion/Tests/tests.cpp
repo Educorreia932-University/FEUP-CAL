@@ -113,7 +113,6 @@ TEST(CAL_FP05, test_dijkstra) {
     checkSinglePath(myGraph.getPathTo(1), "7 6 4 3 1 ");
 }
 
- /* //Uncomment the test below...
 TEST(CAL_FP05, test_performance_dijkstra) {
     for (int n = 10; n <= 100; n += 10) {
         Graph< pair<int,int> > g;
@@ -129,8 +128,6 @@ TEST(CAL_FP05, test_performance_dijkstra) {
         cout << "Dijkstra processing grid " << n << " x " << n << " average time (micro-seconds)=" << (elapsed / (n*n)) << endl;
     }
 }
-*/
-
 
 /* //Uncomment the test below...
 TEST(CAL_FP05, test_bellmanFord) {
