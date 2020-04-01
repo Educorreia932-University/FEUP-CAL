@@ -41,11 +41,10 @@ class Vertex {
         double getDist() const;
         Vertex *getPath() const;
 
-        bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
+        bool operator<(Vertex<T> & vertex) const; // required by MutablePriorityQueue
         friend class Graph<T>;
         friend class MutablePriorityQueue<Vertex<T>>;
 };
-
 
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
@@ -99,7 +98,9 @@ Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w) {}
 template <class T>
 class Graph {
     private:
-        vector<Vertex<T> *> vertexSet;    // vertex set
+        vector<Vertex<T>*> vertexSet;    // vertex set
+        vector<vector<double>> dist;
+        vector<vector<Vertex<T>*>> pred;
     public:
         Vertex<T> *findVertex(const T &in) const;
         bool addVertex(const T &in);
@@ -114,8 +115,8 @@ class Graph {
         vector<T> getPathTo(const T &dest) const;
 
         // Fp05 - all pairs
-        void floydWarshallShortestPath();   //TODO...
-        vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;   //TODO...
+        void floydWarshallShortestPath();
+        vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;
 };
 
 template <class T>
@@ -172,7 +173,7 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 template<class T>
 void Graph<T>::unweightedShortestPath(const T &orig) {
     for (Vertex<T>* v : vertexSet) {
-        v->dist = numeric_limits<double>::max();
+        v->dist = INF;
         v->path = NULL;
     }
 
@@ -191,7 +192,7 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
         Q.pop();
 
         for (Edge<T> w : v->adj)
-            if (w.dest->getDist() == numeric_limits<double>::max()) {
+            if (w.dest->getDist() == INF) {
                 Q.push(w.dest);
 
                 w.dest->dist = v->getDist() + 1;
@@ -203,7 +204,7 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
     for (Vertex<T>* v : vertexSet) {
-        v->dist = numeric_limits<double>::max();
+        v->dist = INF;
         v->path = NULL;
         v->visited = false;
     }
@@ -243,7 +244,7 @@ void Graph<T>::dijkstraShortestPath(const T &origin) {
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
     for (Vertex<T>* v : vertexSet) {
-        v->dist = numeric_limits<double>::max();
+        v->dist = INF;
         v->path = NULL;
     }
 
@@ -294,15 +295,58 @@ vector<T> Graph<T>::getPathTo(const T &dest) const {
 
 template<class T>
 void Graph<T>::floydWarshallShortestPath() {
+    // Create a N × N matrix of the distances between each pair of vertexes
+    dist = vector<vector<double>>(getNumVertex(), vector<double>(getNumVertex(), INF));
+    pred = vector<vector<Vertex<T>*>>(getNumVertex(), vector<Vertex<T>*>(getNumVertex(), NULL));
 
+    for (int u = 0; u < getNumVertex(); u++)
+        for (int v = 0; v < getNumVertex(); v++)
+            if (u == v) // Set the diagonal elements to 0
+                dist[u][v] = 0;
+
+            else
+                for (Edge<T> w : vertexSet[u]->adj)
+                    if (w.dest->getInfo() == vertexSet[v]->info) {
+                        dist[u][v] = w.weight;
+                        pred[u][v] = vertexSet[u];
+                    }
+
+    for (int k = 0; k < getNumVertex(); k++)
+        for (int i = 0; i < getNumVertex(); i++)
+            for (int j = 0; j < getNumVertex(); j++)
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    pred[i][j] = pred[k][j];
+                }
 }
 
 template<class T>
 vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
 	vector<T> res;
-	// TODO
-	return res;
-}
 
+    int srcIndex, destIndex;
+
+    for (int i = 0; i < getNumVertex(); i++)
+        if (vertexSet[i]->info == orig)
+            srcIndex = i;
+
+        else if (vertexSet[i]->info == dest)
+            destIndex = i;
+
+    while (pred[srcIndex][destIndex] != vertexSet[srcIndex]) {
+        res.emplace(res.begin(), pred[srcIndex][destIndex]->info);
+
+        for (int i = 0; i < vertexSet.size(); i++)
+            if (vertexSet[i]->info == pred[srcIndex][destIndex]->info) {
+                destIndex = i;
+                break;
+            }
+    }
+
+    res.push_back(dest);
+    res.insert(res.begin(), orig);
+
+    return res;
+}
 
 #endif /* GRAPH_H_ */
