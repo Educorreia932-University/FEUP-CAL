@@ -23,27 +23,27 @@ template <class T> class Vertex;
 
 template <class T>
 class Vertex {
-	T info;						// content of the vertex
-	vector<Edge<T> > adj;		// outgoing edges
-	
-	double dist = 0;
-	Vertex<T>* path = NULL;
-	int queueIndex = 0; 		// required by MutablePriorityQueue
+        T info;						// content of the vertex
+        vector<Edge<T> > adj;		// outgoing edges
 
-	bool visited = false;		// auxiliary field
-	bool processing = false;	// auxiliary field
+        double dist = 0;
+        Vertex<T>* path = NULL;
+        int queueIndex = 0; 		// required by MutablePriorityQueue
 
-	void addEdge(Vertex<T> *dest, double w);
+        bool visited = false;		// auxiliary field
+        bool processing = false;	// auxiliary field
 
-public:
-	Vertex(T in);
-	T getInfo() const;
-	double getDist() const;
-	Vertex *getPath() const;
+        void addEdge(Vertex<T> *dest, double w);
 
-	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
-	friend class Graph<T>;
-	friend class MutablePriorityQueue<Vertex<T>>;
+    public:
+        Vertex(T in);
+        T getInfo() const;
+        double getDist() const;
+        Vertex *getPath() const;
+
+        bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
+        friend class Graph<T>;
+        friend class MutablePriorityQueue<Vertex<T>>;
 };
 
 
@@ -94,7 +94,6 @@ public:
 template <class T>
 Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w) {}
 
-
 /*************************** Graph  **************************/
 
 template <class T>
@@ -109,10 +108,10 @@ class Graph {
         vector<Vertex<T> *> getVertexSet() const;
 
         // Fp05 - single source
-        void unweightedShortestPath(const T &s);    //TODO...
-        void dijkstraShortestPath(const T &s);      //TODO...
-        void bellmanFordShortestPath(const T &s);   //TODO...
-        vector<T> getPathTo(const T &dest) const;   //TODO...
+        void unweightedShortestPath(const T &s);
+        void dijkstraShortestPath(const T &s);
+        void bellmanFordShortestPath(const T &s);
+        vector<T> getPathTo(const T &dest) const;
 
         // Fp05 - all pairs
         void floydWarshallShortestPath();   //TODO...
@@ -243,7 +242,33 @@ void Graph<T>::dijkstraShortestPath(const T &origin) {
 
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
-	// TODO
+    for (Vertex<T>* v : vertexSet) {
+        v->dist = numeric_limits<double>::max();
+        v->path = NULL;
+    }
+
+    Vertex<T>* s = findVertex(orig);
+
+    if (s == NULL)
+        return;
+
+    s->dist = 0;
+
+    for (int i = 1; i < getNumVertex() - 1; i++)
+        for (Vertex<T>* v : vertexSet)
+            for (Edge<T> w : v->adj)
+                if (w.dest->getDist() > v->getDist() + w.weight) {
+                    w.dest->dist = v->getDist() + w.weight;
+                    w.dest->path = v;
+                }
+
+    for (Vertex<T>* v : vertexSet)
+        for (auto edge : v->adj) {
+            Vertex<T>* dest = edge.dest;
+
+            if (dest->dist > (v->dist + edge.weight))
+                break;
+        }
 }
 
 template<class T>
@@ -269,7 +294,7 @@ vector<T> Graph<T>::getPathTo(const T &dest) const {
 
 template<class T>
 void Graph<T>::floydWarshallShortestPath() {
-	// TODO
+
 }
 
 template<class T>
