@@ -38,3 +38,11 @@
 *data/ 
 
 *.gz
+
+__latexindent_temp.tex
+
+*.fdb_latexmk
+
+report.pdf
+
+report.log

@@ -28,13 +28,13 @@ class Street {
 }
 
 POI *-- "1" Node
-POI o-- "1" Category
+POI -- "1..*" Category
 
-Street *-- Node
+Street *-- "1..*" Node
 
-Graph *-- Node
+Graph *-- "1..*" Node
 
-Node *-- Edge
+Node *-- "*" Edge
 
 Edge *-- "1" Node : dest
 
