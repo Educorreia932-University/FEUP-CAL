@@ -1,5 +1,3 @@
-//
-// Created by skelo on 23/03/2020.
-//
-
 #include "Edge.h"
+
+Edge::Edge(Vertex* d, double w): dest(d), weight(w) {}

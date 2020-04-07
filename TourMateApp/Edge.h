@@ -1,10 +1,16 @@
-#include <string>
+#ifndef EDGE_H
+#define EDGE_H
+
+class Vertex;
 
 class Edge {
-    int key;
-    long int osmid;
-    std::string name ;
-    long int dest;
-    bool oneWay;
-    int maxSpeed;
+    public:
+        Edge(Vertex* d, double w);
+        friend class Graph;
+        friend class Vertex;
+    private:
+        Vertex* dest;      // destination vertex
+        double weight;         // edge weight
 };
+
+#endif //EDGE_H
