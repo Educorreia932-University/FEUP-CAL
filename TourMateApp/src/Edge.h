@@ -1,5 +1,5 @@
-#ifndef EDGE_H
-#define EDGE_H
+#ifndef TOURMATEAPP_EDGE_H
+#define TOURMATEAPP_EDGE_H
 
 class Vertex;
 
@@ -13,4 +13,4 @@ class Edge {
         double weight;         // edge weight
 };
 
-#endif //EDGE_H
+#endif //TOURMATEAPP_EDGE_H
