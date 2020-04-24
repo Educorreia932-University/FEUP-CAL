@@ -1,6 +1,11 @@
-#include <iostream>
+#include "UserInterface/UserInterface.h"
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    UserInterface ui;
+
+    ui.mainMenuSelection(ui.showMainMenu());
+
     return 0;
 }
