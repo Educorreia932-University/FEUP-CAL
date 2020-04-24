@@ -1,6 +1,8 @@
 #include <iostream>
+#include "GraphFactory.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    GraphFactory *g = new GraphFactory();
+    g->readEdges("merada.csv");
     return 0;
 }

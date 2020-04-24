@@ -11,7 +11,7 @@ vector<Vertex*> Graph::getVertexSet() const {
 /*
  * Auxiliary function to find a vertex with a given content.
  */
-Vertex* Graph::findVertex(const int &in) const {
+Vertex* Graph::findVertex(const ulli &in) const {
     for (auto v : vertexSet)
         if (v->id == in)
             return v;
@@ -23,7 +23,7 @@ Vertex* Graph::findVertex(const int &in) const {
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
-bool Graph::addVertex(const int &in) {
+bool Graph::addVertex(const ulli &in) {
     if ( findVertex(in) != NULL)
         return false;
 
@@ -37,13 +37,13 @@ bool Graph::addVertex(const int &in) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &sourc, const int &dest, double w) {
+bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string& streetName) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == NULL || v2 == NULL)
         return false;
 
-    v1->addEdge(v2,w);
+    v1->addEdge(v2,w, streetName);
 
     return true;
 }
