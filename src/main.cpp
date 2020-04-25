@@ -1,8 +1,12 @@
+
+#include "UserInterface/UserInterface.h"
 #include <iostream>
 #include "GraphFactory.h"
 
+using namespace std;
+
 int main() {
-    GraphFactory *g = new GraphFactory();
-    g->readEdges("merada.csv");
+    UserInterface ui;
+    ui.mainMenuSelection(ui.showMainMenu());
     return 0;
 }
