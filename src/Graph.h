@@ -3,12 +3,13 @@
 
 #include "Edge.h"
 #include "Vertex.h"
-
+#include "utils.h"
 #include <vector>
 #include <queue>
 #include <list>
 #include <limits>
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -18,19 +19,19 @@ class Graph {
         vector<vector<double>> dist;
         vector<vector<Vertex*>> pred;
     public:
-        Vertex* findVertex(const int &id) const;
-        bool addVertex(const int &id);
-        bool addEdge(const int &sourc, const int &dest, double w);
+        Vertex* findVertex(const ulli &in) const;
+        bool addVertex(const ulli &in);
+        bool addEdge(const ulli &sourc, const ulli &dest, double w, const string& streetName = "");
         int getNumVertex() const;
         vector<Vertex*> getVertexSet() const;
 
-        void unweightedShortestPath(const int &s);
-        void dijkstraShortestPath(const int &s);
-        void bellmanFordShortestPath(const int &s);
-        vector<int> getPathTo(const int &dest) const;
+        void unweightedShortestPath( const ulli &s);
+        void dijkstraShortestPath( const ulli &s);
+        void bellmanFordShortestPath( const ulli &s);
+        vector<int> getPathTo(const ulli &dest) const;
 
         void floydWarshallShortestPath();
-        vector<int> getfloydWarshallPath(const int &origin, const int &dest) const;
+        vector<int> getfloydWarshallPath(const ulli &origin, const ulli &dest) const;
 };
 
 #endif //GRAPH_H

@@ -2,31 +2,33 @@
 #define VERTEX_H
 
 #include <vector>
-
+#include <string>
 #include "Edge.h"
+#include "utils.h"
 
 using namespace std;
 
 class Vertex {
-    public:
-        Vertex(int id);
-        unsigned int getID() const;
-        double getDist() const;
-        Vertex *getPath() const;
+public:
+    Vertex(const ulli &id);
+    ulli getID() const;
+    double getDist() const;
+    Vertex *getPath() const;
 
-        bool operator<(Vertex & vertex) const; // required by MutablePriorityQueue
-        friend class Graph;
-    private:
-        unsigned int id;		// content of the vertex
-        vector<Edge> adj;		// outgoing edges
+    bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
+    friend class Graph;
 
-        double dist = 0;
-        Vertex* path = NULL;
+private:
+    ulli id;                    // content of the vertex
+    vector<Edge> adj;        // outgoing edges
 
-        bool visited = false;		// auxiliary field
-        bool processing = false;	// auxiliary field
+    double dist = 0;
+    Vertex *path = NULL;
 
-        void addEdge(Vertex *dest, double w);
+    bool visited = false;        // auxiliary field
+    bool processing = false;    // auxiliary field
+
+    void addEdge(Vertex *dest, double w, const string &streetName = "");
 };
 
 #endif // VERTEX_h
