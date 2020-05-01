@@ -1,5 +1,5 @@
-# Conceção e Análise de Algoritmos
-## MIEIC - 2º ano / 2º semestre
+# Analysis and Conception of Algorithms
+## MIEIC - 2nd year / 1st semester
 
 Exercises done in CAL course 
 
