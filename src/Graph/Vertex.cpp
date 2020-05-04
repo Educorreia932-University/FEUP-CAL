@@ -27,3 +27,7 @@ Vertex* Vertex::getPath() const {
     return this->path;
 }
 
+vector<Edge> Vertex::getAdj() const {
+    return adj;
+}
+

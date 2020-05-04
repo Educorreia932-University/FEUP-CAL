@@ -15,7 +15,7 @@ using namespace std;
 
 class Graph {
     private:
-        vector<Vertex*> vertexSet;    // vertex set
+        vector<Vertex*> vertexSet;
         vector<vector<double>> dist;
         vector<vector<Vertex*>> pred;
     public:

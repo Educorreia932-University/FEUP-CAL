@@ -9,26 +9,26 @@
 using namespace std;
 
 class Vertex {
-public:
-    Vertex(const ulli &id);
-    ulli getID() const;
-    double getDist() const;
-    Vertex *getPath() const;
+    public:
+        Vertex(const ulli &id);
+        ulli getID() const;
+        double getDist() const;
+        Vertex *getPath() const;
+        vector<Edge> getAdj() const;
 
-    bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
-    friend class Graph;
+        bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
+        friend class Graph;
+    private:
+        ulli id;                    // content of the vertex
+        vector<Edge> adj;        // outgoing edges
 
-private:
-    ulli id;                    // content of the vertex
-    vector<Edge> adj;        // outgoing edges
+        double dist = 0;
+        Vertex *path = NULL;
 
-    double dist = 0;
-    Vertex *path = NULL;
+        bool visited = false;        // auxiliary field
+        bool processing = false;    // auxiliary field
 
-    bool visited = false;        // auxiliary field
-    bool processing = false;    // auxiliary field
-
-    void addEdge(Vertex *dest, double w, const string &streetName = "");
+        void addEdge(Vertex *dest, double w, const string &streetName = "");
 };
 
 #endif // VERTEX_h
