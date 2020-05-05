@@ -13,7 +13,6 @@ using namespace std;
 
 class GraphFactory {
     Graph graph;
-
 public:
     void openFile(const string& filename, ifstream& inFile);
     void readVertex(const string& filename);

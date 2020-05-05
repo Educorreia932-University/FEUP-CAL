@@ -5,7 +5,6 @@
 
 #define MEAN_VEL            40                  /** the mean velocity in the graph*/
 
-
 void GraphFactory::openFile(const string &filename, ifstream &inFile) {
     inFile.open(filename.c_str());
 
@@ -18,8 +17,11 @@ void GraphFactory::readVertex(const string &filename) {
     ulli id;
     openFile(filename, inFile);
 
-    while (inFile >> id)
-        graph.addVertex(id);
+    while (inFile >> id) {
+        auto v = new Vertex(id);
+        auto ca =  Capsule(v);
+        graph.addVertex(ca);
+    }
 
 }
 
@@ -58,4 +60,6 @@ void GraphFactory::readEdges(const string &filename) {
         cout << source << " " << dest << endl;
         is.clear();
     }
+
 }
+

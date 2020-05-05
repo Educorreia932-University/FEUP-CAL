@@ -4,7 +4,7 @@ int Graph::getNumVertex() const {
     return vertexSet.size();
 }
 
-vector<Vertex*> Graph::getVertexSet() const {
+tabHVertex Graph::getVertexSet() const {
     return vertexSet;
 }
 
@@ -12,23 +12,23 @@ vector<Vertex*> Graph::getVertexSet() const {
  * Auxiliary function to find a vertex with a given content.
  */
 Vertex* Graph::findVertex(const ulli &in) const {
-    for (auto v : vertexSet)
-        if (v->id == in)
-            return v;
-
-    return NULL;
+    Vertex* v = new Vertex(in);
+    Capsule cv(v);
+    auto iterator = vertexSet.find(cv);
+    if (iterator == vertexSet.end())
+        return NULL;
+    return iterator->getVertex();
 }
 
 /*
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
-bool Graph::addVertex(const ulli &in) {
-    if ( findVertex(in) != NULL)
+bool Graph::addVertex(const Capsule &in) {
+    if (vertexSet.find(in) == vertexSet.end())
         return false;
 
-    vertexSet.push_back(new Vertex(in));
-
+    vertexSet.insert(in);
     return true;
 }
 
