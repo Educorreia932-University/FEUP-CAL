@@ -46,3 +46,9 @@ __latexindent_temp.tex
 report.pdf
 
 report.log
+
+utils/map_extraction/images/Trofa.png
+
+*.synctex(busy)
+
+*.aux
