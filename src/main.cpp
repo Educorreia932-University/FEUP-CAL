@@ -18,6 +18,7 @@ int main() {
 //    ui.mainMenuSelection(ui.showMainMenu());
 
     auto gv = new GraphViewer(900, 900, false);
+    gv->setBackground("../data/map.png");
     gv->createWindow(900, 900);
 
     double min_lon = -8.6226691;
