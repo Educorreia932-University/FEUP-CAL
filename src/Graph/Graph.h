@@ -20,7 +20,7 @@ class Graph {
         vector<vector<Vertex*>> pred;
     public:
         Vertex* findVertex(const ulli &in) const;
-        bool addVertex(const ulli &in);
+        bool addVertex(const ulli &in, double lon, double lat);
         bool addEdge(const ulli &sourc, const ulli &dest, double w, const string& streetName = "");
         int getNumVertex() const;
         vector<Vertex*> getVertexSet() const;

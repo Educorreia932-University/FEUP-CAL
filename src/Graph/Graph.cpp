@@ -24,11 +24,11 @@ Vertex* Graph::findVertex(const ulli &in) const {
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
-bool Graph::addVertex(const ulli &in) {
-    if ( findVertex(in) != NULL)
+bool Graph::addVertex(const ulli &in, double lon, double lat) {
+    if (findVertex(in) != NULL)
         return false;
 
-    vertexSet.push_back(new Vertex(in));
+    vertexSet.push_back(new Vertex(in, lon, lat));
 
     return true;
 }

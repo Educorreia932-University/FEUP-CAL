@@ -1,6 +1,6 @@
 #include "Vertex.h"
 
-Vertex::Vertex(const ulli& id): id(id) {}
+Vertex::Vertex(const ulli& id, double lon, double lat): id(id), lon(lon), lat(lat) {}
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
@@ -9,7 +9,6 @@ Vertex::Vertex(const ulli& id): id(id) {}
 void Vertex::addEdge(Vertex* d, double w, const string& streetName) {
     adj.push_back(Edge(d, w, streetName));
 }
-
 
 bool Vertex::operator<(Vertex &vertex) const {
     return this->dist < vertex.dist;

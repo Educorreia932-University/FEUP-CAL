@@ -10,7 +10,7 @@ using namespace std;
 
 class Vertex {
     public:
-        Vertex(const ulli &id);
+        Vertex(const ulli &id, double lon, double lat);
         ulli getID() const;
         double getDist() const;
         Vertex *getPath() const;
@@ -19,6 +19,9 @@ class Vertex {
         bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
         friend class Graph;
     private:
+        double lon; // Longitude
+        double lat; // Latitude
+
         ulli id;                    // content of the vertex
         vector<Edge> adj;        // outgoing edges
 
