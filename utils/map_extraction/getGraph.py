@@ -18,9 +18,13 @@ def getNodes(graph):
     i = 0
     
     for node in graph.nodes:
-        print(graph.nodes[node]['x'])
         df.loc[i] = [node, graph.nodes[node]['x'], graph.nodes[node]['y']]
         i += 1
+        
+    print("Max longitude: ", df["lon"].max())
+    print("Min longitude: ", df["lon"].min())
+    print("Max latitude: ", df["lat"].max())
+    print("Min latitude: ", df["lat"].min())
     
     return df
 
