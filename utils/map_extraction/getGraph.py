@@ -3,8 +3,9 @@ import networkx as nx
 import pandas as pd
 
 def cleanData(df):
-    df.drop(["geometry", "ref", "tunnel", "bridge", "lanes", "highway", "width", "junction", "access", "service", "area"],
+    df.drop(["geometry", "ref", "tunnel", "bridge", "lanes", "highway", "width", "access", "service", "osmid"],
             axis=1, inplace=True)
+    
     df['maxspeed'] = df['maxspeed'].fillna(0)
     df['name'] = df['name'].fillna("NONE")
     print(df.isnull().sum())
@@ -12,7 +13,16 @@ def cleanData(df):
     return df
 
 def getNodes(graph):
-    return pd.DataFrame(list(graph.nodes))
+    df = pd.DataFrame(columns = ["name", "lon", "lat"]) 
+    
+    i = 0
+    
+    for node in graph.nodes:
+        print(graph.nodes[node]['x'])
+        df.loc[i] = [node, graph.nodes[node]['x'], graph.nodes[node]['y']]
+        i += 1
+    
+    return df
 
 def getEdges(graph):
     return nx.to_pandas_edgelist(graph)
@@ -26,9 +36,9 @@ def saveData(graph):
 
 def main(cityName, placeName):
     ox.config(log_console=True, use_cache=True)
-    graph = ox.core.graph_from_place(placeName, network_type='drive')
+    graph = ox.core.graph_from_address(placeName)
     ox.plot_graph(graph, save=True, filename=cityName, file_format="png")
     ox.extended_stats(graph, ecc=True)
     saveData(graph)
 
-main("Porto", "Município do Porto, Portugal")
+main("Trofa", "Porto")

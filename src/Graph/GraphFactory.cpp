@@ -12,19 +12,33 @@ void GraphFactory::openFile(const string &filename, ifstream &inFile) {
 }
 
 void GraphFactory::readVertex(const string &filename) {
+    static const char TOKEN = ',';
+    string line, tmp;
     ifstream inFile;
-    ulli id;
     openFile(filename, inFile);
 
-    while (inFile >> id)
-        graph.addVertex(id);
+    ulli id;
+    double lon, lat;
+
+    while (getline(inFile, line)) {
+        istringstream is(line);
+
+        getline(is, tmp, TOKEN);
+        istringstream(tmp) >> id;
+        getline(is, tmp, TOKEN);
+        istringstream(tmp) >> lon;
+        getline(is, tmp, TOKEN);
+        istringstream(tmp) >> lat;
+
+        graph.addVertex(id, lon, lat);
+    }
 }
 
 void GraphFactory::readEdges(const string &filename) {
     string osmid, name, oneway, line, tmp;
     float maxspeed, length;
     ulli source, dest;
-    char token = ',';
+    const char TOKEN = ',';
 
     ifstream inFile;
     openFile(filename, inFile);
@@ -33,18 +47,18 @@ void GraphFactory::readEdges(const string &filename) {
     while (getline(inFile, line)) {
         istringstream is(line);
 
-        getline(is, tmp, token);        //source id
+        getline(is, tmp, TOKEN);        //source id
         istringstream(tmp) >> source;
-        getline(is, tmp, token);        //destine id
+        getline(is, tmp, TOKEN);        //destine id
         istringstream(tmp) >> dest;
-        getline(is, tmp, token);        //maxspeed in the road
+        getline(is, tmp, TOKEN);        //maxspeed in the road
         istringstream(tmp) >> maxspeed;
-        getline(is, tmp, token);        //osmid
+        getline(is, tmp, TOKEN);        //osmid
         istringstream(tmp) >> osmid;
-        getline(is, tmp, token);        //lenght of the road
+        getline(is, tmp, TOKEN);        //lenght of the road
         istringstream(tmp) >> length;
-        getline(is, name, token);       //name of the road
-        getline(is, oneway, token);     //"True" case it's one way, "False" otherwise
+        getline(is, name, TOKEN);       //name of the road
+        getline(is, oneway, TOKEN);     //"True" case it's one way, "False" otherwise
 
         double weight = safeDivision(length, maxspeed, MEAN_VEL);
         graph.addEdge(source, dest, weight, name);
