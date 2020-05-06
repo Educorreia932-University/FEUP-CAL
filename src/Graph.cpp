@@ -78,40 +78,40 @@ void deleteMatrix(T **m, int n) {
 }
 
 Graph::~Graph() {
-    deleteMatrix(W, vertexSet.size());
-    deleteMatrix(P, vertexSet.size());
+    deleteMatrix(dist, vertexSet.size());
+    deleteMatrix(pred, vertexSet.size());
 }
 
 void Graph::floydWarshallShortestPath() {
     int n = vertexSet.size();
-    deleteMatrix(W, n);
-    deleteMatrix(P, n);
-    W = new double *[n];
-    P = new int *[n];
+    deleteMatrix(dist, n);
+    deleteMatrix(pred, n);
+    dist = new double *[n];
+    pred = new int *[n];
     int i = 0;
     for (auto iter : vertexSet) {
-        W[i] = new double[n];
-        P[i] = new int[n];
+        dist[i] = new double[n];
+        pred[i] = new int[n];
         for (unsigned j = 0; j < n; j++) {
-            W[i][j] = i == j ? 0 : INF;
-            P[i][j] = -1;
+            dist[i][j] = i == j ? 0 : INF;
+            pred[i][j] = -1;
         }
         for (const auto &e : iter.getVertex()->adj) {
             int j = findVertexIdx(e.dest->id);
-            W[i][j] = e.weight;
-            P[i][j] = i;
+            dist[i][j] = e.weight;
+            pred[i][j] = i;
         }
         i++;
     }
     for (int k = 0; k < n; k++)
         for (i = 0; i < n; i++)
             for (unsigned j = 0; j < n; j++) {
-                if (W[i][k] == INF || W[k][j] == INF)
+                if (dist[i][k] == INF || dist[k][j] == INF)
                     continue; // avoid overflow
-                double val = W[i][k] + W[k][j];
-                if (val < W[i][j]) {
-                    W[i][j] = val;
-                    P[i][j] = P[k][j];
+                double val = dist[i][k] + dist[k][j];
+                if (val < dist[i][j]) {
+                    dist[i][j] = val;
+                    pred[i][j] = pred[k][j];
                 }
             }
 }
@@ -120,9 +120,9 @@ vector<int> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) co
     vector<int> res;
     int i = findVertexIdx(origin);
     int j = findVertexIdx(dest);
-    if (i == -1 || j == -1 || W[i][j] == INF) // missing or disconnected
+    if (i == -1 || j == -1 || dist[i][j] == INF) // missing or disconnected
         return res;
-    for (; j != -1; j = P[i][j])
+    for (; j != -1; j = pred[i][j])
         res.push_back(getElement(j));
     reverse(res.begin(), res.end());
     return res;

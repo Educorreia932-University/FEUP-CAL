@@ -44,10 +44,8 @@ typedef unordered_set<Capsule, VertexHash, VertexHash> tabHVertex;
 class Graph {
 private:
     tabHVertex vertexSet;    // vertex set
-    vector<vector<double>> dist;
-    vector<vector<Vertex *>> pred;
-    double **W = nullptr; // dist
-    int **P = nullptr; // path
+    double **dist = nullptr; // dist
+    int **pred = nullptr; // path
 public:
 
     Vertex *findVertex(const ulli &in) const;
