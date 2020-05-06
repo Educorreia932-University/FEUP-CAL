@@ -29,11 +29,12 @@ public:
     }
 };
 
-struct VertexHash{
-    int operator() (const Capsule & ca) const {
+struct VertexHash {
+    int operator()(const Capsule &ca) const {
         return 0;
     }
-    bool operator()(Capsule ca1, Capsule ca2) const{
+
+    bool operator()(Capsule ca1, Capsule ca2) const {
         return ca1.getVertex()->getID() == ca2.getVertex()->getID();
     }
 };
@@ -45,7 +46,8 @@ private:
     tabHVertex vertexSet;    // vertex set
     vector<vector<double>> dist;
     vector<vector<Vertex *>> pred;
-
+    double **W = nullptr; // dist
+    int **P = nullptr; // path
 public:
 
     Vertex *findVertex(const ulli &in) const;
@@ -66,9 +68,13 @@ public:
 
     vector<int> getPathTo(const ulli &dest) const;
 
+    ~Graph();
+
+    int findVertexIdx(const int &in) const;
+
     void floydWarshallShortestPath();
 
-    vector<int> getfloydWarshallPath(const ulli &origin, const ulli &dest) const;
+    vector<int> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
 };
 
 #endif //GRAPH_H
