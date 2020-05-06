@@ -11,9 +11,14 @@ using namespace std;
 class Vertex {
 public:
     Vertex(const ulli &id);
+
     ulli getID() const;
+
     double getDist() const;
+
     Vertex *getPath() const;
+
+    void addEdge(Vertex *dest, double w, const string &streetName = "");
 
     bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
     friend class Graph;
@@ -27,8 +32,6 @@ private:
 
     bool visited = false;        // auxiliary field
     bool processing = false;    // auxiliary field
-
-    void addEdge(Vertex *dest, double w, const string &streetName = "");
 };
 
 #endif // VERTEX_h

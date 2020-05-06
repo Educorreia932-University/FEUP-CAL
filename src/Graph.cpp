@@ -60,6 +60,13 @@ int Graph::findVertexIdx(const int &in) const {
     return -1;
 }
 
+int Graph::getElement(int pos) const {
+    auto iter = vertexSet.begin();
+    for (int i = 0; i < pos; ++i)
+        iter++;
+    return iter->getVertex()->id;
+}
+
 template<class T>
 void deleteMatrix(T **m, int n) {
     if (m != nullptr) {
@@ -116,7 +123,7 @@ vector<int> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) co
     if (i == -1 || j == -1 || W[i][j] == INF) // missing or disconnected
         return res;
     for (; j != -1; j = P[i][j])
-        res.push_back(dest);
+        res.push_back(getElement(j));
     reverse(res.begin(), res.end());
     return res;
 }

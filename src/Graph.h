@@ -70,6 +70,8 @@ public:
 
     ~Graph();
 
+    int getElement(int pos) const;
+
     int findVertexIdx(const int &in) const;
 
     void floydWarshallShortestPath();
