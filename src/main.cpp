@@ -28,7 +28,9 @@ int main() {
 
     gv->defineEdgeCurved(false);
 
-    for (Vertex* v : graph.getVertexSet()) {
+    for (Capsule c : graph.getVertexSet()) {
+        Vertex* v = c.getVertex();
+
         gv->addNode(
                 v->getID(),
                 (v->lon - min_lon) / (max_lon - min_lon) * 900,
@@ -40,11 +42,14 @@ int main() {
 
     int edge_id = 0;
 
-    for (Vertex* v : graph.getVertexSet())
+    for (Capsule c : graph.getVertexSet()) {
+        Vertex* v = c.getVertex();
+
         for (const Edge& w : v->getAdj()) {
             gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
             edge_id++;
         }
+    }
 
     gv->rearrange();
     getchar();
