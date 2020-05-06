@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     UserInterface ui;
     //ui.mainMenuSelection(ui.showMainMenu());
-    GraphFactory *g = new GraphFactory();
-    g->readVertex("nodes.csv");
+    auto *g = new GraphFactory();
+    g->readVertex("../../MapExtraction/nodes.csv");
     return 0;
 }
