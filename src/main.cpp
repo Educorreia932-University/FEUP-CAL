@@ -54,5 +54,6 @@ int main() {
     gv->rearrange();
     getchar();
 
+
     return 0;
 }
