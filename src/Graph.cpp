@@ -27,7 +27,7 @@ Vertex *Graph::findVertex(const ulli &in) const {
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
 bool Graph::addVertex(const Capsule &in) {
-    if (vertexSet.find(in) == vertexSet.end())
+    if (vertexSet.find(in) != vertexSet.end())
         return false;
 
     vertexSet.insert(in);
