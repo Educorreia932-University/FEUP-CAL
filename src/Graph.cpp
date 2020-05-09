@@ -40,13 +40,13 @@ bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string 
 }
 
 inline ulli Graph::findVertexIdx(const ulli &in) const {
-    Vertex *v = findVertex(in);
-    if ( v != NULL)
-        return v->getID();
+    for (int i = 0; i < vertexSet.size(); i++)
+        if (vertexSet[i]->id == in)
+            return i;
     return -1;
 }
 
-template <class T>
+template<class T>
 void deleteMatrix(T **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -67,23 +67,21 @@ void Graph::floydWarshallShortestPath() {
     deleteMatrix(pred, n);
     dist = new double *[n];
     pred = new int *[n];
-    int i = 0;
-    for (Vertex* vertex: vertexSet) {
+    for (int i = 0; i < n; i++) {
         dist[i] = new double[n];
         pred[i] = new int[n];
         for (unsigned j = 0; j < n; j++) {
             dist[i][j] = i == j ? 0 : INF;
             pred[i][j] = -1;
         }
-        for (const auto &e : vertex->adj) {
+        for (const auto &e : vertexSet[i]->adj) {
             int j = findVertexIdx(e.dest->id);
             dist[i][j] = e.weight;
             pred[i][j] = i;
         }
-        i++;
     }
     for (int k = 0; k < n; k++)
-        for (i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
             for (unsigned j = 0; j < n; j++) {
                 if (dist[i][k] == INF || dist[k][j] == INF)
                     continue;               // avoid overflow

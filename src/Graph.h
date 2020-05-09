@@ -18,8 +18,8 @@ using namespace std;
 class Graph {
 private:
     vector<Vertex*> vertexSet;    // vertex set
-    double **dist = nullptr; // dist
-    int **pred = nullptr; // path
+    double **dist; // dist
+    int **pred; // path
 public:
 
     Vertex *findVertex(const ulli &in) const;
