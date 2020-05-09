@@ -2,35 +2,24 @@
 
 #define INF std::numeric_limits<double>::max()
 
-int Graph::getNumVertex() const {
-    return vertexSet.size();
-}
-
-tabHVertex Graph::getVertexSet() const {
-    return vertexSet;
-}
-
 /*
  * Auxiliary function to find a vertex with a given content.
  */
 Vertex *Graph::findVertex(const ulli &in) const {
-    auto *v = new Vertex(in);
-    Capsule cv(v);
-    auto iterator = vertexSet.find(cv);
-    if (iterator == vertexSet.end())
-        return nullptr;
-    return iterator->getVertex();
+    for (auto v: vertexSet)
+        if (v->id == in)
+            return v;
+    return NULL;
 }
 
 /*
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
-bool Graph::addVertex(const Capsule &in) {
-    if (vertexSet.find(in) != vertexSet.end())
+bool Graph::addVertex(const ulli &in) {
+    if (findVertex(in) != NULL)
         return false;
-
-    vertexSet.insert(in);
+    vertexSet.push_back(new Vertex(in));
     return true;
 }
 
@@ -50,24 +39,14 @@ bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string 
     return true;
 }
 
-int Graph::findVertexIdx(const int &in) const {
-    int i = 0;
-    for (auto iter : vertexSet) {
-        if (iter.getVertex()->id == in)
-            return i;
-        i++;
-    }
+inline ulli Graph::findVertexIdx(const ulli &in) const {
+    Vertex *v = findVertex(in);
+    if ( v != NULL)
+        return v->getID();
     return -1;
 }
 
-int Graph::getElement(int pos) const {
-    auto iter = vertexSet.begin();
-    for (int i = 0; i < pos; ++i)
-        iter++;
-    return iter->getVertex()->id;
-}
-
-template<class T>
+template <class T>
 void deleteMatrix(T **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -89,14 +68,14 @@ void Graph::floydWarshallShortestPath() {
     dist = new double *[n];
     pred = new int *[n];
     int i = 0;
-    for (auto iter : vertexSet) {
+    for (Vertex* vertex: vertexSet) {
         dist[i] = new double[n];
         pred[i] = new int[n];
         for (unsigned j = 0; j < n; j++) {
             dist[i][j] = i == j ? 0 : INF;
             pred[i][j] = -1;
         }
-        for (const auto &e : iter.getVertex()->adj) {
+        for (const auto &e : vertex->adj) {
             int j = findVertexIdx(e.dest->id);
             dist[i][j] = e.weight;
             pred[i][j] = i;
@@ -107,7 +86,7 @@ void Graph::floydWarshallShortestPath() {
         for (i = 0; i < n; i++)
             for (unsigned j = 0; j < n; j++) {
                 if (dist[i][k] == INF || dist[k][j] == INF)
-                    continue; // avoid overflow
+                    continue;               // avoid overflow
                 double val = dist[i][k] + dist[k][j];
                 if (val < dist[i][j]) {
                     dist[i][j] = val;
@@ -116,14 +95,14 @@ void Graph::floydWarshallShortestPath() {
             }
 }
 
-vector<int> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) const {
-    vector<int> res;
+vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) const {
+    vector<ulli> res;
     int i = findVertexIdx(origin);
     int j = findVertexIdx(dest);
     if (i == -1 || j == -1 || dist[i][j] == INF) // missing or disconnected
         return res;
     for (; j != -1; j = pred[i][j])
-        res.push_back(getElement(j));
+        res.push_back(vertexSet[j]->id);
     reverse(res.begin(), res.end());
     return res;
 }

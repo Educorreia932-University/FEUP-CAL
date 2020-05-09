@@ -7,7 +7,7 @@ Vertex::Vertex(const ulli& id): id(id) {}
  * with a given destination vertex (d) and edge weight (w).
  */
 void Vertex::addEdge(Vertex* d, double w, const string& streetName) {
-    adj.push_back(Edge(d, w, streetName));
+    adj.emplace_back(d, w, streetName);
 }
 
 

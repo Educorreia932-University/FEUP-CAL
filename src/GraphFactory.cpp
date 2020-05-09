@@ -18,9 +18,7 @@ void GraphFactory::readVertex(const string &filename) {
     openFile(filename, inFile);
 
     while (inFile >> id) {
-        auto v = new Vertex(id);
-        auto ca =  Capsule(v);
-        graph.addVertex(ca);
+        graph.addVertex(id);
     }
 
 }
