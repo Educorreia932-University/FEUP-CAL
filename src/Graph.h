@@ -11,6 +11,7 @@
 #include <cmath>
 #include <string>
 #include <algorithm>
+#include <unordered_set>
 
 using namespace std;
 
@@ -35,6 +36,22 @@ public:
     void floydWarshallShortestPath();
 
     vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
+
+    /**
+     * Calculates the path given the points of interest using the greedy strategy
+     * @param origin point where the person is
+     * @param poi list of the id's of the points of interest
+     * @return visiting order of the points of interest
+     */
+    vector<ulli> trajectoryOrder(ulli origin, vector<ulli>& poi);
+
+    /**
+     * Auxiliar function to trajectoryPath. It gets the next poi to be visited
+     * @param origin actual position
+     * @param poi poi's left to visit
+     * @return id of the next poi to be visited
+     */
+    ulli nextPoi(const ulli& origin, vector<ulli>& poi, vector<bool> visited);
 };
 
 #endif //GRAPH_H

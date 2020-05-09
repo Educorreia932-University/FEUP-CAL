@@ -104,3 +104,34 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     reverse(res.begin(), res.end());
     return res;
 }
+
+vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
+    //complexity O(n^3)
+    vector<ulli> order = {origin};
+    vector<bool> visited(vertexSet.size());
+    ulli index;
+    for (int i = 0; i < poi.size(); i++) {
+        index = nextPoi(origin, poi, visited);
+        order.push_back(vertexSet[index]->id);
+        visited[index] = true;
+    }
+    return order;
+}
+
+ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited) {
+    //complexity O(n^2)
+
+    int actualIndex = findVertexIdx(origin);
+    double minWeight = INF;
+    ulli selectedPoiIndex = -1;
+
+    for (int i = 0; i < poi.size(); i++) {
+        ulli nextVertex = findVertexIdx(poi[i]);
+        if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
+            minWeight = dist[actualIndex][nextVertex];
+            selectedPoiIndex = nextVertex;
+        }
+    }
+    return selectedPoiIndex;
+}
+
