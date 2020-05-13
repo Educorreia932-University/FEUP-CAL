@@ -11,7 +11,7 @@ Vertex::Vertex(const ulli& id, double lon, double lat): id(id), lon(lon), lat(la
  * with a given destination vertex (d) and edge weight (w).
  */
 void Vertex::addEdge(Vertex* d, double w, const string& streetName) {
-    adj.push_back(Edge(d, w, streetName));
+    adj.emplace_back(d, w, streetName);
 }
 
 bool Vertex::operator<(Vertex &vertex) const {

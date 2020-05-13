@@ -10,65 +10,50 @@
 #include <limits>
 #include <cmath>
 #include <string>
+#include <algorithm>
 #include <unordered_set>
 
 using namespace std;
 
-//declaring the hashTable
-//Since it's not good practice to use pointers at a hashtable, we are encapsulating
-class Capsule {
-private:
-    Vertex *v;
-public:
-    Capsule(Vertex *v) {
-        this->v = v;
-    }
-
-    Vertex *getVertex() const {
-        return v;
-    }
-};
-
-struct VertexHash{
-    int operator() (const Capsule & ca) const {
-        return 0;
-    }
-    bool operator()(Capsule ca1, Capsule ca2) const{
-        return ca1.getVertex()->getID() == ca2.getVertex()->getID();
-    }
-};
-
-typedef unordered_set<Capsule, VertexHash, VertexHash> tabHVertex;
 
 class Graph {
 private:
-    tabHVertex vertexSet;
-    vector<vector<double>> dist;
-    vector<vector<Vertex *>> pred;
+
+    vector<Vertex*> vertexSet;    // vertex set
+    double **dist; // dist
+    int **pred; // path
 
 public:
 
     Vertex *findVertex(const ulli &in) const;
 
-    bool addVertex(const Capsule &in);
+    bool addVertex(const ulli &in);
 
     bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
 
-    int getNumVertex() const;
+    ~Graph();
 
-    tabHVertex getVertexSet() const;
-
-    void unweightedShortestPath(const ulli &s);
-
-    void dijkstraShortestPath(const ulli &s);
-
-    void bellmanFordShortestPath(const ulli &s);
-
-    vector<int> getPathTo(const ulli &dest) const;
+    inline ulli findVertexIdx(const ulli &in) const;
 
     void floydWarshallShortestPath();
 
-    vector<int> getfloydWarshallPath(const ulli &origin, const ulli &dest) const;
+    vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
+
+    /**
+     * Calculates the path given the points of interest using the greedy strategy
+     * @param origin point where the person is
+     * @param poi list of the id's of the points of interest
+     * @return visiting order of the points of interest
+     */
+    vector<ulli> trajectoryOrder(ulli origin, vector<ulli>& poi);
+
+    /**
+     * Auxiliar function to trajectoryPath. It gets the next poi to be visited
+     * @param origin actual position
+     * @param poi poi's left to visit
+     * @return id of the next poi to be visited
+     */
+    ulli nextPoi(const ulli& origin, vector<ulli>& poi, vector<bool> visited);
 };
 
 #endif //GRAPH_H

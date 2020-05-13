@@ -33,10 +33,7 @@ void GraphFactory::readVertex(const string &filename) {
         getline(is, tmp, TOKEN);
         istringstream(tmp) >> lat;
 
-        auto v = new Vertex(id, lon, lat);
-        auto ca = Capsule(v);
-
-        graph.addVertex(ca);
+        graph.addVertex(id);
     }
 }
 
