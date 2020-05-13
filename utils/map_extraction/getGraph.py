@@ -45,4 +45,4 @@ def main(cityName, placeName):
     ox.extended_stats(graph, ecc=True)
     saveData(graph)
 
-main("Trofa", "Porto")
+main("Porto", "Porto")

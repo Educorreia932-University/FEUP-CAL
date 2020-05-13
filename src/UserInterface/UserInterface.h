@@ -9,11 +9,12 @@ using namespace std;
 class UserInterface {
     private:
         Graph* graph;
+        vector<ulli> res;
     public:
         UserInterface(Graph* graph);
         int showMainMenu();
         void mainMenuSelection(int selected);
-        void showGraph();
+        void showGraph(const vector<ulli>& res);
 };
 
 int readOption(int min, unsigned int max);
