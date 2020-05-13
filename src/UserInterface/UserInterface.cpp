@@ -1,7 +1,8 @@
+#include "UserInterface.h"
+
 #include <Graph/Graph.h>
 #include <Graph/Vertex.h>
 #include <graphviewer.h>
-#include "UserInterface.h"
 
 void clearScreen() {
     #ifdef __unix__
@@ -28,12 +29,21 @@ int UserInterface::showMainMenu() {
 }
 
 void UserInterface::mainMenuSelection(int selected) {
-
     switch (selected) {
         case 1:
+            POIs.insert(pair<string, ulli>("Estação", 5118553704));
+            POIs.insert(pair<string, ulli>("McDonald's", 3130312339));
+            POIs.insert(pair<string, ulli>("Aliados", 7134786669));
+            POIs.insert(pair<string, ulli>("Lello", 7134805724));
+            POIs.insert(pair<string, ulli>("Bolsa", 2356505225));
+            POIs.insert(pair<string, ulli>("Bolhão", 4356494336));
+
             cout << "Calculating...";
+
             graph->floydWarshallShortestPath();
-            POIsSelection(showPOIs());
+
+            POIsSelection();
+
             break;
         case 2:
             showGraph(res);
@@ -45,34 +55,43 @@ void UserInterface::mainMenuSelection(int selected) {
     mainMenuSelection(showMainMenu());
 }
 
-vector<ulli> UserInterface::showPOIs() {
+ulli UserInterface::showPOIs() {
     clearScreen();
+    int index = 0;
 
-    vector<ulli> POIs = {
-            5118553704,
-            3130312339,
-            7134786669,
-            7134805724,
-            2356505225,
-            4356494336};    // vertex set
+    for (pair<string, ulli> p : POIs) {
+        cout << index << ") " << p.first << " " << p.second << endl;
+        index++;
+    }
 
-    cout << "Where do you want to begin? Insert the corresponding key." << endl
-         << endl;
+    cout << index << ") " << "None." << endl;
 
-    int option = readOption(0, POIs.size());
-    ulli start = POIs[option];
+    index = 0;
+    int selected = readOption(0, POIs.size());
 
-    cout << "Where do you want to end? Insert the corresponding key." << endl
-         << endl;
+    for (pair<string, ulli> p : POIs) {
+        if (index == selected)
+            return p.second;
 
-    option = readOption(0, POIs.size());
-    ulli end = POIs[option];
+        index++;
+    }
 
-    return {start, end};
+    return -1;
 }
 
-void UserInterface::POIsSelection(vector<ulli> POIs) {
-    res = graph->getFloydWarshallPath(POIs[0],POIs[1]);
+void UserInterface::POIsSelection() {
+    vector<ulli> toVisit = {};
+
+    ulli selected;
+
+    while ((selected = showPOIs()) != -1)
+        toVisit.push_back(selected);
+
+    cout << toVisit[0] << endl;
+    cout << toVisit[1] << endl;
+    getchar();
+
+    res = graph->getFloydWarshallPath(toVisit[0], toVisit[1]);
 }
 
 UserInterface::UserInterface(Graph* graph): graph(graph) {

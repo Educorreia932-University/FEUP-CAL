@@ -6,7 +6,7 @@ def cleanData(df):
     df.drop(["geometry", "ref", "tunnel", "bridge", "lanes", "highway", "width", "access", "service", "osmid"],
             axis=1, inplace=True)
     
-    df['maxspeed'] = df['maxspeed'].fillna(0)
+    df['maxspeed'] = df['maxspeed'].fillna(50)
     df['name'] = df['name'].fillna("NONE")
     print(df.isnull().sum())
     print(df.columns)

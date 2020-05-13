@@ -62,7 +62,7 @@ void GraphFactory::readEdges(const string &filename) {
         getline(is, name, TOKEN);       //name of the road
         getline(is, oneway, TOKEN);     //"True" case it's one way, "False" otherwise
 
-        double weight = safeDivision(length, maxspeed, MEAN_VEL);
+        double weight = safeDivision(maxspeed, length, MEAN_VEL);
         graph.addEdge(source, dest, weight, name);
 
         if (oneway == "False") {

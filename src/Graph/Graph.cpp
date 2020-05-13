@@ -137,11 +137,13 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
     vector<ulli> order = {origin};
     vector<bool> visited(vertexSet.size());
     ulli index;
+
     for (int i = 0; i < poi.size(); i++) {
         index = nextPoi(origin, poi, visited);
         order.push_back(vertexSet[index]->id);
         visited[index] = true;
     }
+
     return order;
 }
 
@@ -160,6 +162,7 @@ ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited)
             selectedPoiIndex = nextVertex;
         }
     }
+
     return selectedPoiIndex;
 }
 
