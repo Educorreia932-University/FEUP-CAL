@@ -14,6 +14,8 @@ class UserInterface {
         UserInterface(Graph* graph);
         int showMainMenu();
         void mainMenuSelection(int selected);
+        vector<ulli> showPOIs();
+        void POIsSelection(vector<ulli> POIs);
         void showGraph(const vector<ulli>& res);
 };
 

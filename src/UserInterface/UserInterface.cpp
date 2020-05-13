@@ -18,8 +18,9 @@ int UserInterface::showMainMenu() {
 
     cout << "What do you want to do? Insert the corresponding key." << endl
          << endl
-         << "1) Floyd." << endl
+         << "1) Choose a tourist route." << endl
          << "2) Show the graph." << endl
+         << "3) Adjust the settings." << endl // Like disabling showing all of the edges and showing only those who are part of the route
          << "0) Exit" << endl
          << endl;
 
@@ -30,8 +31,9 @@ void UserInterface::mainMenuSelection(int selected) {
 
     switch (selected) {
         case 1:
+            cout << "Calculating...";
             graph->floydWarshallShortestPath();
-            res = graph->getFloydWarshallPath(2268201048,452682270);
+            POIsSelection(showPOIs());
             break;
         case 2:
             showGraph(res);
@@ -41,6 +43,36 @@ void UserInterface::mainMenuSelection(int selected) {
     }
 
     mainMenuSelection(showMainMenu());
+}
+
+vector<ulli> UserInterface::showPOIs() {
+    clearScreen();
+
+    vector<ulli> POIs = {
+            5118553704,
+            3130312339,
+            7134786669,
+            7134805724,
+            2356505225,
+            4356494336};    // vertex set
+
+    cout << "Where do you want to begin? Insert the corresponding key." << endl
+         << endl;
+
+    int option = readOption(0, POIs.size());
+    ulli start = POIs[option];
+
+    cout << "Where do you want to end? Insert the corresponding key." << endl
+         << endl;
+
+    option = readOption(0, POIs.size());
+    ulli end = POIs[option];
+
+    return {start, end};
+}
+
+void UserInterface::POIsSelection(vector<ulli> POIs) {
+    res = graph->getFloydWarshallPath(POIs[0],POIs[1]);
 }
 
 UserInterface::UserInterface(Graph* graph): graph(graph) {
@@ -81,18 +113,13 @@ void UserInterface::showGraph(const vector<ulli>& res) {
     gv->defineEdgeCurved(false);
 
     for (Vertex* v : graph->getVertexSet()) {
+        gv->setVertexSize(v->getID(), 6);
+
         gv->addNode(
                 v->getID(),
                 (v->lon - min_lon) / (max_lon - min_lon) * 900,
                 (v->lat - min_lat) / (max_lat - min_lat) * 900
         );
-
-        if (find(res.begin(), res.end(), v->getID()) != res.end()) {
-            gv->setVertexColor(v->getID(), "red");
-            gv->setVertexSize(v->getID(), 7);
-        }
-
-        gv->setVertexSize(v->getID(), 6);
     }
 
     int edge_id = 0;
@@ -100,6 +127,14 @@ void UserInterface::showGraph(const vector<ulli>& res) {
     for (Vertex* v : graph->getVertexSet()) {
         for (const Edge& w : v->getAdj()) {
             gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
+
+            if (find(res.begin(), res.end(), v->getID()) != res.end()
+            && find(res.begin(), res.end(), w.getDest()->getID()) != res.end() ) {
+                gv->setVertexColor(v->getID(), "red");
+                gv->setVertexSize(v->getID(), 10);
+                gv->setEdgeThickness(edge_id, 5);
+            }
+
             edge_id++;
         }
     }
@@ -111,6 +146,8 @@ void UserInterface::showGraph(const vector<ulli>& res) {
 
     gv->closeWindow();
 }
+
+
 
 
 

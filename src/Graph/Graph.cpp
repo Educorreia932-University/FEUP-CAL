@@ -127,6 +127,8 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
 
     reverse(res.begin(), res.end());
 
+    res.push_back(dest);
+
     return res;
 }
 
@@ -152,6 +154,7 @@ ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited)
 
     for (int i = 0; i < poi.size(); i++) {
         ulli nextVertex = findVertexIdx(poi[i]);
+
         if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex];
             selectedPoiIndex = nextVertex;
