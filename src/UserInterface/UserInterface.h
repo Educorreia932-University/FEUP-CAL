@@ -2,8 +2,10 @@
 #define TOURMATEAPP_USERINTERFACE_H
 
 #include "Graph/Graph.h"
-
+#include "Graph/PoiStorage.h"
 #include <iostream>
+#include <locale>
+#include <iomanip>
 #include <map>
 
 using namespace std;
@@ -12,9 +14,9 @@ class UserInterface {
     private:
         Graph* graph;
         vector<ulli> res;
-        map<string, ulli> POIs;
+        PoiStorage* poiStorage;
     public:
-        UserInterface(Graph* graph);
+        UserInterface(Graph* graph, PoiStorage * poiStorage);
         int showMainMenu();
         void mainMenuSelection(int selected);
         ulli showPOIs();

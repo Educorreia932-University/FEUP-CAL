@@ -1,6 +1,7 @@
 
 #include "UserInterface/UserInterface.h"
 #include "Graph/GraphFactory.h"
+#include "Graph/PoiStorage.h"
 
 using namespace std;
 
@@ -11,16 +12,24 @@ void test1_trajectoryOrder();
 void test_sortVertexSet(Graph graph);
 
 int main() {
+    //creating graph
     GraphFactory graphFactory;
-    //will ask the user the name of the city
-    //asks the user the name of the cities
 
     graphFactory.readVertex("../data/nodes_PORTO.csv");
     graphFactory.readEdges("../data/edges_PORTO.csv");
 
     Graph graph = graphFactory.graph;
 
-    UserInterface ui(&graph);
+
+    //reading pois
+    auto * poiStorage = new PoiStorage("PORTO");
+    if (!poiStorage->readPois()){
+        ERROR("Not possible to read POIS");
+        exit(1);
+    }
+
+    //initiating the interface
+    UserInterface ui(&graph, poiStorage);
     ui.mainMenuSelection(ui.showMainMenu());
 
     // test1_trajectoryOrder();

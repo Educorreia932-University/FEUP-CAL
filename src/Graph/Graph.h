@@ -34,13 +34,18 @@ public:
     bool addVertex(const ulli &in);
 
     bool addVertex(const ulli &in, const double lon, const double lat);
-
+    /*
+     * @brief Adds an edge to a graph (this), given the contents of the source and
+     * destination vertices and the edge weight (w).
+     * @return true if successful, and false if the source or destination vertex does not exist.
+     */
     bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
 
     inline ulli findVertexIdx(const ulli &in) const;
 
     /**
      * Before the execution of the proper algorithm of floyd warshall, it will check if matrix is not saved in a specific file
+     * @param cityName Each city has a file called matrix_<cityName>_dest and matrix_<cityName>_pred
      */
     void handleFloydWarshall(const string& cityName);
 

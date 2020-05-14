@@ -1,5 +1,10 @@
 #include "FloydStorage.h"
 
+/**
+ * @file FloydStorage.cpp
+ * @brief this file is responsible to load the floydWarshall matrix case it exists. It has also a function which the graph should ask
+ * to know if it's necessary to execute the floydWarshall algorithm
+ */
 
 /*TODO: fix the path for linux*/
 
@@ -98,10 +103,10 @@ bool FloydStorage::readPred(const string &cityName) {
 void FloydStorage::storeDest(const unsigned int &size, const string &cityName) {
     string fileName = "../data/matrix_" + cityName + "_dest";
     ofstream distFile(fileName.c_str());
-    //write the dimension of the matrix
+    //writes the dimension of the matrix
     distFile << size << endl;
 
-    //write the content of the matrix
+    //writes the content of the matrix
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             distFile << graph->dist[i][j] << " ";
@@ -115,10 +120,11 @@ void FloydStorage::storePred(const unsigned int &size, const string &cityName) {
 
     string fileName = "../data/matrix_" + cityName + "_pred";
     ofstream predFile(fileName.c_str());
-    //write the dimension of the matrix
+
+    //writes the dimension of the matrix
     predFile << size << endl;
 
-    //write the content of the matrix
+    //writes the content of the matrix
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             predFile << graph->pred[i][j] << " ";
