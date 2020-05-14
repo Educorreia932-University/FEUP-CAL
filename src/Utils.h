@@ -7,6 +7,7 @@
 
 using namespace std;
 
+#define INF std::numeric_limits<double>::max()
 #define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
 
 /**

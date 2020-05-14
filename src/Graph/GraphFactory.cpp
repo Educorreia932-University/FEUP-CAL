@@ -2,9 +2,7 @@
 #include "GraphFactory.h"
 #include "Utils.h"
 
-#define MEAN_VEL 40 /** the mean velocity in the graph*/
-
-#define MEAN_VEL            40                  /** the mean velocity in the graph*/
+#define MEAN_VEL            40                 /** the mean velocity in the graph*/
 
 void GraphFactory::openFile(const string &filename, ifstream &inFile) {
     inFile.open(filename.c_str());

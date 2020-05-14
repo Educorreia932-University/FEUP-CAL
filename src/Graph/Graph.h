@@ -5,6 +5,7 @@
 #include "Vertex.h"
 #include "Utils.h"
 
+
 #include <vector>
 #include <queue>
 #include <list>
@@ -18,46 +19,56 @@ using namespace std;
 
 
 class Graph {
-    private:
-        vector<Vertex*> vertexSet;    // vertex set
-        double **dist = nullptr; // dist
-        int **pred = nullptr; // path
-    public:
-        ~Graph();
-        Vertex *findVertex(const ulli &in) const;
-        void sortVertexSet();                   //allow the use of binary search
-        bool addVertex(const ulli &in);
-        bool addVertex(const ulli &in, const double lon, const double lat);
-        bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
-        inline ulli findVertexIdx(const ulli &in) const;
-        /**
-         * Before the execution of the proper algorithm of floyd warshall, it will check if matrix is not saved in a specific file
-         */
-        void handleFloydWarshall();
-        /**
-         *
-         */
-        void floydWarshallShortestPath();
-        vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
+private:
+    vector<Vertex *> vertexSet;    // vertex set
+    double **dist = nullptr; // dist
+    int **pred = nullptr; // path
+
+    friend class FloydStorage;
+public:
+    ~Graph();
+
+    Vertex *findVertex(const ulli &in) const;
+
+    void sortVertexSet();                   //allow the use of binary search
+    bool addVertex(const ulli &in);
+
+    bool addVertex(const ulli &in, const double lon, const double lat);
+
+    bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
+
+    inline ulli findVertexIdx(const ulli &in) const;
+
+    /**
+     * Before the execution of the proper algorithm of floyd warshall, it will check if matrix is not saved in a specific file
+     */
+    void handleFloydWarshall(const string& cityName);
+
+    /**
+     *
+     */
+    void floydWarshallShortestPath();
+
+    vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
 
 
-        /**
-         * Calculates the path given the points of interest using the greedy strategy
-         * @param origin point where the person is
-         * @param poi list of the id's of the points of interest
-         * @return visiting order of the points of interest
-         */
-        vector<ulli> trajectoryOrder(ulli origin, vector<ulli>& poi);
+    /**
+     * Calculates the path given the points of interest using the greedy strategy
+     * @param origin point where the person is
+     * @param poi list of the id's of the points of interest
+     * @return visiting order of the points of interest
+     */
+    vector<ulli> trajectoryOrder(ulli origin, vector<ulli> &poi);
 
-        /**
-         * Auxiliar function to trajectoryPath. It gets the next poi to be visited
-         * @param origin actual position
-         * @param poi poi's left to visit
-         * @return id of the next poi to be visited
-         */
-        ulli nextPoi(const ulli& origin, vector<ulli>& poi, vector<bool> visited);
+    /**
+     * Auxiliar function to trajectoryPath. It gets the next poi to be visited
+     * @param origin actual position
+     * @param poi poi's left to visit
+     * @return id of the next poi to be visited
+     */
+    ulli nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited);
 
-        vector<Vertex*> getVertexSet();
+    vector<Vertex *> getVertexSet();
 };
 
 #endif //GRAPH_H

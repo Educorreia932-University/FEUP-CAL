@@ -40,7 +40,7 @@ void UserInterface::mainMenuSelection(int selected) {
 
             cout << "Calculating...";
 
-            graph->floydWarshallShortestPath();
+            graph->handleFloydWarshall("PORTO");
 
             POIsSelection();
 

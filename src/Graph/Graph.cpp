@@ -1,6 +1,7 @@
 #include "Graph.h"
+#include "FloydStorage.h"
 
-#define INF std::numeric_limits<double>::max()
+
 
 /*
  * Auxiliary function to find a vertex with a given content.
@@ -87,6 +88,18 @@ void Graph::sortVertexSet() {
     });
 }
 
+
+void Graph::handleFloydWarshall(const string& cityName) {
+    auto *fs = new FloydStorage(this);
+    if (fs->isToExecuteFloyd(cityName)){
+        floydWarshallShortestPath();
+        unsigned int size = vertexSet.size();       //to avoid calculating the size twice
+        fs->storePred(size, cityName);
+        fs->storeDest(size, cityName);
+    }
+
+}
+
 void Graph::floydWarshallShortestPath() {
 
     int n = vertexSet.size();
@@ -132,7 +145,7 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     vector<ulli> res;
     int i = findVertexIdx(origin);
     int j = findVertexIdx(dest);
-
+    cout << dist[i][j] << endl;
     if (i == -1 || j == -1 || dist[i][j] == INF) // missing or disconnected
         return res;
 
