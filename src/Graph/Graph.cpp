@@ -54,7 +54,17 @@ bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string 
 
 
 inline ulli Graph::findVertexIdx(const ulli &in) const {
-    return binarySearch(in, this->vertexSet);
+    int end = vertexSet.size() ;
+    int begin = 0 ;
+    while (end >= begin) {
+        int mid = begin + (end- begin) / 2;
+        cout << "mid : " <<  mid << endl;
+        if (in > vertexSet[mid]->getID()  ) begin = mid +1 ;
+        else if (in < vertexSet[mid]->getID() ) end = mid - 1;
+        else return mid;
+    }
+
+    return -1;
 }
 
 template<class T>

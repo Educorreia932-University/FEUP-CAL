@@ -32,7 +32,4 @@ typedef unsigned long long int ulli;
  */
 double safeDivision(double numerator, double denominator, double subst);
 
-template <class T>
-int binarySearch (ulli target, vector<T> v);
-
 #endif //TOURMATEAPP_UTILS_H
