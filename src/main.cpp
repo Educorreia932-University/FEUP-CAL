@@ -11,9 +11,13 @@ void test1_trajectoryOrder();
 
 int main() {
     GraphFactory graphFactory;
-
-    graphFactory.readVertex(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\nodes.csv)");
-    graphFactory.readEdges(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\edges.csv)");
+#ifdef __unix__
+    graphFactory.readVertex("../../data/nodes.csv");
+    graphFactory.readEdges("../../data/edges.csv");
+#else
+    graphFactory.readVertex("../data/nodes.csv");
+    graphFactory.readEdges("../data/edges.csv");
+#endif
 
     Graph graph = graphFactory.graph;
 
