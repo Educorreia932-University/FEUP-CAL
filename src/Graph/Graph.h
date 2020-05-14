@@ -30,6 +30,13 @@ class Graph {
         bool addVertex(const ulli &in, const double lon, const double lat);
         bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
         inline ulli findVertexIdx(const ulli &in) const;
+        /**
+         * Before the execution of the proper algorithm of floyd warshall, it will check if matrix is not saved in a specific file
+         */
+        void handleFloydWarshall();
+        /**
+         *
+         */
         void floydWarshallShortestPath();
         vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
 

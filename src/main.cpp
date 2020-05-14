@@ -12,9 +12,11 @@ void test_sortVertexSet(Graph graph);
 
 int main() {
     GraphFactory graphFactory;
+    //will ask the user the name of the city
+    //asks the user the name of the cities
 
-    graphFactory.readVertex("../data/nodes.csv");
-    graphFactory.readEdges("../data/edges.csv");
+    graphFactory.readVertex("../data/nodes_PORTO.csv");
+    graphFactory.readEdges("../data/edges_PORTO.csv");
 
     Graph graph = graphFactory.graph;
 

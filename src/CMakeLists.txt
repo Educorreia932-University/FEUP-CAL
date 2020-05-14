@@ -25,5 +25,7 @@ add_executable(src
         Utils.h
         Graph/Vertex.cpp
         Graph/Vertex.h
+        Graph/floydStorage.cpp
+        Graph/floydStorage.h
         ../lib/connection.cpp
         ../lib/graphviewer.cpp)
