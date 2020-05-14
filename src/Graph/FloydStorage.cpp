@@ -1,23 +1,25 @@
 #include "FloydStorage.h"
 
 
-FloydStorage::FloydStorage(Graph* graph){
-    this->graph = graph;
-}
 /*TODO: fix the path for linux*/
 
-bool FloydStorage::isToExecuteFloyd(const string& cityName){
+bool FloydStorage::isToExecuteFloyd(const string &cityName) {
     //checks the files are available
     if (!readDest(cityName)) return true;
     return !readPred(cityName);
 
 }
 
-bool FloydStorage::readDest (const string& cityName){
+FloydStorage::FloydStorage(Graph *graph) {
+    this->graph = graph;
+}
+
+bool FloydStorage::readDest(const string &cityName) {
     string tmp;
     string aux;
     unsigned int size = 0;
     const char TOKEN = ' ';
+    const double _INF = INF;
 
     ifstream inFile;
     string fileName = "../data/matrix_" + cityName + "_dest";
@@ -34,19 +36,17 @@ bool FloydStorage::readDest (const string& cityName){
 
         int line = 0;
         while (getline(inFile, tmp)) {
-          istringstream is(tmp);
-          graph->dist[line] = new double [size];
-            cout << "line " << line << endl;
-            for (int col = 0 ; col < size ; col++){
-              getline(is, aux, TOKEN);
-              if (aux == "1.79769e+308") graph->dist[line][col] = INF;
-              else istringstream(aux) >> graph->dist[line][col];
-          }
-          line++;
+            istringstream is(tmp);
+            graph->dist[line] = new double[size];
+            for (int col = 0; col < size; col++) {
+                getline(is, aux, TOKEN);
+                istringstream(aux) >> graph->dist[line][col];
+            }
+            line++;
         }
-        cout << "END" << endl;
+
         inFile.close();
-    } catch (...){
+    } catch (...) {
         ERROR("Error trying to read dest file");
         inFile.close();
         return false;
@@ -55,7 +55,7 @@ bool FloydStorage::readDest (const string& cityName){
     return true;
 }
 
-bool FloydStorage::readPred(const string& cityName){
+bool FloydStorage::readPred(const string &cityName) {
     string fileName = "../data/matrix_" + cityName + "_pred";
     string aux;
     string tmp;
@@ -78,16 +78,15 @@ bool FloydStorage::readPred(const string& cityName){
         graph->pred[line] = new int[size];
         while (getline(inFile, tmp)) {
             istringstream is(tmp);
-            cout << "line " << line << endl;
-            graph->pred[line] = new int [size];
-            for (int col = 0 ; col < size ; col++){
+            graph->pred[line] = new int[size];
+            for (int col = 0; col < size; col++) {
                 getline(is, aux, TOKEN);
                 istringstream(aux) >> graph->pred[line][col];
             }
             line++;
         }
         inFile.close();
-    } catch (...){
+    } catch (...) {
         ERROR("Error trying to read pred file");
         inFile.close();
         return false;
@@ -95,33 +94,34 @@ bool FloydStorage::readPred(const string& cityName){
 
     return true;
 }
-void FloydStorage::storeDest(const unsigned int& size, const string& cityName){
+
+void FloydStorage::storeDest(const unsigned int &size, const string &cityName) {
     string fileName = "../data/matrix_" + cityName + "_dest";
-    ofstream distFile (fileName.c_str());
+    ofstream distFile(fileName.c_str());
     //write the dimension of the matrix
     distFile << size << endl;
 
     //write the content of the matrix
-     for (int i = 0 ; i < size ; i ++){
-         for (int j = 0 ; j < size ; j ++){
-             distFile << graph->dist [i][j] << " ";
-         }
-         distFile << endl;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            distFile << graph->dist[i][j] << " ";
+        }
+        distFile << endl;
     }
-     distFile.close();
+    distFile.close();
 }
 
-void FloydStorage::storePred(const unsigned int& size, const string& cityName) {
+void FloydStorage::storePred(const unsigned int &size, const string &cityName) {
 
     string fileName = "../data/matrix_" + cityName + "_pred";
-    ofstream predFile (fileName.c_str());
+    ofstream predFile(fileName.c_str());
     //write the dimension of the matrix
     predFile << size << endl;
 
     //write the content of the matrix
-    for (int i = 0 ; i < size ; i ++){
-        for (int j = 0 ; j < size ; j ++){
-            predFile << graph->pred [i][j] <<" ";
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            predFile << graph->pred[i][j] << " ";
         }
         predFile << endl;
     }

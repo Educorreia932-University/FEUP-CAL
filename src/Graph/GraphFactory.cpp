@@ -67,7 +67,6 @@ void GraphFactory::readEdges(const string &filename) {
         if (oneway == "False") {
             graph.addEdge(dest, source, weight, name);
         }
-        // cout << source << " " << dest << endl;
         is.clear();
     }
 
