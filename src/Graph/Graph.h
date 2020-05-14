@@ -25,12 +25,14 @@ class Graph {
     public:
         ~Graph();
         Vertex *findVertex(const ulli &in) const;
+        void sortVertexSet();                   //allow the use of binary search
         bool addVertex(const ulli &in);
         bool addVertex(const ulli &in, const double lon, const double lat);
         bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
         inline ulli findVertexIdx(const ulli &in) const;
         void floydWarshallShortestPath();
         vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
+
 
         /**
          * Calculates the path given the points of interest using the greedy strategy

@@ -34,6 +34,7 @@ void GraphFactory::readVertex(const string &filename) {
 
         graph.addVertex(id, lon, lat);
     }
+    graph.sortVertexSet();
 }
 
 void GraphFactory::readEdges(const string &filename) {

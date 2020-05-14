@@ -75,6 +75,12 @@ Graph::~Graph() {
     deleteMatrix(pred, vertexSet.size());
 }
 
+void Graph::sortVertexSet() {
+    sort(this->vertexSet.begin(), this->vertexSet.end(), [](Vertex* v1, Vertex* v2){
+        return v1->getID() < v2->getID();
+    });
+}
+
 void Graph::floydWarshallShortestPath() {
     int n = vertexSet.size();
     deleteMatrix(dist, n);

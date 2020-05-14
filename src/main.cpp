@@ -8,21 +8,23 @@ void printTest(vector<ulli> res);
 void test1_floyd();
 void test2_floyd();
 void test1_trajectoryOrder();
+void test_sortVertexSet(Graph graph);
 
 int main() {
     GraphFactory graphFactory;
 
-    graphFactory.readVertex(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\nodes.csv)");
-    graphFactory.readEdges(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\edges.csv)");
+    graphFactory.readVertex("data/nodes.csv");
+    graphFactory.readEdges("data/edges.csv");
 
     Graph graph = graphFactory.graph;
 
-    UserInterface ui(&graph);
-    ui.mainMenuSelection(ui.showMainMenu());
+    //UserInterface ui(&graph);
+    //ui.mainMenuSelection(ui.showMainMenu());
 
     // test1_trajectoryOrder();
     // test the floyd warshall greedy aproach
 
+    test_sortVertexSet(graph);
     return 0;
 }
 
@@ -95,6 +97,13 @@ void test1_trajectoryOrder(){
 
     printTest(res);
 
+}
+
+void test_sortVertexSet(Graph graph){
+    vector<Vertex*> v = graph.getVertexSet();
+    for (int i = 0 ; i < 5; i++){
+        cout << v[i]->getID() << endl;
+    }
 }
 
 void printTest(vector<ulli> res){
