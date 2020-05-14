@@ -58,7 +58,6 @@ inline ulli Graph::findVertexIdx(const ulli &in) const {
     int begin = 0 ;
     while (end >= begin) {
         int mid = begin + (end- begin) / 2;
-        cout << "mid : " <<  mid << endl;
         if (in > vertexSet[mid]->getID()  ) begin = mid +1 ;
         else if (in < vertexSet[mid]->getID() ) end = mid - 1;
         else return mid;

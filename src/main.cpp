@@ -13,18 +13,17 @@ void test_sortVertexSet(Graph graph);
 int main() {
     GraphFactory graphFactory;
 
-    graphFactory.readVertex("data/nodes.csv");
-    graphFactory.readEdges("data/edges.csv");
+    graphFactory.readVertex("../data/nodes.csv");
+    graphFactory.readEdges("../data/edges.csv");
 
     Graph graph = graphFactory.graph;
 
-    //UserInterface ui(&graph);
-    //ui.mainMenuSelection(ui.showMainMenu());
+    UserInterface ui(&graph);
+    ui.mainMenuSelection(ui.showMainMenu());
 
     // test1_trajectoryOrder();
     // test the floyd warshall greedy aproach
 
-    test_sortVertexSet(graph);
     return 0;
 }
 
