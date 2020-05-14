@@ -15,7 +15,7 @@ void clearScreen() {
 #endif
 }
 
-int UserInterface::showMainMenu() {
+void UserInterface::showMainMenu() {
     clearScreen();
 
     cout << "                MENU                " << endl
@@ -27,28 +27,27 @@ int UserInterface::showMainMenu() {
          << " Exit                           [0]" << endl
          << endl;
 
-    return readOption(0, 2);
 }
 
-void UserInterface::mainMenuSelection(int selected) {
-    switch (selected) {
-        case 1:
-            cout << "Calculating..." << endl;
+void UserInterface::mainMenuSelection() {
+    while (true) {
+        showMainMenu();
+        int option = readOption(0, 2);
 
-            graph->handleFloydWarshall("PORTO");
+        switch (option) {
+            case 1:
+                cout << "Calculating..." << endl;
+                graph->handleFloydWarshall("PORTO");
+                POIsSelection();
+                break;
+            case 2:
+                showGraph(res);
+                break;
+            case 0:
+                return;
 
-            POIsSelection();
-
-            break;
-        case 2:
-            showGraph(res);
-            break;
-        case 0:
-            return;
-
+        }
     }
-
-    mainMenuSelection(showMainMenu());
 }
 
 ulli UserInterface::showPOIs() {
@@ -86,8 +85,9 @@ void UserInterface::POIsSelection() {
     while ((selected = showPOIs()) != -1)
         toVisit.push_back(selected);
 
-    cout << toVisit[0] << endl;
-    cout << toVisit[1] << endl;
+    //case there isn't sufficient pois to visit, i.e 1 or 2, the program will go back to the MainMenu
+    if (toVisit.empty() || toVisit.size() == 1) return;
+
     getchar();
 
     res = graph->getFloydWarshallPath(toVisit[0], toVisit[1]);
@@ -158,7 +158,6 @@ void UserInterface::showGraph(const vector<ulli> &res) {
     cout << "Press a key to exit." << endl;
     getchar();
 
-    gv->closeWindow();
 }
 
 

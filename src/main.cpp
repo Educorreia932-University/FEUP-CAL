@@ -30,7 +30,7 @@ int main() {
 
     //initiating the interface
     UserInterface ui(&graph, poiStorage);
-    ui.mainMenuSelection(ui.showMainMenu());
+    ui.mainMenuSelection();
 
     // test1_trajectoryOrder();
     // test the floyd warshall greedy aproach
