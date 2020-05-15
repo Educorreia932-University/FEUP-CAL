@@ -20,19 +20,21 @@ using namespace std;
 
 class Graph {
 private:
-    vector<Vertex *> vertexSet;    // vertex set
-    double **dist = nullptr; // dist
-    int **pred = nullptr; // path
+    vector<Vertex *> vertexSet;     /** vertex set */
+    double **dist = nullptr; 		/** dist */
+    int **pred = nullptr; 			/** path */ 
 
     friend class FloydStorage;
 public:
     ~Graph();
 
+    vector<Vertex *> getVertexSet();
     Vertex *findVertex(const ulli &in) const;
-
-    void sortVertexSet();                   //allow the use of binary search
+	/**
+	 * @brief sorts the vertices according to the id's so that it can perform binary search to find a vertex Id 
+	 */ 
+    void sortVertexSet();                   
     bool addVertex(const ulli &in);
-
     bool addVertex(const ulli &in, const double lon, const double lat);
     /*
      * @brief Adds an edge to a graph (this), given the contents of the source and
@@ -40,7 +42,10 @@ public:
      * @return true if successful, and false if the source or destination vertex does not exist.
      */
     bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
-
+	/**
+	 * @brief Finds the index of an ID in the vertexSet
+	 * @param in It's the id of the vertex 
+	 */ 
     inline ulli findVertexIdx(const ulli &in) const;
 
     /**
@@ -50,10 +55,14 @@ public:
     void handleFloydWarshall(const string& cityName);
 
     /**
-     *
+     * @brief Application of the floydWarshall algorithm 
      */
     void floydWarshallShortestPath();
-
+	
+	/**
+	 * @brief Get the path 
+	 * @return Returns a vector containing the ID's of the vertexes to pass by 
+	 **/ 
     vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
 
 
@@ -73,7 +82,6 @@ public:
      */
     ulli nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited);
 
-    vector<Vertex *> getVertexSet();
 };
 
 #endif //GRAPH_H
