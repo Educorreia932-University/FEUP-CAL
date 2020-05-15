@@ -166,8 +166,6 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
         visited[idNext] = true;
         origin = idNext;                                                        //the new vertex now is the origin
     }
-    for (int i = 0 ; i < order.size(); i++)
-        cout << order[i] << endl;
 
     return order;
 }
