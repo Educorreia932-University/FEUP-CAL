@@ -138,7 +138,7 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     vector<ulli> res;
     int i = findVertexIdx(origin);
     int j = findVertexIdx(dest);
-    cout << dist[i][j] << endl;
+
     if (i == -1 || j == -1 || dist[i][j] == INF) // missing or disconnected
         return res;
 

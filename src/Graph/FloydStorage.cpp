@@ -24,7 +24,6 @@ bool FloydStorage::readDest(const string &cityName) {
     string aux;
     unsigned int size = 0;
     const char TOKEN = ' ';
-    const double _INF = INF;
 
     ifstream inFile;
     string fileName = "../data/matrix_" + cityName + "_dest";

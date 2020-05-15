@@ -154,7 +154,6 @@ void UserInterface::showGraph(const vector<ulli> &res) {
     }
 
     gv->rearrange();
-
     cout << "Press a key to exit." << endl;
     getchar();
 
