@@ -90,7 +90,11 @@ void UserInterface::POIsSelection() {
 
     getchar();
 
-    res = graph->getFloydWarshallPath(toVisit[0], toVisit[1]);
+    res = graph->trajectoryOrder(toVisit[0], toVisit);
+    for (int i = 0 ; i < res.size(); i++){
+        cout << res[i] << endl;
+    }
+
 }
 
 UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}

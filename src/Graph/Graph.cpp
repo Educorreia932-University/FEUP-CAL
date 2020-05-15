@@ -1,13 +1,6 @@
 #include "Graph.h"
 #include "FloydStorage.h"
 
-
-
-/*
- * Auxiliary function to find a vertex with a given content.
- */
-
-
 Vertex *Graph::findVertex(const ulli &in) const {
     for (auto v: vertexSet)
         if (v->id == in)
@@ -153,27 +146,40 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
 }
 
 vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
-    //complexity O(n^3)
-    vector<ulli> order = {origin};
+    vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
-    ulli index;
+    visited[findVertexIdx(origin)] = true;
 
-    for (int i = 0; i < poi.size(); i++) {
-        index = nextPoi(origin, poi, visited);
-        order.push_back(vertexSet[index]->id);
-        visited[index] = true;
+    ulli idNext;
+
+    //the poi vector must contain the INDEX of the POIS in the vertexSet
+    origin = findVertexIdx(origin);
+    for (int i = 0; i < poi.size(); i++){
+        poi[i] = findVertexIdx(poi[i]);
     }
+
+    for (int i = 1; i < poi.size(); i++) {
+        idNext = nextPoi(origin, poi, visited);                             //get the id of the next poi to be visited
+        vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
+
+        order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
+        visited[idNext] = true;
+        origin = idNext;                                                        //the new vertex now is the origin
+    }
+    for (int i = 0 ; i < order.size(); i++)
+        cout << order[i] << endl;
 
     return order;
 }
 
+//return the id of the next poi
 ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited) {
-    int actualIndex = findVertexIdx(origin);
+    int actualIndex = origin;
     double minWeight = INF;
     ulli selectedPoiIndex = -1;
 
     for (int i = 0; i < poi.size(); i++) {
-        ulli nextVertex = findVertexIdx(poi[i]);
+        ulli nextVertex = poi[i];
 
         if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex];
