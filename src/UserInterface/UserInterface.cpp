@@ -120,7 +120,11 @@ int readOption(int min, unsigned int max) {
 
 void UserInterface::showGraph(const vector<ulli> &res) {
     auto gv = new GraphViewer(900, 900, false);
+#ifdef __unix__
+    gv->setBackground("../../data/map.png");
+#else
     gv->setBackground("../data/map.png");
+#endif
     gv->createWindow(900, 900);
 
     double min_lon = -8.6226691;
