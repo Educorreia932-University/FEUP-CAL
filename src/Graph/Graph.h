@@ -17,7 +17,10 @@
 
 using namespace std;
 
-
+/**
+ * @file Graph.h
+ * @brief File containing Graph class responsible for storing the graph of the city 
+ */ 
 class Graph {
 private:
     vector<Vertex *> vertexSet;     /** vertex set */

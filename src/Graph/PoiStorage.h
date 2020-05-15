@@ -16,10 +16,13 @@ using namespace std;
  * @brief Also, the file must be in the format "poi_name, id"
  */
 class PoiStorage {
-    map<string, ulli> POIs;
+    map<string, ulli> POIs;   /*< map containing the name of the points of interest and its ID*/ 
     string cityName;
 public:
     explicit PoiStorage(const string& cityName);
+	/*
+	 * @brief It reads the file containing the pois
+	 */
     bool readPois();
     map<string, ulli> getMap() const;
 };
