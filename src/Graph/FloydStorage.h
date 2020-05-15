@@ -18,15 +18,27 @@ private:
 public:
     FloydStorage(Graph* graph);
     /**
-     * Based on the existence of files matrix_<cityName>_dest and matrix_<cityName>_pred will return false (to execute floyd) or it will just load those files
+     * @brief Based on the existence of files matrix_<cityName>_dest and matrix_<cityName>_pred will return false (to execute floyd) or it will just load those files
      * @return true case exist the file, false otherwise
      */
     bool isToExecuteFloyd(const string& cityName);
-
+	/**
+	 * @brief Reads the file containing the matrix of distances
+	 */ 
     bool readDest(const string& cityName);
+	/**
+	 * @brief Reads the file containing the matrix of pred
+	 */ 
     bool readPred(const string& cityName);
-
+	/**
+	 * @brief Get the matrix of the distances and stores it in a file called matrix_<cityName>_dist
+	 * @param size Is the size n of matrix of dimensions n x n 
+	 */
     void storeDest(const unsigned int& size, const string& cityName);
+	/**
+	 * @brief Get the matrix of the pred and stores it in a file called matrix_<cityName>_pred
+	 * @param size Is the size n of a matrix of dimensions n x n 
+	 */
     void storePred(const unsigned int& size, const string& cityName);
 };
 
