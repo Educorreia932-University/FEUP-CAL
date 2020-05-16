@@ -4,72 +4,70 @@
 #include <Graph/Vertex.h>
 #include <graphviewer.h>
 
-void clearScreen() {
-    #ifdef __unix__
-        system("clear");
-    #endif
 
-    #ifdef _WIN32
-        system("cls");
-    #endif
+void clearScreen() {
+#ifdef __unix__
+    system("clear");
+#endif
+
+#ifdef _WIN32
+    system("cls");
+#endif
 }
 
-int UserInterface::showMainMenu() {
+void UserInterface::showMainMenu() {
     clearScreen();
 
-    cout << "What do you want to do? Insert the corresponding key." << endl
-         << endl
-         << "1) Choose a tourist route." << endl
-         << "2) Show the graph." << endl
-         << "3) Adjust the settings." << endl // Like disabling showing all of the edges and showing only those who are part of the route
-         << "0) Exit" << endl
+    cout << "                MENU                " << endl
+         << " ===================================" << endl
+         << " Choose a tourist route         [1]" << endl
+         << " Show the map                   [2]" << endl
+         << " Adjust the settings            [3]"
+         << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Exit                           [0]" << endl
          << endl;
 
-    return readOption(0, 2);
 }
 
-void UserInterface::mainMenuSelection(int selected) {
-    switch (selected) {
-        case 1:
-            POIs.insert(pair<string, ulli>("Estação", 5118553704));
-            POIs.insert(pair<string, ulli>("McDonald's", 3130312339));
-            POIs.insert(pair<string, ulli>("Aliados", 7134786669));
-            POIs.insert(pair<string, ulli>("Lello", 7134805724));
-            POIs.insert(pair<string, ulli>("Bolsa", 2356505225));
-            POIs.insert(pair<string, ulli>("Bolhão", 4356494336));
+void UserInterface::mainMenuSelection() {
+    while (true) {
+        showMainMenu();
+        int option = readOption(0, 2);
 
-            cout << "Calculating...";
+        switch (option) {
+            case 1:
+                cout << "Calculating..." << endl;
+                graph->handleFloydWarshall("PORTO");
+                POIsSelection();
+                break;
+            case 2:
+                showGraph(res);
+                break;
+            case 0:
+                return;
 
-            graph->floydWarshallShortestPath();
-
-            POIsSelection();
-
-            break;
-        case 2:
-            showGraph(res);
-            break;
-        case 0:
-            return;
+        }
     }
-
-    mainMenuSelection(showMainMenu());
 }
 
 ulli UserInterface::showPOIs() {
     clearScreen();
     int index = 0;
 
-    for (pair<string, ulli> p : POIs) {
-        cout << index << ") " << p.first << " " << p.second << endl;
+    //printing the point of interest
+    cout << "\t POINTS OF INTEREST \t" << endl;
+    cout << "============================================" << endl;
+    for (pair<string, ulli> p : poiStorage->getMap()) {
+        cout << left << setw(40) << p.first << "[" << index << "]" << endl;
         index++;
     }
-
-    cout << index << ") " << "None." << endl;
+    cout << left << setw(40) << "None" << "[" << index << "]" << endl;
+    cout << endl;
 
     index = 0;
-    int selected = readOption(0, POIs.size());
+    int selected = readOption(0, poiStorage->getMap().size());
 
-    for (pair<string, ulli> p : POIs) {
+    for (pair<string, ulli> p : poiStorage->getMap()) {
         if (index == selected)
             return p.second;
 
@@ -87,16 +85,19 @@ void UserInterface::POIsSelection() {
     while ((selected = showPOIs()) != -1)
         toVisit.push_back(selected);
 
-    cout << toVisit[0] << endl;
-    cout << toVisit[1] << endl;
+    //case there isn't sufficient pois to visit, i.e 1 or 2, the program will go back to the MainMenu
+    if (toVisit.empty() || toVisit.size() == 1) return;
+
     getchar();
 
-    res = graph->getFloydWarshallPath(toVisit[0], toVisit[1]);
+    res = graph->trajectoryOrder(toVisit[0], toVisit);
+    for (int i = 0 ; i < res.size(); i++){
+        cout << res[i] << endl;
+    }
+
 }
 
-UserInterface::UserInterface(Graph* graph): graph(graph) {
-
-}
+UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
 
 int readOption(int min, unsigned int max) {
     int option;
@@ -107,9 +108,7 @@ int readOption(int min, unsigned int max) {
         if (cin >> option && option >= min && option <= max) {
             cin.ignore(1000, '\n');
             return option;
-        }
-
-        else {
+        } else {
             cin.clear();
             cin.ignore(1000, '\n');
             cerr << endl
@@ -119,7 +118,7 @@ int readOption(int min, unsigned int max) {
     }
 }
 
-void UserInterface::showGraph(const vector<ulli>& res) {
+void UserInterface::showGraph(const vector<ulli> &res) {
     auto gv = new GraphViewer(900, 900, false);
 #ifdef __unix__
     gv->setBackground("../../data/map.png");
@@ -135,7 +134,7 @@ void UserInterface::showGraph(const vector<ulli>& res) {
 
     gv->defineEdgeCurved(false);
 
-    for (Vertex* v : graph->getVertexSet()) {
+    for (Vertex *v : graph->getVertexSet()) {
         gv->setVertexSize(v->getID(), 6);
 
         gv->addNode(
@@ -147,12 +146,12 @@ void UserInterface::showGraph(const vector<ulli>& res) {
 
     int edge_id = 0;
 
-    for (Vertex* v : graph->getVertexSet()) {
-        for (const Edge& w : v->getAdj()) {
+    for (Vertex *v : graph->getVertexSet()) {
+        for (const Edge &w : v->getAdj()) {
             gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
 
             if (find(res.begin(), res.end(), v->getID()) != res.end()
-            && find(res.begin(), res.end(), w.getDest()->getID()) != res.end() ) {
+                && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()) {
                 gv->setVertexColor(v->getID(), "red");
                 gv->setVertexSize(v->getID(), 10);
                 gv->setEdgeThickness(edge_id, 5);
@@ -163,11 +162,9 @@ void UserInterface::showGraph(const vector<ulli>& res) {
     }
 
     gv->rearrange();
-
     cout << "Press a key to exit." << endl;
     getchar();
 
-    gv->closeWindow();
 }
 
 

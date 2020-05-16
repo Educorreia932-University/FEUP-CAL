@@ -2,9 +2,7 @@
 #include "GraphFactory.h"
 #include "Utils.h"
 
-#define MEAN_VEL 40 /** the mean velocity in the graph*/
-
-#define MEAN_VEL            40                  /** the mean velocity in the graph*/
+#define MEAN_VEL            40                 /** the mean velocity in the graph*/
 
 void GraphFactory::openFile(const string &filename, ifstream &inFile) {
     inFile.open(filename.c_str());
@@ -34,6 +32,7 @@ void GraphFactory::readVertex(const string &filename) {
 
         graph.addVertex(id, lon, lat);
     }
+    graph.sortVertexSet();
 }
 
 void GraphFactory::readEdges(const string &filename) {
@@ -68,7 +67,6 @@ void GraphFactory::readEdges(const string &filename) {
         if (oneway == "False") {
             graph.addEdge(dest, source, weight, name);
         }
-        // cout << source << " " << dest << endl;
         is.clear();
     }
 

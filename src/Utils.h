@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
+#define INF std::numeric_limits<double>::max()
 #define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
 
 /**
@@ -30,6 +32,5 @@ typedef unsigned long long int ulli;
  * @return The value of the division
  */
 double safeDivision(double numerator, double denominator, double subst);
-
 
 #endif //TOURMATEAPP_UTILS_H

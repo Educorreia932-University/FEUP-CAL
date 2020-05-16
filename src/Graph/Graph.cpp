@@ -1,11 +1,5 @@
 #include "Graph.h"
-
-#define INF std::numeric_limits<double>::max()
-
-/*
- * Auxiliary function to find a vertex with a given content.
- */
-
+#include "FloydStorage.h"
 
 Vertex *Graph::findVertex(const ulli &in) const {
     for (auto v: vertexSet)
@@ -14,10 +8,6 @@ Vertex *Graph::findVertex(const ulli &in) const {
     return NULL;
 }
 
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
- */
 bool Graph::addVertex(const ulli &in) {
     if (findVertex(in) != nullptr)
         return false;
@@ -36,11 +26,7 @@ bool Graph::addVertex(const ulli &in, const double lon, const double lat) {
     return true;
 }
 
-/*
- * Adds an edge to a graph (this), given the contents of the source and
- * destination vertices and the edge weight (w).
- * Returns true if successful, and false if the source or destination vertex does not exist.
- */
+
 bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -54,9 +40,15 @@ bool Graph::addEdge(const ulli &sourc, const ulli &dest, double w, const string 
 
 
 inline ulli Graph::findVertexIdx(const ulli &in) const {
-    for (int i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->id == in)
-            return i;
+    int end = vertexSet.size() ;
+    int begin = 0 ;
+    while (end >= begin) {
+        int mid = begin + (end- begin) / 2;
+        if (in > vertexSet[mid]->getID()  ) begin = mid +1 ;
+        else if (in < vertexSet[mid]->getID() ) end = mid - 1;
+        else return mid;
+    }
+
     return -1;
 }
 
@@ -75,7 +67,27 @@ Graph::~Graph() {
     deleteMatrix(pred, vertexSet.size());
 }
 
+void Graph::sortVertexSet() {
+    sort(this->vertexSet.begin(), this->vertexSet.end(), [](Vertex* v1, Vertex* v2){
+        return v1->getID() < v2->getID();
+    });
+}
+
+
+void Graph::handleFloydWarshall(const string& cityName) {
+    auto *fs = new FloydStorage(this);
+    if (this->dist != nullptr && this->pred != nullptr) return;
+    if (fs->isToExecuteFloyd(cityName)){
+        floydWarshallShortestPath();
+        unsigned int size = vertexSet.size();       //to avoid calculating the size twice
+        fs->storePred(size, cityName);
+        fs->storeDest(size, cityName);
+    }
+
+}
+
 void Graph::floydWarshallShortestPath() {
+
     int n = vertexSet.size();
     deleteMatrix(dist, n);
     deleteMatrix(pred, n);
@@ -112,6 +124,7 @@ void Graph::floydWarshallShortestPath() {
                     pred[i][j] = pred[k][j];
                 }
             }
+
 }
 
 vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) const {
@@ -133,29 +146,38 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
 }
 
 vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
-    //complexity O(n^3)
-    vector<ulli> order = {origin};
+    vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
-    ulli index;
+    visited[findVertexIdx(origin)] = true;
 
-    for (int i = 0; i < poi.size(); i++) {
-        index = nextPoi(origin, poi, visited);
-        order.push_back(vertexSet[index]->id);
-        visited[index] = true;
+    ulli idNext;
+
+    //the poi vector must contain the INDEX of the POIS in the vertexSet
+    origin = findVertexIdx(origin);
+    for (int i = 0; i < poi.size(); i++){
+        poi[i] = findVertexIdx(poi[i]);
+    }
+
+    for (int i = 1; i < poi.size(); i++) {
+        idNext = nextPoi(origin, poi, visited);                             //get the id of the next poi to be visited
+        vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
+
+        order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
+        visited[idNext] = true;
+        origin = idNext;                                                        //the new vertex now is the origin
     }
 
     return order;
 }
 
+//return the id of the next poi
 ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited) {
-    //complexity O(n^2)
-
-    int actualIndex = findVertexIdx(origin);
+    int actualIndex = origin;
     double minWeight = INF;
     ulli selectedPoiIndex = -1;
 
     for (int i = 0; i < poi.size(); i++) {
-        ulli nextVertex = findVertexIdx(poi[i]);
+        ulli nextVertex = poi[i];
 
         if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex];

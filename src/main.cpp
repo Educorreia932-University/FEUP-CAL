@@ -1,6 +1,7 @@
 
 #include "UserInterface/UserInterface.h"
 #include "Graph/GraphFactory.h"
+#include "Graph/PoiStorage.h"
 
 using namespace std;
 
@@ -8,21 +9,28 @@ void printTest(vector<ulli> res);
 void test1_floyd();
 void test2_floyd();
 void test1_trajectoryOrder();
+void test_sortVertexSet(Graph graph);
 
 int main() {
+    //creating graph
     GraphFactory graphFactory;
-#ifdef __unix__
-    graphFactory.readVertex("../../data/nodes.csv");
-    graphFactory.readEdges("../../data/edges.csv");
-#else
-    graphFactory.readVertex("../data/nodes.csv");
-    graphFactory.readEdges("../data/edges.csv");
-#endif
+
+    graphFactory.readVertex("../data/nodes_PORTO.csv");
+    graphFactory.readEdges("../data/edges_PORTO.csv");
 
     Graph graph = graphFactory.graph;
 
-    UserInterface ui(&graph);
-    ui.mainMenuSelection(ui.showMainMenu());
+
+    //reading pois
+    auto * poiStorage = new PoiStorage("PORTO");
+    if (!poiStorage->readPois()){
+        ERROR("Not possible to read POIS");
+        exit(1);
+    }
+
+    //initiating the interface
+    UserInterface ui(&graph, poiStorage);
+    ui.mainMenuSelection();
 
     // test1_trajectoryOrder();
     // test the floyd warshall greedy aproach
@@ -99,6 +107,13 @@ void test1_trajectoryOrder(){
 
     printTest(res);
 
+}
+
+void test_sortVertexSet(Graph graph){
+    vector<Vertex*> v = graph.getVertexSet();
+    for (int i = 0 ; i < 5; i++){
+        cout << v[i]->getID() << endl;
+    }
 }
 
 void printTest(vector<ulli> res){
