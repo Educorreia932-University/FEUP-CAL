@@ -1,9 +1,6 @@
 #include "UserInterface.h"
 
-#include <Graph/Graph.h>
-#include <Graph/Vertex.h>
 #include <graphviewer.h>
-
 
 void clearScreen() {
 #ifdef __unix__
@@ -22,29 +19,32 @@ void UserInterface::showMainMenu() {
          << " ===================================" << endl
          << " Choose a tourist route         [1]" << endl
          << " Show the map                   [2]" << endl
-         << " Adjust the settings            [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Adjust the settingsSelection            [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
          << " Exit                           [0]" << endl
          << endl;
-
 }
 
 void UserInterface::mainMenuSelection() {
     while (true) {
         showMainMenu();
-        int option = readOption(0, 2);
+
+        int option = readOption(0, 3);
 
         switch (option) {
             case 1:
-                cout << "Calculating..." << endl;
+                cout << endl
+                     << "Calculating..." << endl;
                 graph->handleFloydWarshall("PORTO");
                 POIsSelection();
                 break;
             case 2:
                 showGraph(res);
                 break;
+            case 3:
+                settingsSelection();
+                break;
             case 0:
                 return;
-
         }
     }
 }
@@ -84,20 +84,37 @@ void UserInterface::POIsSelection() {
     while ((selected = showPOIs()) != -1)
         toVisit.push_back(selected);
 
-    //case there isn't sufficient pois to visit, i.e 1 or 2, the program will go back to the MainMenu
+    // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
     getchar();
 
     res = graph->trajectoryOrder(toVisit[0], toVisit);
-    for (int i = 0 ; i < res.size(); i++){
-        cout << res[i] << endl;
-    }
 
+    for (int i = 0 ; i < res.size(); i++)
+        cout << res[i] << endl;
 }
 
-void settings() {
+void UserInterface::settingsSelection() {
+    while (true) {
+        clearScreen();
 
+        cout << "                MENU                " << endl
+             << " ===================================" << endl
+             << " Show all? " << (showAll? "YES" : "NO ") <<  "                  [1]" << endl
+             << " Exit                           [0]" << endl
+             << endl;
+
+        int selected = readOption(0, 1);
+
+        switch (selected) {
+            case 1:
+                showAll = !showAll;
+                break;
+            case 0:
+                return;
+        }
+    }
 }
 
 UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
@@ -138,23 +155,6 @@ void UserInterface::showGraph(const vector<ulli> &res) {
 
     gv->defineEdgeCurved(false);
 
-    // Add edges
-//    for (Vertex *v : graph->getVertexSet()) {
-//        for (const Edge &w : v->getAdj()) {
-//            gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
-//
-//            if (find(res.begin(), res.end(), v->getID()) != res.end()
-//                && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()) {
-//                gv->setVertexColor(v->getID(), "blue");
-//                gv->setVertexSize(v->getID(), 10);
-//                gv->setEdgeColor(edge_id, "blue");
-//                gv->setEdgeThickness(edge_id, 5);
-//            }
-//
-//            edge_id++;
-//        }
-//    }
-
     int edge_id = 0;
 
     // Add nodes
@@ -167,9 +167,6 @@ void UserInterface::showGraph(const vector<ulli> &res) {
                     (v->lon - min_lon) / (max_lon - min_lon) * 900,
                     (v->lat - min_lat) / (max_lat - min_lat) * 900
             );
-
-            if (v->getID() == res[0])
-                gv->setVertexSize(v->getID(), 10);
         }
     }
 
