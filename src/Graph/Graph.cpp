@@ -145,17 +145,17 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     return res;
 }
 
-vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
+vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi) {
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
     visited[findVertexIdx(origin)] = true;
 
     ulli idNext;
 
-    //the poi vector must contain the INDEX of the POIS in the vertexSet
+    //the poi vector must contain the INDEX of the POIS in the vertexSet => to accelerate the process
     origin = findVertexIdx(origin);
     for (int i = 0; i < poi.size(); i++){
-        poi[i] = findVertexIdx(poi[i]);
+        poi[i]->setIndex(findVertexIdx(poi[i]->getID()));
     }
 
     for (int i = 1; i < poi.size(); i++) {
@@ -171,13 +171,13 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<ulli> &poi) {
 }
 
 //return the id of the next poi
-ulli Graph::nextPoi(const ulli &origin, vector<ulli> &poi, vector<bool> visited) {
+ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited) {
     int actualIndex = origin;
     double minWeight = INF;
     ulli selectedPoiIndex = -1;
 
     for (int i = 0; i < poi.size(); i++) {
-        ulli nextVertex = poi[i];
+        ulli nextVertex = poi[i]->getIndex();
 
         if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex];

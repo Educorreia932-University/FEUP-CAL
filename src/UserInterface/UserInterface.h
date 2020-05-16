@@ -19,7 +19,7 @@ class UserInterface {
         UserInterface(Graph* graph, PoiStorage * poiStorage);
         void showMainMenu();
         void mainMenuSelection();
-        ulli showPOIs();
+        POI* showPOIs();
         void POIsSelection();
         void showGraph(const vector<ulli>& res);
 };

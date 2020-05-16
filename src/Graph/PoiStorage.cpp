@@ -11,8 +11,8 @@ bool PoiStorage::readPois() {
 
     string line;
     string tmp;
-    string name;        //stores temporally the name of a poi
-    ulli id;            //stores temporally the id of a poi
+    string name;                //stores temporally the name of a poi
+    ulli id, time;              //stores temporally the id of a poi and the time in minutes
 
     const char TOKEN = ',';
 
@@ -25,11 +25,14 @@ bool PoiStorage::readPois() {
     while (getline(inFile, line)) {
         stringstream is(line);
 
+
         getline(is, name, TOKEN);
         getline(is, tmp, TOKEN);
         stringstream(tmp) >> id;
+        getline(is, tmp, TOKEN);
+        stringstream(tmp) >> time;
 
-        POIs.insert(pair<string, ulli>(name, id));
+        POIs.insert(pair<string, POI*>(name, new POI(id, name, time)));
 
     }
     inFile.close();
@@ -37,6 +40,6 @@ bool PoiStorage::readPois() {
 
 }
 
-map<string, ulli> PoiStorage::getMap() const {
+map<string, POI*> PoiStorage::getMap() const {
     return POIs;
 }

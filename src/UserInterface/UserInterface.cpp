@@ -50,14 +50,14 @@ void UserInterface::mainMenuSelection() {
     }
 }
 
-ulli UserInterface::showPOIs() {
+POI* UserInterface::showPOIs() {
     clearScreen();
     int index = 0;
 
     //printing the point of interest
     cout << "\t POINTS OF INTEREST \t" << endl;
     cout << "============================================" << endl;
-    for (pair<string, ulli> p : poiStorage->getMap()) {
+    for (pair<string, POI*>p : poiStorage->getMap()) {
         cout << left << setw(40) << p.first << "[" << index << "]" << endl;
         index++;
     }
@@ -67,22 +67,22 @@ ulli UserInterface::showPOIs() {
     index = 0;
     int selected = readOption(0, poiStorage->getMap().size());
 
-    for (pair<string, ulli> p : poiStorage->getMap()) {
+    for (pair<string, POI*> p : poiStorage->getMap()) {
         if (index == selected)
             return p.second;
 
         index++;
     }
 
-    return -1;
+    return nullptr;
 }
 
 void UserInterface::POIsSelection() {
-    vector<ulli> toVisit = {};
+    vector<POI* > toVisit = {};
 
-    ulli selected;
+    POI* selected;
 
-    while ((selected = showPOIs()) != -1)
+    while ((selected = showPOIs()) != nullptr)
         toVisit.push_back(selected);
 
     //case there isn't sufficient pois to visit, i.e 1 or 2, the program will go back to the MainMenu
@@ -90,7 +90,7 @@ void UserInterface::POIsSelection() {
 
     getchar();
 
-    res = graph->trajectoryOrder(toVisit[0], toVisit);
+    res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit);
     for (int i = 0 ; i < res.size(); i++){
         cout << res[i] << endl;
     }

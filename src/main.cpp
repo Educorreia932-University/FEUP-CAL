@@ -103,9 +103,9 @@ void test1_trajectoryOrder(){
 
     graph->floydWarshallShortestPath();
     vector<ulli> poi = {3,5,6};
-    auto res = graph->trajectoryOrder(4, poi);
+    //auto res = graph->trajectoryOrder(4, poi);
 
-    printTest(res);
+    //printTest(res);
 
 }
 
