@@ -17,7 +17,7 @@ class UserInterface {
         vector<ulli> res;
         PoiStorage* poiStorage;
         bool showAll = false;
-        double maxTime = 0;
+        double maxTime = INF;
         void settingsSelection();
     public:
         UserInterface(Graph* graph, PoiStorage * poiStorage);

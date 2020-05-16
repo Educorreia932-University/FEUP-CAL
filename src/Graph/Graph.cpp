@@ -189,9 +189,11 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
         }
 
     }
-    //update the time the person has to spend
-    maxTime -= poi[poiIndex_inPOI]->getTime() + dist[actualIndex][selectedPoiIndex];
-    if (maxTime < 0) return 0;
+        //update the time the person has to spend
+        maxTime -= poi[poiIndex_inPOI]->getTime() + dist[actualIndex][selectedPoiIndex];
+        if (maxTime == 0) maxTime = -1;                 //cannot be 0
+        if (maxTime < 0) return 0;
+
 
     return selectedPoiIndex;
 }
