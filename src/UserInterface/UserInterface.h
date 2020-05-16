@@ -15,6 +15,9 @@ class UserInterface {
         Graph* graph;
         vector<ulli> res;
         PoiStorage* poiStorage;
+        bool showAll = false;
+
+        void settingsSelection();
     public:
         UserInterface(Graph* graph, PoiStorage * poiStorage);
         void showMainMenu();
