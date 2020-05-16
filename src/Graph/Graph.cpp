@@ -160,6 +160,7 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi) {
 
     for (int i = 1; i < poi.size(); i++) {
         idNext = nextPoi(origin, poi, visited);                             //get the id of the next poi to be visited
+        cout <<"selected poi: " << this->vertexSet[idNext]->id << endl;
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
         order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
@@ -179,8 +180,9 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
     for (int i = 0; i < poi.size(); i++) {
         ulli nextVertex = poi[i]->getIndex();
 
-        if (dist[actualIndex][nextVertex] < minWeight && visited[nextVertex] == false) {
-            minWeight = dist[actualIndex][nextVertex];
+        //the poi[i]->getTime() is the time that the user will spend at the place
+        if (dist[actualIndex][nextVertex]+poi[i]->getTime() < minWeight && visited[nextVertex] == false) {
+            minWeight = dist[actualIndex][nextVertex] + poi[i]->getTime();
             selectedPoiIndex = nextVertex;
         }
     }

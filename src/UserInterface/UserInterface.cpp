@@ -91,9 +91,7 @@ void UserInterface::POIsSelection() {
     getchar();
 
     res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit);
-    for (int i = 0 ; i < res.size(); i++){
-        cout << res[i] << endl;
-    }
+    getchar(); //to be deleted later
 
 }
 
