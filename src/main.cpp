@@ -1,8 +1,7 @@
 
 #include "UserInterface/UserInterface.h"
-#include <iostream>
 #include "Graph/GraphFactory.h"
-#include "../lib/graphviewer.h"
+#include "Graph/PoiStorage.h"
 
 using namespace std;
 
@@ -10,57 +9,31 @@ void printTest(vector<ulli> res);
 void test1_floyd();
 void test2_floyd();
 void test1_trajectoryOrder();
+void test_sortVertexSet(Graph graph);
 
 int main() {
+    //creating graph
     GraphFactory graphFactory;
 
-    graphFactory.readVertex(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\nodes.csv)");
-    graphFactory.readEdges(R"(C:\Users\skelo\OneDrive\Universidade\2 ano\2 Semestre\Concecao e Analise de Algoritmos\TourMateApp\data\edges.csv)");
+    graphFactory.readVertex("../data/nodes_PORTO.csv");
+    graphFactory.readEdges("../data/edges_PORTO.csv");
 
     Graph graph = graphFactory.graph;
 
-//    UserInterface ui;
-//    ui.mainMenuSelection(ui.showMainMenu());
 
-    auto gv = new GraphViewer(900, 900, false);
-    gv->setBackground("../data/map.png");
-    gv->createWindow(900, 900);
-
-    double min_lon = -8.6226691;
-    double max_lon = -8.5989075;
-    double min_lat = 41.1584432;
-    double max_lat = 41.14049;
-
-    gv->defineEdgeCurved(false);
-
-    for (Capsule c : graph.getVertexSet()) {
-        Vertex* v = c.getVertex();
-
-        gv->addNode(
-                v->getID(),
-                (v->lon - min_lon) / (max_lon - min_lon) * 900,
-                (v->lat - min_lat) / (max_lat - min_lat) * 900
-        );
-
-        gv->setVertexSize(v->getID(), 10);
+    //reading pois
+    auto * poiStorage = new PoiStorage("PORTO");
+    if (!poiStorage->readPois()){
+        ERROR("Not possible to read POIS");
+        exit(1);
     }
 
-    int edge_id = 0;
+    //initiating the interface
+    UserInterface ui(&graph, poiStorage);
+    ui.mainMenuSelection();
 
-    for (Capsule c : graph.getVertexSet()) {
-        Vertex* v = c.getVertex();
-
-        for (const Edge& w : v->getAdj()) {
-            gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
-            edge_id++;
-        }
-    }
-
-    gv->rearrange();
-    getchar();
-
-    //test the floyd warshall greedy aproach 
-    test1_trajectoryOrder(); 
+    // test1_trajectoryOrder();
+    // test the floyd warshall greedy aproach
 
     return 0;
 }
@@ -72,13 +45,16 @@ void test1_floyd(){
 
     auto graph = new Graph();
     vector<Vertex *> vertexes;
+
     for (int i = 0; i < 10; ++i) {
         vertexes.push_back(new Vertex(i));
         graph->addVertex(vertexes[i]->getID());
+
         if (i > 2)
             graph->addEdge(vertexes[i]->getID(),vertexes[i - 3]->getID(), 0);
     }
     graph->floydWarshallShortestPath();
+
     auto res = graph->getFloydWarshallPath(9, 0);
 
     printTest(res);
@@ -131,6 +107,13 @@ void test1_trajectoryOrder(){
 
     printTest(res);
 
+}
+
+void test_sortVertexSet(Graph graph){
+    vector<Vertex*> v = graph.getVertexSet();
+    for (int i = 0 ; i < 5; i++){
+        cout << v[i]->getID() << endl;
+    }
 }
 
 void printTest(vector<ulli> res){

@@ -9,29 +9,35 @@
 using namespace std;
 
 class Vertex {
-    public:
-        Vertex(const ulli &id);
-        Vertex(const ulli &id, double lon, double lat);
-        ulli getID() const;
-        double lon; // Longitude
-        double lat; // Latitude
-        double getDist() const;
-        Vertex *getPath() const;
-        vector<Edge> getAdj() const;
+public:
+    Vertex(const ulli &id);
 
-        bool operator<(Vertex &vertex) const; // required by MutablePriorityQueue
-        friend class Graph;
-    private:
-        ulli id;                    // content of the vertex
-        vector<Edge> adj;        // outgoing edges
+    Vertex(const ulli &id, double lon, double lat);
 
-        double dist = 0;
-        Vertex *path = NULL;
+    ulli getID() const;
 
-        bool visited = false;        // auxiliary field
-        bool processing = false;    // auxiliary field
+    double lon; // Longitude
+    double lat; // Latitude
+    double getDist() const;
 
-        void addEdge(Vertex *dest, double w, const string &streetName = "");
+    Vertex *getPath() const;
+
+    vector<Edge> getAdj() const;
+
+    bool operator<(Vertex &vertex) const; // required by the sort and mutable priorityQueue
+    friend class Graph;
+
+private:
+    ulli id;                    // content of the vertex
+    vector<Edge> adj;        // outgoing edges
+
+    double dist = 0;
+    Vertex *path = NULL;
+
+    bool visited = false;        // auxiliary field
+    bool processing = false;    // auxiliary field
+
+    void addEdge(Vertex *dest, double w, const string &streetName = "");
 };
 
 #endif // VERTEX_h

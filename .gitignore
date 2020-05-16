@@ -51,3 +51,4 @@ utils/map_extraction/images/Trofa.png
 *.synctex(busy)
 
 *.aux
+*.swp
