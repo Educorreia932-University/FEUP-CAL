@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Errors.h"
 
 using namespace std;
 
@@ -32,5 +33,13 @@ typedef unsigned long long int ulli;
  * @return The value of the division
  */
 double safeDivision(double numerator, double denominator, double subst);
-
+/**
+ * @brief Checks if the input given is a number, not a string
+ * @return return the number case it's a number
+ */
+double checkNumber();
+/**
+ * @brief Function makes the user waits until it presses enter
+ */
+void wait();
 #endif //TOURMATEAPP_UTILS_H

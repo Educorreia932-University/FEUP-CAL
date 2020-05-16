@@ -145,7 +145,7 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     return res;
 }
 
-vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi) {
+vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime) {
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
     visited[findVertexIdx(origin)] = true;
@@ -158,9 +158,10 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi) {
         poi[i]->setIndex(findVertexIdx(poi[i]->getID()));
     }
 
+
     for (int i = 1; i < poi.size(); i++) {
-        idNext = nextPoi(origin, poi, visited);                             //get the id of the next poi to be visited
-        cout <<"selected poi: " << this->vertexSet[idNext]->id << endl;
+        idNext = nextPoi(origin, poi, visited, maxTime);                //get the id of the next poi to be visited
+        if (idNext == 0) return order;                                          // no sufficient time to visit all pois
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
         order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
@@ -171,11 +172,11 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi) {
     return order;
 }
 
-//return the id of the next poi
-ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited) {
+ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited, double& maxTime) {
     int actualIndex = origin;
     double minWeight = INF;
     ulli selectedPoiIndex = -1;
+    ulli poiIndex_inPOI = 0;
 
     for (int i = 0; i < poi.size(); i++) {
         ulli nextVertex = poi[i]->getIndex();
@@ -184,8 +185,13 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
         if (dist[actualIndex][nextVertex]+poi[i]->getTime() < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex] + poi[i]->getTime();
             selectedPoiIndex = nextVertex;
+            poiIndex_inPOI = i;
         }
+
     }
+    //update the time the person has to spend
+    maxTime -= poi[poiIndex_inPOI]->getTime() + dist[actualIndex][selectedPoiIndex];
+    if (maxTime < 0) return 0;
 
     return selectedPoiIndex;
 }

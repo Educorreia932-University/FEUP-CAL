@@ -73,18 +73,20 @@ public:
      * @brief Calculates the path given the points of interest using the greedy strategy
      * @param origin ID of the point where the person is 
      * @param poi list of the ID's of the points of interest, the first element of this array MUST be the origin itself
+     * @param maxTime the maximum time the user has to spend doing the  touristic circuit
      * @return returns the path as an array of IDS
      */
-    vector<ulli> trajectoryOrder(ulli origin, vector<POI*> &poi);
+    vector<ulli> trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime);
 
 /*
      * @brief Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array setVertex
      * @param origin ID of the actual position
      * @param poi list of the POIS INDEX's which the user wants to visit
-	 * @param visited BOOLEAN array containing the POI's already visited. The index = 0 is already visited by default, since it's the origin 
+	 * @param visited BOOLEAN array containing the POI's already visited. The index = 0 is already visited by default, since it's the origin
+	 * @param maxTime The maximum time the user has to spend in tourism
      * @return it returns next poi index to be visited. The index is relative to the array setVertex 
      */
-    ulli nextPoi(const ulli &origin, vector<POI*> &poi, vector<bool> visited);
+    ulli nextPoi(const ulli &origin, vector<POI*> &poi, vector<bool> visited, double& maxTime);
 
 };
 

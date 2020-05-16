@@ -19,7 +19,8 @@ void UserInterface::showMainMenu() {
          << " ===================================" << endl
          << " Choose a tourist route         [1]" << endl
          << " Show the map                   [2]" << endl
-         << " Adjust the settingsSelection            [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Adjust the settingsSelection   [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Set amount of time             [4]" << endl
          << " Exit                           [0]" << endl
          << endl;
 }
@@ -27,8 +28,7 @@ void UserInterface::showMainMenu() {
 void UserInterface::mainMenuSelection() {
     while (true) {
         showMainMenu();
-
-        int option = readOption(0, 3);
+        int option = readOption(0, 4);
 
         switch (option) {
             case 1:
@@ -42,6 +42,10 @@ void UserInterface::mainMenuSelection() {
                 break;
             case 3:
                 settingsSelection();
+                break;
+            case 4:
+                setAmountOfTime_Interface();
+                maxTime = abs(checkNumber());
                 break;
             case 0:
                 return;
@@ -76,6 +80,15 @@ POI* UserInterface::showPOIs() {
     return nullptr;
 }
 
+void UserInterface::setAmountOfTime_Interface(){
+    clearScreen();
+
+    cout << "================== SET TIME ===================" << endl
+         << "Set the amount of time you have to spend in" << endl
+         << "minutes. Negative numbers will be converted" << endl
+         << "to positive: ";
+}
+
 void UserInterface::POIsSelection() {
     vector<POI *> toVisit = {};
 
@@ -87,11 +100,9 @@ void UserInterface::POIsSelection() {
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
-    getchar();
+    wait();
 
-
-    res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit);
-    getchar(); //to be deleted later
+    res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
 
 }
 
@@ -180,8 +191,7 @@ void UserInterface::showGraph(const vector<ulli> &res) {
         }
 
     gv->rearrange();
-    cout << "Press a key to exit." << endl;
-    getchar();
+        wait();
 }
 
 

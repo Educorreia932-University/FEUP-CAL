@@ -31,5 +31,6 @@ add_executable(src
         Graph/FloydStorage.h
         Graph/PoiStorage.cpp
         Graph/PoiStorage.h
+        Errors.h
         ../lib/connection.cpp
         ../lib/graphviewer.cpp)

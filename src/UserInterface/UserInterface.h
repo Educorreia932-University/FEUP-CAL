@@ -3,6 +3,7 @@
 
 #include "Graph/Graph.h"
 #include "Graph/PoiStorage.h"
+#include "Utils.h"
 #include <iostream>
 #include <locale>
 #include <iomanip>
@@ -16,7 +17,7 @@ class UserInterface {
         vector<ulli> res;
         PoiStorage* poiStorage;
         bool showAll = false;
-
+        double maxTime = 0;
         void settingsSelection();
     public:
         UserInterface(Graph* graph, PoiStorage * poiStorage);
@@ -25,6 +26,11 @@ class UserInterface {
         POI* showPOIs();
         void POIsSelection();
         void showGraph(const vector<ulli>& res);
+        /**
+         * @brief Visual menu for the user set the amount of time it has to spend making tourism
+         */
+        void setAmountOfTime_Interface();
+
 };
 
 int readOption(int min, unsigned int max);
