@@ -22,8 +22,7 @@ void UserInterface::showMainMenu() {
          << " ===================================" << endl
          << " Choose a tourist route         [1]" << endl
          << " Show the map                   [2]" << endl
-         << " Adjust the settings            [3]"
-         << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Adjust the settings            [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
          << " Exit                           [0]" << endl
          << endl;
 
@@ -97,6 +96,10 @@ void UserInterface::POIsSelection() {
 
 }
 
+void settings() {
+
+}
+
 UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
 
 int readOption(int min, unsigned int max) {
@@ -120,12 +123,13 @@ int readOption(int min, unsigned int max) {
 
 void UserInterface::showGraph(const vector<ulli> &res) {
     auto gv = new GraphViewer(900, 900, false);
-#ifdef __unix__
-    gv->setBackground("../../data/map.png");
-#else
-    gv->setBackground("../data/map.png");
-#endif
-    gv->createWindow(900, 900);
+
+    #ifdef __unix__
+        gv->setBackground("../../data/map.png");
+    #else
+        gv->setBackground("../data/map.png");
+    #endif
+        gv->createWindow(900, 900);
 
     double min_lon = -8.6226691;
     double max_lon = -8.5989075;
@@ -134,37 +138,53 @@ void UserInterface::showGraph(const vector<ulli> &res) {
 
     gv->defineEdgeCurved(false);
 
-    for (Vertex *v : graph->getVertexSet()) {
-        gv->setVertexSize(v->getID(), 6);
-
-        gv->addNode(
-                v->getID(),
-                (v->lon - min_lon) / (max_lon - min_lon) * 900,
-                (v->lat - min_lat) / (max_lat - min_lat) * 900
-        );
-    }
+    // Add edges
+//    for (Vertex *v : graph->getVertexSet()) {
+//        for (const Edge &w : v->getAdj()) {
+//            gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
+//
+//            if (find(res.begin(), res.end(), v->getID()) != res.end()
+//                && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()) {
+//                gv->setVertexColor(v->getID(), "blue");
+//                gv->setVertexSize(v->getID(), 10);
+//                gv->setEdgeColor(edge_id, "blue");
+//                gv->setEdgeThickness(edge_id, 5);
+//            }
+//
+//            edge_id++;
+//        }
+//    }
 
     int edge_id = 0;
 
-    for (Vertex *v : graph->getVertexSet()) {
-        for (const Edge &w : v->getAdj()) {
-            gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
+    // Add nodes
+    for (Vertex* v : graph->getVertexSet()) {
+        gv->setVertexSize(v->getID(), 6);
 
-            if (find(res.begin(), res.end(), v->getID()) != res.end()
-                && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()) {
-                gv->setVertexColor(v->getID(), "red");
+        if (showAll || (find(res.begin(), res.end(), v->getID()) != res.end())) {
+            gv->addNode(
+                    v->getID(),
+                    (v->lon - min_lon) / (max_lon - min_lon) * 900,
+                    (v->lat - min_lat) / (max_lat - min_lat) * 900
+            );
+
+            if (v->getID() == res[0])
                 gv->setVertexSize(v->getID(), 10);
-                gv->setEdgeThickness(edge_id, 5);
-            }
+        }
+    }
+
+    // Add edges
+    for (Vertex* v : graph->getVertexSet())
+        for (const Edge &w : v->getAdj()) {
+            if (showAll || (find(res.begin(), res.end(), v->getID()) != res.end() && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()))
+                gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
 
             edge_id++;
         }
-    }
 
     gv->rearrange();
     cout << "Press a key to exit." << endl;
     getchar();
-
 }
 
 

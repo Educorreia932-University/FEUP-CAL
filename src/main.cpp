@@ -12,7 +12,7 @@ void test1_trajectoryOrder();
 void test_sortVertexSet(Graph graph);
 
 int main() {
-    //creating graph
+    // Creating graph
     GraphFactory graphFactory;
 
     graphFactory.readVertex("../data/nodes_PORTO.csv");
@@ -20,8 +20,7 @@ int main() {
 
     Graph graph = graphFactory.graph;
 
-
-    //reading pois
+    // Reading POIs
     auto * poiStorage = new PoiStorage("PORTO");
     if (!poiStorage->readPois()){
         ERROR("Not possible to read POIS");
@@ -53,6 +52,7 @@ void test1_floyd(){
         if (i > 2)
             graph->addEdge(vertexes[i]->getID(),vertexes[i - 3]->getID(), 0);
     }
+
     graph->floydWarshallShortestPath();
 
     auto res = graph->getFloydWarshallPath(9, 0);

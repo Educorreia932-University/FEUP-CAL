@@ -21,7 +21,6 @@ bool PoiStorage::readPois() {
         return false;
     }
 
-
     while (getline(inFile, line)) {
         stringstream is(line);
 
@@ -30,11 +29,11 @@ bool PoiStorage::readPois() {
         stringstream(tmp) >> id;
 
         POIs.insert(pair<string, ulli>(name, id));
-
     }
-    inFile.close();
-    return true;
 
+    inFile.close();
+
+    return true;
 }
 
 map<string, ulli> PoiStorage::getMap() const {
