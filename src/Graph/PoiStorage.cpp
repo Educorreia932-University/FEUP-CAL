@@ -39,3 +39,11 @@ bool PoiStorage::readPois() {
 map<string, ulli> PoiStorage::getMap() const {
     return POIs;
 }
+
+string PoiStorage::findPOI(ulli id) const {
+    for (const auto & POI : POIs)
+        if (POI.second == id)
+            return POI.first;
+
+    return "";
+}

@@ -15,19 +15,23 @@ class UserInterface {
         Graph* graph;
         vector<ulli> res;
         PoiStorage* poiStorage;
+
+        // Settings
         bool showAll = false;
 
+        void showMainMenu();
+        void showGraph(const vector<ulli>& res);
+        ulli showPOIs(vector<ulli> toVisit);
+        void POIsSelection();
+        void showSettings();
         void settingsSelection();
     public:
-        UserInterface(Graph* graph, PoiStorage * poiStorage);
-        void showMainMenu();
+        UserInterface(Graph* graph, PoiStorage *poiStorage);
         void mainMenuSelection();
-        ulli showPOIs();
-        void POIsSelection();
-        void showGraph(const vector<ulli>& res);
 };
 
 int readOption(int min, unsigned int max);
-double readOption(double min, double max);
+
+void pause();
 
 #endif //TOURMATEAPP_USERINTERFACE_H
