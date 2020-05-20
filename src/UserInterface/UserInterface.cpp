@@ -26,33 +26,39 @@ void UserInterface::showMainMenu() {
 }
 
 void UserInterface::mainMenuSelection() {
+    bool calculated = false;
+
     while (true) {
+        chrono::steady_clock::time_point begin;
+        chrono::steady_clock::time_point end;
+
         showMainMenu();
 
         int option = readOption(0, 3);
 
-        chrono::steady_clock::time_point begin;
-        chrono::steady_clock::time_point end;
-
         switch (option) {
             case 1:
-                cout << endl
-                     << "Calculating..." << endl
-                     << endl;
+                if (!calculated) {
+                    cout << endl
+                         << "Calculating..." << endl
+                         << endl;
 
-                begin = chrono::steady_clock::now();
+                    begin = chrono::steady_clock::now();
 
-                graph->handleFloydWarshall("PORTO");
+                    graph->handleFloydWarshall("PORTO");
 
-                end = chrono::steady_clock::now();
+                    end = chrono::steady_clock::now();
 
-                cout << "The algorithm was completed in "
-                     << (std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()) / 1000000.0
-                     << " seconds."
-                     << endl
-                     << endl;
+                    cout << "The algorithm was completed in "
+                         << (chrono::duration_cast<chrono::microseconds>(end - begin).count()) / 1000000.0
+                         << " seconds."
+                         << endl
+                         << endl;
 
-                pause();
+                    pause();
+
+                    calculated = true;
+                }
 
                 POIsSelection();
 
@@ -63,7 +69,7 @@ void UserInterface::mainMenuSelection() {
             case 3:
                 settingsSelection();
                 break;
-            case 0:
+            default:
                 return;
         }
     }

@@ -73,22 +73,23 @@ void Graph::sortVertexSet() {
     });
 }
 
-
 void Graph::handleFloydWarshall(const string& cityName) {
     auto *fs = new FloydStorage(this);
-    if (this->dist != nullptr && this->pred != nullptr) return;
-    if (fs->isToExecuteFloyd(cityName)){
+
+    if (this->dist != nullptr && this->pred != nullptr)
+        return;
+
+    if (fs->isToExecuteFloyd(cityName)) {
         floydWarshallShortestPath();
         unsigned int size = vertexSet.size();       //to avoid calculating the size twice
         fs->storePred(size, cityName);
         fs->storeDest(size, cityName);
     }
-
 }
 
 void Graph::floydWarshallShortestPath() {
-
     int n = vertexSet.size();
+
     deleteMatrix(dist, n);
     deleteMatrix(pred, n);
 
@@ -124,7 +125,6 @@ void Graph::floydWarshallShortestPath() {
                     pred[i][j] = pred[k][j];
                 }
             }
-
 }
 
 vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) const {
