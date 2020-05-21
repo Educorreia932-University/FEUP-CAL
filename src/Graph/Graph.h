@@ -68,7 +68,6 @@ public:
 	 **/ 
     vector<ulli> getFloydWarshallPath(const ulli &origin, const ulli &dest) const;
 
-
     /**
      * @brief Calculates the path given the points of interest using the greedy strategy
      * @param origin ID of the point where the person is 

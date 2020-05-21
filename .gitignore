@@ -52,3 +52,4 @@ utils/map_extraction/images/Trofa.png
 
 *.aux
 *.swp
+data/POIs.csv

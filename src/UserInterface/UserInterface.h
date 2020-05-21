@@ -16,24 +16,31 @@ class UserInterface {
         Graph* graph;
         vector<ulli> res;
         PoiStorage* poiStorage;
+
+        // Settings
         bool showAll = false;
         double maxTime = INF;
+
+
+        void showMainMenu();
+        void showGraph(const vector<ulli>& res);
+        POI* showPOIs(vector<POI*> toVisit);
+        void POIsSelection();
+        void showSettings();
         void settingsSelection();
     public:
-        UserInterface(Graph* graph, PoiStorage * poiStorage);
-        void showMainMenu();
+        UserInterface(Graph* graph, PoiStorage *poiStorage);
         void mainMenuSelection();
-        POI* showPOIs();
-        void POIsSelection();
-        void showGraph(const vector<ulli>& res);
         /**
          * @brief Visual menu for the user set the amount of time it has to spend making tourism
          */
         void setAmountOfTime_Interface();
 
+
 };
 
 int readOption(int min, unsigned int max);
-double readOption(double min, double max);
+
+void pause();
 
 #endif //TOURMATEAPP_USERINTERFACE_H

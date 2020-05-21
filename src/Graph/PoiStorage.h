@@ -21,6 +21,7 @@ class POI;
  */
 
 class PoiStorage {
+
     map<string, POI*> POIs;   /*< map containing the name of the points of interest and its ID*/
     string cityName;
 public:
@@ -30,6 +31,7 @@ public:
 	 */
     bool readPois();
     map<string, POI*> getMap() const;
+    string findPOI(ulli id) const;
 };
 /**
  * @brief This is a data class responsible for storing the POIS information

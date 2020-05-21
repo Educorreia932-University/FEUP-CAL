@@ -1,7 +1,7 @@
 
 #include "PoiStorage.h"
 
-PoiStorage::PoiStorage(const string& cityName){
+PoiStorage::PoiStorage(const string &cityName) {
     this->cityName = cityName;
 }
 
@@ -32,7 +32,7 @@ bool PoiStorage::readPois() {
         stringstream(tmp) >> time;
 
 
-        POIs.insert(pair<string, POI*>(name, new POI(id, name, time)));
+        POIs.insert(pair<string, POI *>(name, new POI(id, name, time)));
 
 
     }
@@ -42,6 +42,14 @@ bool PoiStorage::readPois() {
     return true;
 }
 
-map<string, POI*> PoiStorage::getMap() const {
+map<string, POI *> PoiStorage::getMap() const {
     return POIs;
+}
+
+string PoiStorage::findPOI(ulli id) const {
+    for (const auto &POI : POIs)
+        if (POI.second->getID() == id)
+            return POI.first;
+
+    return "";
 }
