@@ -3,9 +3,13 @@
 
 #include <string>
 #include "Utils.h"
+/**
+ * @file Edge.h
+ * @brief File containing the implementation of the edges for the graph
+ */
+
 
 class Vertex;
-
 class Edge {
     public:
         Edge(Vertex* d, double w);

@@ -1,6 +1,11 @@
 #include "Graph.h"
-#include "FloydStorage.h"
+#include "Storage/FloydStorage.h"
 
+
+/**
+ * @file Graph.cpp
+ * @brief this file contains the implementation of graph functions and algorithms described in Graph.h
+ */
 Vertex *Graph::findVertex(const ulli &in) const {
     for (auto v: vertexSet)
         if (v->id == in)
@@ -229,34 +234,55 @@ vector<Vertex *> Graph::getVertexSet() {
  */
 
 
-vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi) {
+vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi, double time) {
     for (auto i: poi){
         i.setVisited(false);
         i.setIndex(findVertexIdx(i.getID()));
     }
     double minDistance = INF;
-    vector<ulli> resposta = travelingSalesperson(origin, 0, poi, poi.size(), minDistance);
+    int nodes = 1;
+    vector<ulli> resposta = travelingSalesperson( 0, poi, poi.size(), minDistance, time, nodes );
     return resposta;
 }
 
-vector<ulli> Graph::travelingSalesperson(lli root, lli actualPoint, vector<POI> poi, lli available,
-                                         double &minDistance) {
+vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
+                                         double &minDistance, double time, int& nodes) {
 
     vector<ulli> answer;
     poi[actualPoint].setVisited(true);
 
-   if (available == 1)  return {};
+    /*<Case there is no time to visit this poi*/
+    if (time < 0) return {};
+    nodes ++;
+    /*<Case all the vertices from poi has been visited*/
+   if (available == 1) {
+       minDistance = 0;
+       return {};
+   }
 
+   time -= poi[actualPoint].getTime(); /*<Decrease time be the period the person will spend at the poi*/
    lli nextPOI = -1;
+
+
    for (int i = 0 ; i < poi.size(); i++){
+
        if (!poi[i].getVisited()){
            double actualDistance = INF;
-           vector<ulli> tempVector = travelingSalesperson(root, i, poi, available-1, actualDistance);
+            int auxNodes = nodes;
+           /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
+           double auxTime = time - pred[poi[actualPoint].getIndex()][poi[i].getIndex()];
+           vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
+
+           /*<Update the actual distance*/
            lli source = poi[actualPoint].getIndex();
            lli dest = poi[i].getIndex();
-           actualDistance += pred[source][dest];
-           if (minDistance > actualDistance){
+           actualDistance += pred[source][dest] + poi[dest].getTime();
+
+           /*<Update the min distance*/
+           /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
+           if (minDistance > actualDistance && auxNodes > nodes){
                minDistance = actualDistance;
+               nodes = auxNodes;
                answer = tempVector;
                nextPOI = i;
            }

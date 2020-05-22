@@ -13,6 +13,15 @@ void clearScreen() {
     #endif
 }
 
+UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
+ 
+
+/* 
+ * ===  FUNCTIONALITY  ======================================================================
+ *         Name:  DisplayMenu
+ *  Description:  From here on we have the functionalities to display the main menu 
+ * ==========================================================================================
+ */
 void UserInterface::showMainMenu() {
     clearScreen();
 
@@ -148,7 +157,7 @@ void UserInterface::POIsSelection() {
     pause();
 
     //res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-    res = graph->travelingSalesperson_preProcess(0, TSP_toVisit);
+    res = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
 
     for (int i = 0 ; i < res.size(); i++)
         cout << res[i] << endl;
@@ -180,8 +189,13 @@ void UserInterface::settingsSelection() {
     }
 }
 
-UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  showGraph
+ *  Description: Function responsible to display the graph and custom settings of it 
+ * =====================================================================================
+ */
 void UserInterface::showGraph(const vector<ulli> &res) {
     auto gv = new GraphViewer(900, 900, false);
 

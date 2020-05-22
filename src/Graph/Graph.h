@@ -4,7 +4,7 @@
 #include "Edge.h"
 #include "Vertex.h"
 #include "Utils.h"
-#include "PoiStorage.h"
+#include "Storage/PoiStorage.h"
 
 #include <vector>
 #include <queue>
@@ -36,15 +36,30 @@ public:
 	/**
 	 * @brief sorts the vertices according to the id's so that it can perform binary search to find a vertex Id 
 	 */ 
-    void sortVertexSet();                   
+    void sortVertexSet();
+    /**
+     * @brief Adds a vertex to the graph
+     * @param in Id of the vertex
+     * @return true case the vertex has been added. False otherwise.
+     */
     bool addVertex(const ulli &in);
+
+    /**
+     * @brief Adds a vertex to the graph
+     * @param in Id of the vertex
+     * @param lon Longitude
+     * @param lat Latitude
+     * @return true case the vertex has been added, false otherwise.
+     */
     bool addVertex(const ulli &in, const double lon, const double lat);
+
     /*
      * @brief Adds an edge to a graph (this), given the contents of the source and
      * destination vertices and the edge weight (w).
      * @return true if successful, and false if the source or destination vertex does not exist.
      */
     bool addEdge(const ulli &sourc, const ulli &dest, double w, const string &streetName = "");
+
 	/**
 	 * @brief Finds the index of an ID in the vertexSet
 	 * @param in It's the id of the vertex 
@@ -87,9 +102,9 @@ public:
      */
     ulli nextPoi(const ulli &origin, vector<POI*> &poi, vector<bool> visited, double& maxTime);
 
-    vector<ulli> travelingSalesperson_preProcess(const ulli& origin, vector<POI> poi);
+    vector<ulli> travelingSalesperson_preProcess(const ulli& origin, vector<POI> poi, double time );
 
-    vector<ulli> travelingSalesperson(lli root, lli actualPoint, vector<POI> poi, lli available, double & minDistance);
+    vector<ulli> travelingSalesperson(lli actualPoint, vector<POI> poi, lli available, double & minDistance, double time, int& nodes);
 
 };
 
