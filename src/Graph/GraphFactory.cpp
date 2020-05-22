@@ -2,9 +2,7 @@
 #include "GraphFactory.h"
 #include "Utils.h"
 
-#define MEAN_VEL 40 /** the mean velocity in the graph*/
-
-#define MEAN_VEL            40                  /** the mean velocity in the graph*/
+#define MEAN_VEL            40                 /** the mean velocity in the graph*/
 
 void GraphFactory::openFile(const string &filename, ifstream &inFile) {
     inFile.open(filename.c_str());
@@ -21,7 +19,6 @@ void GraphFactory::readVertex(const string &filename) {
 
     ulli id;
     double lon, lat;
-        
 
     while (getline(inFile, line)) {
         istringstream is(line);
@@ -33,8 +30,9 @@ void GraphFactory::readVertex(const string &filename) {
         getline(is, tmp, TOKEN);
         istringstream(tmp) >> lat;
 
-        graph.addVertex(id);
+        graph.addVertex(id, lon, lat);
     }
+    graph.sortVertexSet();
 }
 
 void GraphFactory::readEdges(const string &filename) {
@@ -63,13 +61,12 @@ void GraphFactory::readEdges(const string &filename) {
         getline(is, name, TOKEN);       //name of the road
         getline(is, oneway, TOKEN);     //"True" case it's one way, "False" otherwise
 
-        double weight = safeDivision(length, maxspeed, MEAN_VEL);
+        double weight = safeDivision(maxspeed, length, MEAN_VEL);
         graph.addEdge(source, dest, weight, name);
 
         if (oneway == "False") {
             graph.addEdge(dest, source, weight, name);
         }
-        // cout << source << " " << dest << endl;
         is.clear();
     }
 

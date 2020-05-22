@@ -51,3 +51,5 @@ utils/map_extraction/images/Trofa.png
 *.synctex(busy)
 
 *.aux
+*.swp
+data/POIs.csv

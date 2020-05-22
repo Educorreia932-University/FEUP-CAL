@@ -10,6 +10,10 @@
 #include <cstdio>
 
 using namespace std;
+/**
+ * @file GraphFactory.h
+ * @brief File containing the class GraphFactory responsible for creating the graph by reading information for files .csv
+ * */ 
 
 class GraphFactory {
     private:
