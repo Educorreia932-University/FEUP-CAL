@@ -102,8 +102,24 @@ public:
      */
     ulli nextPoi(const ulli &origin, vector<POI*> &poi, vector<bool> visited, double& maxTime);
 
+    /**
+     * @brief Function that treat data for the recursive function for the problem of traveling salesperson
+     * @param origin Origin node
+     * @param poi Vector of the points of interest (POI) to visit
+     * @param time Total time that the person has to visit the points of interest
+     * @return Returns the IDs of each vertex to be visit in order
+     */
     vector<ulli> travelingSalesperson_preProcess(const ulli& origin, vector<POI> poi, double time );
-
+    /**
+     * @brief Recursive function to solve the traveling salesperson problem with dynamic programming approach
+     * @param actualPoint The actual point of interest (POI) to be analysed
+     * @param poi Vector containing all the POI's to be visited
+     * @param available Algorithm feature: tells how many non visited POI's has left
+     * @param minDistance Algorithm feature: min distance until now. The algorithm updates this variable
+     * @param time Algorithm feature: the time that has left to visit the remaining features
+     * @param nodes Algorithm features: number of nodes visited
+     * @return Returns the ID's of each Vertex to be visited in order
+     */
     vector<ulli> travelingSalesperson(lli actualPoint, vector<POI> poi, lli available, double & minDistance, double time, int& nodes);
 
 };
