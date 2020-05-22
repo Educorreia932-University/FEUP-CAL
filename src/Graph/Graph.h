@@ -23,15 +23,27 @@ using namespace std;
  */ 
 class Graph {
 private:
-    vector<Vertex *> vertexSet;     /** vertex set */
-    double **dist = nullptr; 		/** dist */
-    int **pred = nullptr; 			/** path */ 
+    vector<Vertex *> vertexSet;     /*< Containg all the vertexes in the graph */
+    double **dist = nullptr; 		/*< dist */
+    int **pred = nullptr; 			/*< pred*/
 
     friend class FloydStorage;
 public:
+    /**
+     * @brief Default destructor
+     */
     ~Graph();
-
+    /**
+     * @brief Get vertexSet vector
+     * @return Return vertexSet vector containing all the vertex in the graph
+     */
     vector<Vertex *> getVertexSet();
+
+    /**
+     * @brief Finds a specific vertex in the vertexSet vector
+     * @param in ID of the vertex
+     * @return Vertex
+     */
     Vertex *findVertex(const ulli &in) const;
 	/**
 	 * @brief sorts the vertices according to the id's so that it can perform binary search to find a vertex Id 
