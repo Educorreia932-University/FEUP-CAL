@@ -13,6 +13,15 @@ void clearScreen() {
     #endif
 }
 
+UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
+ 
+
+/* 
+ * ===  FUNCTIONALITY  ======================================================================
+ *         Name:  DisplayMenu
+ *  Description:  From here on we have the functionalities to display the main menu 
+ * ==========================================================================================
+ */
 void UserInterface::showMainMenu() {
     clearScreen();
 
@@ -133,22 +142,25 @@ void UserInterface::setAmountOfTime_Interface(){
 
 void UserInterface::POIsSelection() {
     vector<POI *> toVisit = {};
-
+    vector<POI> TSP_toVisit = {};
     POI *selected;
 
 
-    while ((selected = showPOIs(toVisit)) != nullptr)
+    while ((selected = showPOIs(toVisit)) != nullptr) {
         toVisit.push_back(selected);
+        TSP_toVisit.push_back(*selected);
+    }
 
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
     pause();
 
+    //res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
+    res = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
+
     for (int i = 0 ; i < res.size(); i++)
         cout << res[i] << endl;
-    res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-
 }
 
 void UserInterface::showSettings() {
@@ -177,8 +189,13 @@ void UserInterface::settingsSelection() {
     }
 }
 
-UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  showGraph
+ *  Description: Function responsible to display the graph and custom settings of it 
+ * =====================================================================================
+ */
 void UserInterface::showGraph(const vector<ulli> &res) {
     auto gv = new GraphViewer(900, 900, false);
 

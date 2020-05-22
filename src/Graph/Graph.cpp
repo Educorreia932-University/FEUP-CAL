@@ -1,6 +1,11 @@
 #include "Graph.h"
-#include "FloydStorage.h"
+#include "Storage/FloydStorage.h"
 
+
+/**
+ * @file Graph.cpp
+ * @brief this file contains the implementation of graph functions and algorithms described in Graph.h
+ */
 Vertex *Graph::findVertex(const ulli &in) const {
     for (auto v: vertexSet)
         if (v->id == in)
@@ -73,6 +78,12 @@ void Graph::sortVertexSet() {
     });
 }
 
+/* 
+ * ===  ALGORITHM ======================================================================
+ *         Name:  FloydWarshall
+ *  Description:  From here on we have the Floyd Warshall algorithm implementation 
+ * =====================================================================================
+ */
 void Graph::handleFloydWarshall(const string& cityName) {
     auto *fs = new FloydStorage(this);
 
@@ -145,6 +156,15 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     return res;
 }
 
+/* 
+ * ===  ALGORITHM ======================================================================
+ *         Name:  GreedyApproach
+ *  Description:  From here on is implemented the greedy approach to find out what is 
+ 				  the next Point of Interest (POI) to visit. Basically is chosen the 
+				  next nearest POI. The iteration stops travelling to the next POI 
+				  exceeds the maxTime given by the user. 
+ * =====================================================================================
+ */
 vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime) {
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
@@ -205,6 +225,73 @@ vector<Vertex *> Graph::getVertexSet() {
 
 
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  DynamicApproach
+ *  Description:  From here on is implemented the algorithm for solving the Traveling
+				  Salesperson problem (TSP) by using a dynamic programing approach.
+ * =====================================================================================
+ */
 
+
+vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi, double time) {
+    for (auto i: poi){
+        i.setVisited(false);
+        i.setIndex(findVertexIdx(i.getID()));
+    }
+    double minDistance = INF;
+    int nodes = 1;
+    vector<ulli> resposta = travelingSalesperson( 0, poi, poi.size(), minDistance, time, nodes );
+    return resposta;
+}
+
+vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
+                                         double &minDistance, double time, int& nodes) {
+
+    vector<ulli> answer;
+    poi[actualPoint].setVisited(true);
+
+    /*<Case there is no time to visit this poi*/
+    if (time < 0) return {};
+    nodes ++;
+    /*<Case all the vertices from poi has been visited*/
+   if (available == 1) {
+       minDistance = 0;
+       return {};
+   }
+
+   time -= poi[actualPoint].getTime(); /*<Decrease time be the period the person will spend at the poi*/
+   lli nextPOI = -1;
+
+
+   for (int i = 0 ; i < poi.size(); i++){
+
+       if (!poi[i].getVisited()){
+           double actualDistance = INF;
+            int auxNodes = nodes;
+           /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
+           double auxTime = time - pred[poi[actualPoint].getIndex()][poi[i].getIndex()];
+           vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
+
+           /*<Update the actual distance*/
+           lli source = poi[actualPoint].getIndex();
+           lli dest = poi[i].getIndex();
+           actualDistance += pred[source][dest] + poi[dest].getTime();
+
+           /*<Update the min distance*/
+           /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
+           if (minDistance > actualDistance && auxNodes > nodes){
+               minDistance = actualDistance;
+               nodes = auxNodes;
+               answer = tempVector;
+               nextPOI = i;
+           }
+       }
+   }
+
+   vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
+   answer.insert(answer.end(), floydPath.begin(), floydPath.end());
+   return answer;
+}
 
 

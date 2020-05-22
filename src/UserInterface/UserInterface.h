@@ -2,7 +2,7 @@
 #define TOURMATEAPP_USERINTERFACE_H
 
 #include "Graph/Graph.h"
-#include "Graph/PoiStorage.h"
+#include "Storage/PoiStorage.h"
 #include "Utils.h"
 #include <iostream>
 #include <locale>

@@ -1,7 +1,7 @@
 
 #include "UserInterface/UserInterface.h"
 #include "Graph/GraphFactory.h"
-#include "Graph/PoiStorage.h"
+#include "Storage/PoiStorage.h"
 
 using namespace std;
 

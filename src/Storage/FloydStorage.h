@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
-#include "Graph.h"
+#include "Graph/Graph.h"
 using namespace std;
 
 /**

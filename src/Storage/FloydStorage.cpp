@@ -1,4 +1,4 @@
-#include "FloydStorage.h"
+#include "Storage/FloydStorage.h"
 
 /**
  * @file FloydStorage.cpp
@@ -6,7 +6,6 @@
  * to know if it's necessary to execute the floydWarshall algorithm
  */
 
-/*TODO: fix the path for linux*/
 
 bool FloydStorage::isToExecuteFloyd(const string &cityName) {
     //checks the files are available
