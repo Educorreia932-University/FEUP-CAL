@@ -75,7 +75,7 @@ void UserInterface::mainMenuSelection() {
                 cout << endl
                      << "Loading..."
                      << endl;
-                showGraph();
+                showMap();
                 break;
             case 3:
                 settingsSelection();
@@ -185,7 +185,17 @@ void UserInterface::settingsSelection() {
  *  Description: Function responsible to display the graph and custom settings of it 
  * =====================================================================================
  */
-void UserInterface::showGraph() {
+void UserInterface::showMap() {
+    clearScreen();
+
+    cout << "Which algorithm do you want to see?" << endl
+         << "Greedy                          [1]" << endl
+         << "Dynamic                         [2]" << endl;
+
+    int selected;
+
+    selected = readOption(1, 2);
+
     auto gv = new GraphViewer(900, 900, false);
 
     #ifdef __unix__
@@ -193,12 +203,16 @@ void UserInterface::showGraph() {
     #else
         gv->setBackground("../data/map.png");
     #endif
-        gv->createWindow(900, 900);
+
+    gv->createWindow(900, 900);
 
     gv->defineEdgeCurved(false);
 
-    showRoute(gv, res1, "RED");
-    showRoute(gv, res2, "BLUE");
+    if (selected == 1)
+        showRoute(gv, res1, "RED");
+
+    else
+        showRoute(gv, res2, "BLUE");
 
     pause();
 

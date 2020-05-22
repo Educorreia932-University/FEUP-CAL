@@ -24,7 +24,7 @@ class UserInterface {
         double maxTime = INF;
 
         void showMainMenu();
-        void showGraph();
+        void showMap();
         void showRoute(GraphViewer* gv, vector<ulli> res, string color);
         void graphSelection();
         POI* showPOIs(vector<POI*> toVisit);
