@@ -36,6 +36,7 @@ void UserInterface::showMainMenu() {
 
 void UserInterface::mainMenuSelection() {
     bool calculated = false;
+    vector<POI*> toVisit;
 
     while (true) {
         chrono::steady_clock::time_point begin;
@@ -68,14 +69,14 @@ void UserInterface::mainMenuSelection() {
                     calculated = true;
                 }
 
-                POIsSelection();
+                toVisit = POIsSelection();
 
                 break;
             case 2:
                 cout << endl
                      << "Loading..."
                      << endl;
-                showMap();
+                showMap(toVisit);
                 break;
             case 3:
                 settingsSelection();
@@ -142,8 +143,8 @@ void UserInterface::setAmountOfTime_Interface(){
          << "Negative numbers will be converted to positive: " << endl;
 }
 
-void UserInterface::POIsSelection() {
-    vector<POI *> toVisit = {};
+vector<POI*> UserInterface::POIsSelection() {
+    vector<POI*> toVisit = {};
     vector<POI> TSP_toVisit = {};
     POI *selected;
 
@@ -153,10 +154,13 @@ void UserInterface::POIsSelection() {
     }
 
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
-    if (toVisit.empty() || toVisit.size() == 1) return;
+    if (toVisit.empty() || toVisit.size() == 1)
+        return toVisit;
 
     res1 = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
     res2 = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
+
+    return toVisit;
 }
 
 void UserInterface::showSettings() {
@@ -197,12 +201,22 @@ void UserInterface::settingsSelection() {
  *  Description: Function responsible to display the graph and custom settings of it 
  * =====================================================================================
  */
-void UserInterface::showMap() {
+void UserInterface::showMap(vector<POI*> toVisit) {
     clearScreen();
 
+    if (res1.empty()) {
+        cout << "Choose a route first (Option [1] in the menu)" << endl
+             << endl;
+        pause();
+
+        return;
+    }
+
     cout << "Which algorithm do you want to see?" << endl
+         << endl
          << "Greedy                          [1]" << endl
-         << "Dynamic                         [2]" << endl;
+         << "Dynamic                         [2]" << endl
+         << endl;
 
     int selected;
 
@@ -221,17 +235,17 @@ void UserInterface::showMap() {
     gv->defineEdgeCurved(false);
 
     if (selected == 1)
-        showRoute(gv, res1, "RED");
+        showRoute(gv, res1, "RED", toVisit);
 
     else
-        showRoute(gv, res2, "BLUE");
+        showRoute(gv, res2, "BLUE", toVisit);
 
     pause();
 
     // gv->closeWindow();
 }
 
-void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
+void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit) {
     double min_lon = -8.6226691;
     double max_lon = -8.5989075;
     double min_lat = 41.1584432;
@@ -248,8 +262,6 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
                     (v->lon - min_lon) / (max_lon - min_lon) * 900,
                     (v->lat - min_lat) / (max_lat - min_lat) * 900
             );
-
-            string poi_name;
         }
     }
 
@@ -264,15 +276,54 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
             edge_id++;
         }
 
+    gv->rearrange();
+
     animatePath(gv, res, color, res.front(), res.back());
+
+    int path;
+
+    while (true) {
+        path = showPaths(toVisit);
+
+        if (path == 0)
+            return;
+
+        animatePath(gv, res, color, toVisit[path - 1]->getID(),toVisit[path]->getID());
+    };
+}
+
+int UserInterface::showPaths(vector<POI*> toVisit) {
+    clearScreen();
+
+    cout << "Which path do you want to see?" << endl
+         << endl;
+
+    for (int i = 0; i < toVisit.size() - 1; i++) {
+        cout << left << setw(40) << (toVisit[i]->getName() + " -> " + toVisit[i + 1]->getName());
+        cout << "[" << i + 1 << "]" <<  endl;
+    }
+
+    cout << "Go back                                 [0]" << endl
+         << endl;
+
+    return readOption(0, toVisit.size());
 }
 
 void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color, ulli begin, ulli end) {
     vector<ulli> POI_route;
+    bool begun = false;
 
     for (ulli id : res) {
-        gv->setVertexSize(id, 11);
-        gv->setVertexColor(id, color);
+        if (begun) {
+            gv->setVertexSize(id, 11);
+            gv->setVertexColor(id, color);
+
+            POI_route.push_back(id);
+
+            Sleep(animationDelay);
+
+            gv->rearrange();
+        }
 
         // Reached a POI
         if (!poiStorage->findPOI(id).empty()) {
@@ -282,13 +333,16 @@ void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color,
                 gv->setVertexColor(id, "YELLOW");
                 POI_route.clear();
             }
+
+            if (id == begin) {
+                begun = true;
+                gv->setVertexColor(id, color);
+                POI_route.push_back(id);
+            }
+
+            if (id == end)
+                break;
         }
-
-        POI_route.push_back(id);
-
-        Sleep(animationDelay);
-
-        gv->rearrange();
     }
 }
 

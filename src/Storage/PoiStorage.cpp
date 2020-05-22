@@ -31,10 +31,7 @@ bool PoiStorage::readPois() {
         getline(is, tmp, TOKEN);
         stringstream(tmp) >> time;
 
-
         POIs.insert(pair<string, POI *>(name, new POI(id, name, time)));
-
-
     }
 
     inFile.close();

@@ -25,13 +25,13 @@ class UserInterface {
         int animationDelay = 100;
 
         void showMainMenu();
-        void showMap();
-        void showRoute(GraphViewer* gv, vector<ulli> res, string color);
-        void graphSelection();
+        void showMap(vector<POI*> toVisit);
+        void showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit);
+        int showPaths(vector<POI*> toVisit);
         void animatePath(GraphViewer *gv, vector<ulli> res, string color, ulli begin, ulli end);
 
         POI* showPOIs(vector<POI*> toVisit);
-        void POIsSelection();
+        vector<POI*> POIsSelection();
         void showSettings();
         void settingsSelection();
     public:
