@@ -1,5 +1,5 @@
 # Analysis and Conception of Algorithms
-## MIEIC - 2nd year / 1st semester
+## MIEIC - 2<sup>nd</sup> year / 1<sup>st</sup> semester
 
 Exercises done in CAL course 
 
