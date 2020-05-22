@@ -260,9 +260,12 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
         if (!poiStorage->findPOI(id).empty()) {
             gv->setVertexSize(id, 17);
         }
+
+        Sleep(100);
+
+        gv->rearrange();
     }
 
-    gv->rearrange();
 }
 
 void UserInterface::graphSelection() {
