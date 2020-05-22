@@ -158,7 +158,10 @@ void UserInterface::showSettings() {
 
     cout << "                MENU                " << endl
          << " ===================================" << endl
-         << " Show all? " << (showAll? "YES" : "NO ") <<  "                  [1]" << endl
+         << " Show all?                      [1]" << endl
+         << "     CURRENT: " << (showAll? "YES" : "NO ") << endl
+         << " Change animation delay         [2]" << endl
+         << "     CURRENT: " << animationDelay << " ms" << endl
          << " Exit                           [0]" << endl
          << endl;
 }
@@ -167,12 +170,15 @@ void UserInterface::settingsSelection() {
     while (true) {
         showSettings();
 
-        int selected = readOption(0, 1);
+        int selected = readOption(0, 2);
 
         switch (selected) {
             case 1:
                 showAll = !showAll;
                 break;
+            case 2:
+                cout << "Insert the new value for the delay, in miliseconds:" << endl;
+                cin >> animationDelay;
             case 0:
                 return;
         }
@@ -228,7 +234,7 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
     // Add nodes
     for (Vertex* v : graph->getVertexSet()) {
         gv->setVertexSize(v->getID(), 9);
-        gv->setVertexColor(v->getID(), "YELLOW");
+        gv->setVertexColor(v->getID(), "WHITE");
 
         if (showAll || (find(res.begin(), res.end(), v->getID()) != res.end())) {
             gv->addNode(
@@ -252,16 +258,26 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
             edge_id++;
         }
 
+    vector<ulli> POI_route;
+
     // Customize
     for (ulli id : res) {
         gv->setVertexSize(id, 11);
         gv->setVertexColor(id, color);
 
+        // Reached a POI
         if (!poiStorage->findPOI(id).empty()) {
             gv->setVertexSize(id, 17);
+
+            for (ulli id : POI_route) {
+                gv->setVertexColor(id, "YELLOW");
+                POI_route.clear();
+            }
         }
 
-        Sleep(100);
+        POI_route.push_back(id);
+
+        Sleep(animationDelay);
 
         gv->rearrange();
     }

@@ -22,6 +22,7 @@ class UserInterface {
         // Settings
         bool showAll = false;
         double maxTime = INF;
+        int animationDelay = 100;
 
         void showMainMenu();
         void showMap();
