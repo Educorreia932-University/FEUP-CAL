@@ -41,6 +41,6 @@ class UserInterface {
 
 int readOption(int min, unsigned int max);
 
-void pause();
+void pauseInterface();
 
 #endif //TOURMATEAPP_USERINTERFACE_H

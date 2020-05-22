@@ -64,7 +64,7 @@ void UserInterface::mainMenuSelection() {
                          << endl
                          << endl;
 
-                    pause();
+                    pauseInterface();
 
                     calculated = true;
                 }
@@ -154,7 +154,7 @@ void UserInterface::POIsSelection() {
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
-    pause();
+    pauseInterface();
 
     //res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
     res = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
@@ -276,7 +276,7 @@ int readOption(int min, unsigned int max) {
     }
 }
 
-void pause() {
+void pauseInterface() {
     cout << "Press any key to continue ...";
     cin.get();
 }

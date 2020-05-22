@@ -12,6 +12,12 @@ using namespace std;
 #define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
 
 /**
+ *
+ * @return Returns true if the program is running on a unix environment
+ */
+bool isUnix();
+
+/**
  * Message shows where the error happended. Invoked with ERROR
  * @param file Name of the file
  * @param function Name of the function
@@ -34,13 +40,16 @@ typedef long long int lli;
  * @return The value of the division
  */
 double safeDivision(double numerator, double denominator, double subst);
+
 /**
  * @brief Checks if the input given is a number, not a string
  * @return return the number case it's a number
  */
 double checkNumber();
+
 /**
  * @brief Function makes the user waits until it presses enter
  */
 void wait();
+
 #endif //TOURMATEAPP_UTILS_H
