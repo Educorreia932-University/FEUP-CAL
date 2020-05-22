@@ -15,8 +15,7 @@ void clearScreen() {
 
 UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
  
-
-/* 
+/*
  * ===  FUNCTIONALITY  ======================================================================
  *         Name:  DisplayMenu
  *  Description:  From here on we have the functionalities to display the main menu 
@@ -73,12 +72,14 @@ void UserInterface::mainMenuSelection() {
 
                 break;
             case 2:
-                showGraph(res);
+                cout << endl
+                     << "Loading..."
+                     << endl;
+                showGraph();
                 break;
             case 3:
                 settingsSelection();
                 break;
-
             case 4:
                 setAmountOfTime_Interface();
                 maxTime = abs(checkNumber());
@@ -89,11 +90,7 @@ void UserInterface::mainMenuSelection() {
     }
 }
 
-
-
-
 POI* UserInterface::showPOIs(vector<POI*> toVisit) {
-
     clearScreen();
     int index = 0;
 
@@ -135,16 +132,14 @@ void UserInterface::setAmountOfTime_Interface(){
     clearScreen();
 
     cout << "================== SET TIME ===================" << endl
-         << "Set the amount of time you have to spend in" << endl
-         << "minutes. Negative numbers will be converted" << endl
-         << "to positive: ";
+         << "Set the amount of time you have to spend in minutes." << endl
+         << "Negative numbers will be converted to positive: " << endl;
 }
 
 void UserInterface::POIsSelection() {
     vector<POI *> toVisit = {};
     vector<POI> TSP_toVisit = {};
     POI *selected;
-
 
     while ((selected = showPOIs(toVisit)) != nullptr) {
         toVisit.push_back(selected);
@@ -154,13 +149,8 @@ void UserInterface::POIsSelection() {
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
-    pause();
-
-    //res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-    res = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
-
-    for (int i = 0 ; i < res.size(); i++)
-        cout << res[i] << endl;
+    res1 = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
+    res2 = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
 }
 
 void UserInterface::showSettings() {
@@ -189,14 +179,13 @@ void UserInterface::settingsSelection() {
     }
 }
 
-
-/* 
+/*
  * ===  FUNCTION  ======================================================================
- *         Name:  showGraph
+ *  Name:  showGraph
  *  Description: Function responsible to display the graph and custom settings of it 
  * =====================================================================================
  */
-void UserInterface::showGraph(const vector<ulli> &res) {
+void UserInterface::showGraph() {
     auto gv = new GraphViewer(900, 900, false);
 
     #ifdef __unix__
@@ -206,12 +195,21 @@ void UserInterface::showGraph(const vector<ulli> &res) {
     #endif
         gv->createWindow(900, 900);
 
+    gv->defineEdgeCurved(false);
+
+    showRoute(gv, res1, "RED");
+    showRoute(gv, res2, "BLUE");
+
+    pause();
+
+    // gv->closeWindow();
+}
+
+void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
     double min_lon = -8.6226691;
     double max_lon = -8.5989075;
     double min_lat = 41.1584432;
     double max_lat = 41.14049;
-
-    gv->defineEdgeCurved(false);
 
     // Add nodes
     for (Vertex* v : graph->getVertexSet()) {
@@ -240,21 +238,21 @@ void UserInterface::showGraph(const vector<ulli> &res) {
             edge_id++;
         }
 
-    int current_color = 0;
-
     // Customize
     for (ulli id : res) {
         gv->setVertexSize(id, 11);
-        gv->setVertexColor(id, "RED");
+        gv->setVertexColor(id, color);
 
         if (!poiStorage->findPOI(id).empty()) {
-            gv->setVertexSize(id, 13);
-            current_color++;
+            gv->setVertexSize(id, 17);
         }
     }
 
     gv->rearrange();
-        wait();
+}
+
+void UserInterface::graphSelection() {
+    
 }
 
 int readOption(int min, unsigned int max) {
@@ -266,7 +264,9 @@ int readOption(int min, unsigned int max) {
         if (cin >> option && option >= min && option <= max) {
             cin.ignore(1000, '\n');
             return option;
-        } else {
+        }
+
+        else {
             cin.clear();
             cin.ignore(1000, '\n');
             cerr << endl

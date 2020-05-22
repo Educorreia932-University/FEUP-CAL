@@ -24,7 +24,7 @@ int main() {
     auto* poiStorage = new PoiStorage("PORTO");
 
     if (!poiStorage->readPois()){
-        ERROR("Not possible to read POIS");
+        // ERROR("Not possible to read POIS");
         exit(1);
     }
 
