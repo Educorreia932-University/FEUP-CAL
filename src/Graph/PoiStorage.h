@@ -41,11 +41,15 @@ class POI{
     string name;
     ulli time;
     ulli index;         /**position of the poi in the setVertex => to be used at trajectory order*/
+
+    bool visited;
 public:
     POI(ulli id, const string& name, ulli time): id(id), name(name), time(time){index = 0;};
 
+    void setVisited(bool visited){this->visited = visited; }
+
+    bool getVisited(){return visited;}
     ulli getID() {return id;}
-    string getName(){return name;}
     ulli getTime(){return time;}
     ulli getIndex(){return index;}
     void setIndex(ulli index){this->index = index;}

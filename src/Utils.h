@@ -24,6 +24,7 @@ static inline void Error(const string &function, const string &file, const int &
 }
 
 typedef unsigned long long int ulli;
+typedef long long int lli;
 
 /**
  * Case the denominator is zero, the denominator swapped

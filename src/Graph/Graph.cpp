@@ -73,6 +73,12 @@ void Graph::sortVertexSet() {
     });
 }
 
+/* 
+ * ===  ALGORITHM ======================================================================
+ *         Name:  FloydWarshall
+ *  Description:  From here on we have the Floyd Warshall algorithm implementation 
+ * =====================================================================================
+ */
 void Graph::handleFloydWarshall(const string& cityName) {
     auto *fs = new FloydStorage(this);
 
@@ -145,6 +151,15 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
     return res;
 }
 
+/* 
+ * ===  ALGORITHM ======================================================================
+ *         Name:  GreedyApproach
+ *  Description:  From here on is implemented the greedy approach to find out what is 
+ 				  the next Point of Interest (POI) to visit. Basically is chosen the 
+				  next nearest POI. The iteration stops travelling to the next POI 
+				  exceeds the maxTime given by the user. 
+ * =====================================================================================
+ */
 vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime) {
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
@@ -205,6 +220,52 @@ vector<Vertex *> Graph::getVertexSet() {
 
 
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  DynamicApproach
+ *  Description:  From here on is implemented the algorithm for solving the Traveling
+				  Salesperson problem (TSP) by using a dynamic programing approach.
+ * =====================================================================================
+ */
 
+
+vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi) {
+    for (auto i: poi){
+        i.setVisited(false);
+        i.setIndex(findVertexIdx(i.getID()));
+    }
+    double minDistance = INF;
+    vector<ulli> resposta = travelingSalesperson(origin, 0, poi, poi.size(), minDistance);
+    return resposta;
+}
+
+vector<ulli> Graph::travelingSalesperson(lli root, lli actualPoint, vector<POI> poi, lli available,
+                                         double &minDistance) {
+
+    vector<ulli> answer;
+    poi[actualPoint].setVisited(true);
+
+   if (available == 1)  return {};
+
+   lli nextPOI = -1;
+   for (int i = 0 ; i < poi.size(); i++){
+       if (!poi[i].getVisited()){
+           double actualDistance = INF;
+           vector<ulli> tempVector = travelingSalesperson(root, i, poi, available-1, actualDistance);
+           lli source = poi[actualPoint].getIndex();
+           lli dest = poi[i].getIndex();
+           actualDistance += pred[source][dest];
+           if (minDistance > actualDistance){
+               minDistance = actualDistance;
+               answer = tempVector;
+               nextPOI = i;
+           }
+       }
+   }
+
+   vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
+   answer.insert(answer.end(), floydPath.begin(), floydPath.end());
+   return answer;
+}
 
 

@@ -133,22 +133,25 @@ void UserInterface::setAmountOfTime_Interface(){
 
 void UserInterface::POIsSelection() {
     vector<POI *> toVisit = {};
-
+    vector<POI> TSP_toVisit = {};
     POI *selected;
 
 
-    while ((selected = showPOIs(toVisit)) != nullptr)
+    while ((selected = showPOIs(toVisit)) != nullptr) {
         toVisit.push_back(selected);
+        TSP_toVisit.push_back(*selected);
+    }
 
     // Case there isn't sufficient POIs to visit, i.e 1 or 2, the program will go back to the MainMenu
     if (toVisit.empty() || toVisit.size() == 1) return;
 
     pause();
 
+    //res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
+    res = graph->travelingSalesperson_preProcess(0, TSP_toVisit);
+
     for (int i = 0 ; i < res.size(); i++)
         cout << res[i] << endl;
-    res = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-
 }
 
 void UserInterface::showSettings() {

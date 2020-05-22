@@ -87,6 +87,10 @@ public:
      */
     ulli nextPoi(const ulli &origin, vector<POI*> &poi, vector<bool> visited, double& maxTime);
 
+    vector<ulli> travelingSalesperson_preProcess(const ulli& origin, vector<POI> poi);
+
+    vector<ulli> travelingSalesperson(lli root, lli actualPoint, vector<POI> poi, lli available, double & minDistance);
+
 };
 
 #endif //GRAPH_H
