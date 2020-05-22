@@ -281,6 +281,7 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
            /*<Update the min distance*/
            /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
            if (minDistance > actualDistance && auxNodes > nodes){
+               answer = tempVector;
                minDistance = actualDistance;
                nodes = auxNodes;
                answer = tempVector;
@@ -290,8 +291,9 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
    }
 
    vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
-   answer.insert(answer.end(), floydPath.begin(), floydPath.end());
-   return answer;
+   floydPath.insert(floydPath.end(), answer.begin(), answer.end());
+
+   return floydPath;
 }
 
 
