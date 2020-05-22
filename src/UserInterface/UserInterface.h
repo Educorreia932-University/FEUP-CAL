@@ -28,6 +28,8 @@ class UserInterface {
         void showMap();
         void showRoute(GraphViewer* gv, vector<ulli> res, string color);
         void graphSelection();
+        void animatePath(GraphViewer *gv, vector<ulli> res, string color, ulli begin, ulli end);
+
         POI* showPOIs(vector<POI*> toVisit);
         void POIsSelection();
         void showSettings();

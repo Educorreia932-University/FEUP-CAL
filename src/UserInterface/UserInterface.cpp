@@ -116,16 +116,22 @@ POI* UserInterface::showPOIs(vector<POI*> toVisit) {
     cout << endl;
 
     index = 0;
-    int selected = readOption(0, poiStorage->getMap().size());
+    POI* result = nullptr;
 
-    for (pair<string, POI*> p : poiStorage->getMap()) {
-        if (index == selected)
-            return p.second;
+    do {
+        int selected = readOption(0, poiStorage->getMap().size());
 
-        index++;
-    }
+        for (pair<string, POI*> p : poiStorage->getMap()) {
+            if (index == selected) {
+                result = p.second;
+                break;
+            }
 
-    return nullptr;
+            index++;
+        }
+    } while (find(toVisit.begin(), toVisit.end(), result) != toVisit.end());
+
+    return result;
 }
 
 void UserInterface::setAmountOfTime_Interface(){
@@ -258,9 +264,12 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
             edge_id++;
         }
 
+    animatePath(gv, res, color, res.front(), res.back());
+}
+
+void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color, ulli begin, ulli end) {
     vector<ulli> POI_route;
 
-    // Customize
     for (ulli id : res) {
         gv->setVertexSize(id, 11);
         gv->setVertexColor(id, color);
@@ -281,11 +290,6 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color) {
 
         gv->rearrange();
     }
-
-}
-
-void UserInterface::graphSelection() {
-    
 }
 
 int readOption(int min, unsigned int max) {

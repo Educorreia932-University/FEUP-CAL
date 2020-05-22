@@ -255,45 +255,44 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
     if (time < 0) return {};
     nodes ++;
     /*<Case all the vertices from poi has been visited*/
-   if (available == 1) {
-       minDistance = 0;
-       return {};
-   }
+    if (available == 1) {
+        minDistance = 0;
+        return {};
+    }
 
-   time -= poi[actualPoint].getTime(); /*<Decrease time be the period the person will spend at the poi*/
-   lli nextPOI = -1;
+    time -= poi[actualPoint].getTime(); /*<Decrease time be the period the person will spend at the poi*/
+    lli nextPOI = -1;
 
 
-   for (int i = 0 ; i < poi.size(); i++){
-
-       if (!poi[i].getVisited()){
-           double actualDistance = INF;
+    for (int i = 0 ; i < poi.size(); i++){
+        if (!poi[i].getVisited()){
+            double actualDistance = INF;
             int auxNodes = nodes;
-           /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
-           double auxTime = time - pred[poi[actualPoint].getIndex()][poi[i].getIndex()];
-           vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
+            /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
+            double auxTime = time - pred[poi[actualPoint].getIndex()][poi[i].getIndex()];
+            vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
 
-           /*<Update the actual distance*/
-           lli source = poi[actualPoint].getIndex();
-           lli dest = poi[i].getIndex();
-           actualDistance += pred[source][dest] + poi[dest].getTime();
+            /*<Update the actual distance*/
+            lli source = poi[actualPoint].getIndex();
+            lli dest = poi[i].getIndex();
+            actualDistance += pred[source][dest] + poi[dest].getTime();
 
-           /*<Update the min distance*/
-           /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
-           if (minDistance > actualDistance && auxNodes > nodes){
-               answer = tempVector;
-               minDistance = actualDistance;
-               nodes = auxNodes;
-               answer = tempVector;
-               nextPOI = i;
-           }
-       }
-   }
+            /*<Update the min distance*/
+            /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
+            if (minDistance > actualDistance && auxNodes > nodes){
+                answer = tempVector;
+                minDistance = actualDistance;
+                nodes = auxNodes;
+                answer = tempVector;
+                nextPOI = i;
+            }
+        }
+    }
 
-   vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
-   floydPath.insert(floydPath.end(), answer.begin(), answer.end());
+    vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
+    floydPath.insert(floydPath.end(), answer.begin(), answer.end());
 
-   return floydPath;
+    return floydPath;
 }
 
 
