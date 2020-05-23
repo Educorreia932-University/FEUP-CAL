@@ -158,7 +158,7 @@ vector<POI*> UserInterface::POIsSelection() {
         return toVisit;
 
     res1 = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-    res2 = graph->travelingSalesperson_preProcess(0, TSP_toVisit, maxTime);
+    res2 = graph->travelingSalesperson_preProcess(TSP_toVisit, maxTime);
 
     return toVisit;
 }

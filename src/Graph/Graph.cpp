@@ -231,14 +231,14 @@ vector<Vertex *> Graph::getVertexSet() {
  * =====================================================================================
  */
 
-//TODO: apagar origin
-vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi, double time) {
+vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double time) {
     for (int i = 0 ; i < poi.size(); i++){
         poi[i].setVisited(false);
         poi[i].setIndex(findVertexIdx(poi[i].getID()));
     }
+
     double minDistance = 0;
-    int nodes = 1;
+    int nodes = 0;              /*<Number of nodes visited*/
     vector<ulli> resposta = travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
     return resposta;
 }
@@ -280,8 +280,8 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
             actualDistance += dist[source][dest];
 
             /*<Update the min distance*/
-            /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
-            if ((minDistance > actualDistance && auxNodes > nodes) || auxNodes > nodes){
+            /*<The auxNodes guarantees that we have the max number of pois visited and the distance guarantees the min time*/
+            if ((minDistance > actualDistance && auxNodes >= nodes) || auxNodes > nodes){
                 answer = tempVector;
                 minDistance = actualDistance;
                 nodes = auxNodes;
