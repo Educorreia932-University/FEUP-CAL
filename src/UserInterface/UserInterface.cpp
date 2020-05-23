@@ -76,7 +76,8 @@ void UserInterface::mainMenuSelection() {
                 cout << endl
                      << "Loading..."
                      << endl;
-                showMap(toVisit);
+
+                showMap();
                 break;
             case 3:
                 settingsSelection();
@@ -195,13 +196,39 @@ void UserInterface::settingsSelection() {
     }
 }
 
+vector<POI*> UserInterface::getToVisitPOIS(vector<ulli> res) {
+    vector<POI*> aux = {};
+    POI* poi;
+
+    for (ulli id : res) {
+        poi = poiStorage->findPOI(id);
+
+        if (poi != nullptr)
+            aux.push_back(poi);
+    }
+
+    vector<POI*> result = {};
+    vector<ulli> alreadyAdded = {};
+
+    result.push_back(aux[0]);
+    alreadyAdded.push_back(aux[0]->getID());
+
+    for (int i = 1; i < aux.size(); i++)
+        if (find(alreadyAdded.begin(), alreadyAdded.end(), aux[i]->getID()) == alreadyAdded.end()) {
+            result.push_back(aux[i]);
+            alreadyAdded.push_back(aux[i]->getID());
+        }
+
+    return result;
+}
+
 /*
  * ===  FUNCTION  ======================================================================
  *  Name:  showGraph
  *  Description: Function responsible to display the graph and custom settings of it 
  * =====================================================================================
  */
-void UserInterface::showMap(vector<POI*> toVisit) {
+void UserInterface::showMap() {
     clearScreen();
 
     if (res1.empty()) {
@@ -235,10 +262,10 @@ void UserInterface::showMap(vector<POI*> toVisit) {
     gv->defineEdgeCurved(false);
 
     if (selected == 1)
-        showRoute(gv, res1, "RED", toVisit);
+        showRoute(gv, res1, "RED", getToVisitPOIS(res1));
 
     else
-        showRoute(gv, res2, "BLUE", toVisit);
+        showRoute(gv, res2, "BLUE", getToVisitPOIS(res2));
 
     pause();
 
@@ -326,7 +353,7 @@ void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color,
         }
 
         // Reached a POI
-        if (!poiStorage->findPOI(id).empty()) {
+        if (poiStorage->findPOI(id) != nullptr) {
             gv->setVertexSize(id, 17);
 
             for (ulli id : POI_route) {

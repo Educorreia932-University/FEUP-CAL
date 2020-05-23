@@ -31,7 +31,7 @@ public:
 	 */
     bool readPois();
     map<string, POI*> getMap() const;
-    string findPOI(ulli id) const;
+    POI * findPOI(ulli id) const;
 };
 
 

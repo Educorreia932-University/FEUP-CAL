@@ -25,13 +25,15 @@ class UserInterface {
         int animationDelay = 100;
 
         void showMainMenu();
-        void showMap(vector<POI*> toVisit);
+        void showMap();
         void showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit);
         int showPaths(vector<POI*> toVisit);
         void animatePath(GraphViewer *gv, vector<ulli> res, string color, ulli begin, ulli end);
 
         POI* showPOIs(vector<POI*> toVisit);
         vector<POI*> POIsSelection();
+        vector<POI *> getToVisitPOIS(vector<ulli> res);
+
         void showSettings();
         void settingsSelection();
     public:
@@ -41,6 +43,7 @@ class UserInterface {
          * @brief Visual menu for the user set the amount of time it has to spend making tourism
          */
         void setAmountOfTime_Interface();
+
 };
 
 int readOption(int min, unsigned int max);
