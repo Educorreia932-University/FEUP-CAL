@@ -181,7 +181,7 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTi
 
     for (int i = 1; i < poi.size(); i++) {
         idNext = nextPoi(origin, poi, visited, initialTime);                //get the id of the next poi to be visited
-        if (idNext == 0) return order;                                          // no sufficient time to visit all pois
+        if (idNext == -1) return order;                                          // no sufficient time to visit all pois
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
         order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
@@ -210,8 +210,7 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
     }
     //update the time the person has to spend
     maxTime -= minWeight;
-    if (maxTime == 0) maxTime = -1;                 //cannot be 0
-    if (maxTime < 0) return 0;
+    if (maxTime < 0) return -1;
 
 
     return selectedPoiIndex;
@@ -239,8 +238,8 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double time
 
     double minDistance = 0;
     int nodes = 0;              /*<Number of nodes visited*/
-    vector<ulli> resposta = travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
-    return resposta;
+    return travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
+    
 }
 
 vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
