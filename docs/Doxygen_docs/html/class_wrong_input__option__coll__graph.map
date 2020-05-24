@@ -1,0 +1,4 @@
+<map id="WrongInput_option" name="WrongInput_option">
+<area shape="rect" id="node1" title="Error for wrong inputs." alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node2" href="$class_error.html" title="Class made to throw types of errors." alt="" coords="45,5,96,32"/>
+</map>

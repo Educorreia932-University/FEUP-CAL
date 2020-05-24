@@ -8,34 +8,53 @@
 
 using namespace std;
 
+
+/**
+ * @file Vertex.h
+ */
 class Vertex {
 public:
+
+    double lat;                 /*<Latitude */
+    double lon;                 /*<Longitude*/
+
+    /**
+     * @brief Constructor
+     */
     Vertex(const ulli &id);
 
+    /**
+     * @brief Creates a vertex storing the latitude and longitude
+     * @param id The id of the vertex
+     * @param lon Longitude of the vertex
+     * @param lat Latitude of the vertex
+     */
     Vertex(const ulli &id, double lon, double lat);
 
+    /**
+     * @return Get the id of the vertex
+     */
     ulli getID() const;
-
-    double lon; // Longitude
-    double lat; // Latitude
-    double getDist() const;
-
-    Vertex *getPath() const;
-
+    /**
+     * @brief Get all the adjacent edges
+     * @return Return the edges
+     */
     vector<Edge> getAdj() const;
 
+    /**
+     * @brief Operator required by the sort and mutable priority queue
+     * @param vertex
+     * @return
+     */
     bool operator<(Vertex &vertex) const; // required by the sort and mutable priorityQueue
+
     friend class Graph;
 
 private:
-    ulli id;                    // content of the vertex
-    vector<Edge> adj;        // outgoing edges
-
+    ulli id;                /*< Id of the vertex*/
+    vector<Edge> adj;       /*< Outgoing edges*/
     double dist = 0;
     Vertex *path = NULL;
-
-    bool visited = false;        // auxiliary field
-    bool processing = false;    // auxiliary field
 
     void addEdge(Vertex *dest, double w, const string &streetName = "");
 };

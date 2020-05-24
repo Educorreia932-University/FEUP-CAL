@@ -17,12 +17,27 @@ using namespace std;
 
 class GraphFactory {
     private:
+
+    /**
+     * @brief Open a file
+     * @param filename Name of the file
+     * @param inFile File stream
+     */
         void openFile(const string& filename, ifstream& inFile);
     public:
-        void readVertex(const string& filename);
-        void readEdges(const string& filename);
-        Graph graph;
-};
+
+    /**
+     * @brief read all the vertex of a nodes_<city>.csv file
+     * @param filename name of the file to read
+     */
+    void readVertex(const string& filename);
+    /**
+    * @brief Read all the edges of a file
+    * @param Filename Name of the file
+    */
+    void readEdges(const string& filename);
+    Graph graph;
+    };
 
 
 #endif //TOURMATEAPP_GRAPHFACTORY_H

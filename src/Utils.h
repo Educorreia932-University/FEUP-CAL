@@ -4,11 +4,22 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Errors.h"
 
 using namespace std;
 
+
+/**
+ * @file Utils.h
+ */
 #define INF std::numeric_limits<double>::max()
-#define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
+#define ERRORS(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
+
+/**
+ *
+ * @return Returns true if the program is running on a unix environment
+ */
+bool isUnix();
 
 /**
  * Message shows where the error happended. Invoked with ERROR
@@ -23,6 +34,7 @@ static inline void Error(const string &function, const string &file, const int &
 }
 
 typedef unsigned long long int ulli;
+typedef long long int lli;
 
 /**
  * Case the denominator is zero, the denominator swapped
@@ -32,5 +44,11 @@ typedef unsigned long long int ulli;
  * @return The value of the division
  */
 double safeDivision(double numerator, double denominator, double subst);
+
+/**
+ * @brief Checks if the input given is a number, not a string
+ * @return return the number case it's a number
+ */
+double checkNumber();
 
 #endif //TOURMATEAPP_UTILS_H

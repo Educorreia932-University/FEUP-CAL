@@ -22,17 +22,7 @@ ulli Vertex::getID() const {
     return this->id;
 }
 
-double Vertex::getDist() const {
-    return this->dist;
-}
 
-Vertex* Vertex::getPath() const {
-    return this->path;
-}
-
-vector<Edge> Vertex::getAdj() const {
-    return adj;
-}
 
 
 

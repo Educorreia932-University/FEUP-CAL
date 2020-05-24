@@ -27,9 +27,10 @@ add_executable(src
         Utils.h
         Graph/Vertex.cpp
         Graph/Vertex.h
-        Graph/FloydStorage.cpp
-        Graph/FloydStorage.h
-        Graph/PoiStorage.cpp
-        Graph/PoiStorage.h
+        Storage/FloydStorage.cpp
+        Storage/FloydStorage.h
+        Storage/PoiStorage.cpp
+        Storage/PoiStorage.h
+        Errors.h
         ../lib/connection.cpp
         ../lib/graphviewer.cpp)
