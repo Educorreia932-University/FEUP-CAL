@@ -333,7 +333,9 @@ int UserInterface::showPaths(vector<POI*> toVisit) {
     cout << "Go back                                 [0]" << endl
          << endl;
 
-    return readOption(0, toVisit.size());
+    int selected = readOption(0, toVisit.size() - 1);
+
+    return selected;
 }
 
 void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color, ulli begin, ulli end) {

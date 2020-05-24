@@ -29,7 +29,6 @@ class UserInterface {
         double maxTime = INF;
         int animationDelay = 100;
 
-
         void showMainMenu();
         void showMap();
         void showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit);
@@ -50,7 +49,6 @@ class UserInterface {
          * @brief Visual menu for the user set the amount of time it has to spend making tourism
          */
         void setAmountOfTime_Interface();
-
 };
 
 int readOption(int min, unsigned int max);
