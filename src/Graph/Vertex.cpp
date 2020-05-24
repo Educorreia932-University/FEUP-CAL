@@ -24,9 +24,5 @@ ulli Vertex::getID() const {
 
 
 
-vector<Edge> Vertex::getAdj() const {
-    return adj;
-}
-
 
 

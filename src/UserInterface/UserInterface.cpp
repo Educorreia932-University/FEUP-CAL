@@ -64,7 +64,7 @@ void UserInterface::mainMenuSelection() {
                          << endl
                          << endl;
 
-                    pause();
+                    pauseInterface();
 
                     calculated = true;
                 }
@@ -396,7 +396,7 @@ int readOption(int min, unsigned int max) {
     }
 }
 
-void pause() {
+void pauseInterface() {
     cout << "Press any key to continue ...";
     cin.get();
 }

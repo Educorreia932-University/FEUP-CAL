@@ -1,9 +1,16 @@
 #include "Utils.h"
 
+bool isUnix() {
+#ifdef __unix__
+    return true;
+#else
+    return false;
+#endif
+}
 
-double safeDivision(double numerator, double denominator, double subst){
-    denominator = denominator == 0 ? subst: denominator;
-    return numerator/denominator;
+double safeDivision(double numerator, double denominator, double subst) {
+    denominator = denominator == 0 ? subst : denominator;
+    return numerator / denominator;
 }
 
 double checkNumber() {

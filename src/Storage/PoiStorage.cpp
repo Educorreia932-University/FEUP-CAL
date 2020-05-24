@@ -6,7 +6,11 @@ PoiStorage::PoiStorage(const string &cityName) {
 }
 
 bool PoiStorage::readPois() {
-    string fileName = "../data/POI_" + cityName + ".txt";
+    string fileName;
+    if (isUnix())
+        fileName = "../../data/POI_" + cityName + ".txt";
+    else
+        fileName = "../data/POI_" + cityName + ".txt";
     ifstream inFile(fileName.c_str());
 
     string line;

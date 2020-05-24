@@ -5,13 +5,17 @@
 
 using namespace std;
 
-
 int main() {
     /*<Creating graph*/
     GraphFactory graphFactory;
 
-    graphFactory.readVertex("../data/nodes_PORTO.csv");
-    graphFactory.readEdges("../data/edges_PORTO.csv");
+    if (isUnix()) {
+        graphFactory.readVertex("../../data/nodes_PORTO.csv");
+        graphFactory.readEdges("../../data/edges_PORTO.csv");
+    } else {
+        graphFactory.readVertex("../data/nodes_PORTO.csv");
+        graphFactory.readEdges("../data/edges_PORTO.csv");
+    }
 
     Graph graph = graphFactory.graph;
 
@@ -20,6 +24,7 @@ int main() {
 
     if (!poiStorage->readPois()){
         ERRORS("Not possible to read POIS");
+
         exit(1);
     }
 
@@ -30,3 +35,4 @@ int main() {
 
     return 0;
 }
+
