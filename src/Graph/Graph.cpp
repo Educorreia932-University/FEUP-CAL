@@ -256,7 +256,7 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double &tim
 vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi,
                                          double &minDistance, double time, int& level) {
 
-    int maxLevel = 0;           //max number of level visited
+    int maxLevel = level;           //max number of level visited
 
     vector<ulli> answer;
     poi[actualPoint].setVisited(true);
