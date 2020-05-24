@@ -11,7 +11,7 @@ using namespace std;
 
 class POI;
 /**
- * @file PoiStorage
+ * @file PoiStorage.h
  * @brief This file contains the classes: PoiStorage and POI
  **/
 

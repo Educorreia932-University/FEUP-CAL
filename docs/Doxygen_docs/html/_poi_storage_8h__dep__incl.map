@@ -1,0 +1,10 @@
+<map id="src/Storage/PoiStorage.h" name="src/Storage/PoiStorage.h">
+<area shape="rect" id="node1" title="This file contains the classes: PoiStorage and POI." alt="" coords="451,5,619,32"/>
+<area shape="rect" id="node2" href="$_graph_8h.html" title="File containing Graph class responsible for storing the graph of the city." alt="" coords="409,80,538,107"/>
+<area shape="rect" id="node6" href="$_user_interface_8h.html" title="File responsible for showing and handle the user interface." alt="" coords="511,155,721,181"/>
+<area shape="rect" id="node3" href="$_graph_8cpp.html" title="this file contains the implementation of graph functions and algorithms described in Graph...." alt="" coords="435,229,578,256"/>
+<area shape="rect" id="node4" href="$_graph_factory_8h.html" title="File containing the class GraphFactory responsible for creating the graph by reading information for ..." alt="" coords="35,155,208,181"/>
+<area shape="rect" id="node7" href="$_floyd_storage_8h.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="255,155,436,181"/>
+<area shape="rect" id="node5" href="$_graph_factory_8cpp.html" title="file responsible for reading the edges and notes. With this it generates a new graph" alt="" coords="5,229,192,256"/>
+<area shape="rect" id="node8" href="$_floyd_storage_8cpp.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="216,229,411,256"/>
+</map>

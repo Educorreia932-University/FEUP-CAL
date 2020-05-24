@@ -12,17 +12,23 @@
 
 using namespace std;
 
+
+/**
+ * @file UserInterface.h
+ * @brief File responsible for showing and handle the user interface
+ */
 class UserInterface {
     private:
         Graph* graph;
-        vector<ulli> res1; // Nearest neighbor
-        vector<ulli> res2; // Dynamic approach
-        PoiStorage* poiStorage;
+        vector<ulli> res1;      /*< Nearest neighbor*/
+        vector<ulli> res2;      /*<Dynamic approach*/
+        PoiStorage* poiStorage; /*<Class PoiStorage storing all the POIs of a city*/
 
         // Settings
         bool showAll = false;
         double maxTime = INF;
         int animationDelay = 100;
+
 
         void showMainMenu();
         void showMap();
@@ -39,6 +45,7 @@ class UserInterface {
     public:
         UserInterface(Graph* graph, PoiStorage *poiStorage);
         void mainMenuSelection();
+
         /**
          * @brief Visual menu for the user set the amount of time it has to spend making tourism
          */

@@ -1,0 +1,580 @@
+\hypertarget{class_graph_viewer}{}\doxysection{Graph\+Viewer Class Reference}
+\label{class_graph_viewer}\index{GraphViewer@{GraphViewer}}
+
+
+{\ttfamily \#include $<$graphviewer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_viewer_a8adc614f4fc290a3efcec7d7ceb1c58a}{Graph\+Viewer}} (int width, int height, bool dynamic)
+\item 
+\mbox{\hyperlink{class_graph_viewer_ad9d7b1d8b4ba8ef18517eae0e68568a2}{Graph\+Viewer}} (int width, int height, bool dynamic, int port\+\_\+n)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ae5247dc66449dcd21fc5d531bbbaddfa}{create\+Window}} (int width, int height)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a85990c1eaac7feed3950960d4bd2fd4c}{close\+Window}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a5421e86ac76433876309236ba96e70a2}{add\+Node}} (int id, int x, int y)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ab9be856eb5f45284719a3bb119ec01ea}{add\+Node}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_aad0c1448c37f744209ffb671f1bd0015}{add\+Edge}} (int id, int v1, int v2, int edge\+Type)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a0c418639bb911eb827cabf895915f775}{remove\+Node}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a9a8ee68c7c12b373affbe4069dd95d72}{remove\+Edge}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ac25d7d007022fda16799808ba136e909}{set\+Vertex\+Label}} (int id, string label)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a007bd78a6959ac37119eb18a8e8bca4c}{clear\+Vertex\+Label}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a447cca0064e785654c2105602c2961ca}{set\+Edge\+Label}} (int id, string label)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a8b90527371bd990806eb32620be765be}{clear\+Edge\+Label}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a07ccc96707efae4aa5f3ced3dca015af}{set\+Edge\+Color}} (int id, string color)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a0e3bb8f6d7290e141c141ca83c9eb67a}{clear\+Edge\+Color}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a1698f1c6b3a8e7cabc7b7d7cf42fc7f0}{set\+Edge\+Dashed}} (int id, bool dashed)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a8b542d7e09e81a45a74760c19233beb0}{set\+Vertex\+Color}} (int id, string color)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a70e2f6cc24e545a66312a92cf5839d25}{clear\+Vertex\+Color}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ae930dfdfcdeb7a871eefb6028d74b9f9}{set\+Vertex\+Size}} (int id, int size)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a02d5f7393eab9a2d1b66719039597a64}{set\+Vertex\+Icon}} (int id, string filepath)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_aecbeec01205b7f93cf73a65282f2daba}{clear\+Vertex\+Icon}} (int id)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a07f598272fe3515455eab13be749604a}{set\+Edge\+Thickness}} (int id, int thickness)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ac211de009a0afe2e6d44f4f8d030a2cc}{set\+Edge\+Weight}} (int id, int weight)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a69eb065145063e4dea41961e92e35c8e}{set\+Edge\+Flow}} (int id, int flow)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a08f362be0e682d91e7506dca8caae1b8}{define\+Edge\+Curved}} (bool curved)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a4102580b69826ba83251ef7bb262f8be}{define\+Edge\+Color}} (string color)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a1df1a30f4668bf70364fac232f8d0600}{reset\+Edge\+Color}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_af785279b5c204df0e274b20c36276fc3}{define\+Edge\+Dashed}} (bool dashed)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a76de8676b7a93d72af514b84cdaa4d21}{define\+Vertex\+Color}} (string color)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_acd95eee309d5e9b1935ec39c5ed45cac}{reset\+Vertex\+Color}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ac4b2a9fec74d38e64088aa79ca4b7d9b}{define\+Vertex\+Size}} (int size)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_af1adb6a361457187a820e01dcf0a34b7}{define\+Vertex\+Icon}} (string filepath)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_ae2b602cfdfb49ec0a67f2bcd11b0fbdb}{reset\+Vertex\+Icon}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a02437b5fecd8b90de24436068312d593}{set\+Background}} (string path)
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a5a03467a98312f2fef5b337677b104a8}{clear\+Background}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_viewer_a3009a66958686ccb7e78b68e37c3c423}{rearrange}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static short \mbox{\hyperlink{class_graph_viewer_a89d0abe75f41feededc49497cc514342}{port}} = 7772
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que guarda o grafo e o representa. Todas as suas funções retornam um booleano a indicar se a sua execução decorreu ou não com sucesso. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_viewer_a8adc614f4fc290a3efcec7d7ceb1c58a}\label{class_graph_viewer_a8adc614f4fc290a3efcec7d7ceb1c58a}} 
+\index{GraphViewer@{GraphViewer}!GraphViewer@{GraphViewer}}
+\index{GraphViewer@{GraphViewer}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{GraphViewer()}{GraphViewer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+Viewer\+::\+Graph\+Viewer (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{bool}]{dynamic }\end{DoxyParamCaption})}
+
+Construtor que cria um novo grafo e atribui automaticamente a porta. Exemplo\+: \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}} $\ast$gv = new \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer(600, 600, true)}}; instancia um grafo 600x600, onde a posição dos nós é determinada automaticamente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Inteiro que representa a lagura da área do grafo. \\
+\hline
+{\em height} & Inteiro que representa a altura da área do grafo. \\
+\hline
+{\em dynamic} & Booleano que determina se a localização dos nós é automaticamente. determinado pelo programa (true) ou se deve ser determinado pelo utilizador (false). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ad9d7b1d8b4ba8ef18517eae0e68568a2}\label{class_graph_viewer_ad9d7b1d8b4ba8ef18517eae0e68568a2}} 
+\index{GraphViewer@{GraphViewer}!GraphViewer@{GraphViewer}}
+\index{GraphViewer@{GraphViewer}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{GraphViewer()}{GraphViewer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+Viewer\+::\+Graph\+Viewer (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{bool}]{dynamic,  }\item[{int}]{port\+\_\+n }\end{DoxyParamCaption})}
+
+Construtor que cria um novo grafo, utilizando uma porta especificada pelo utilizador para a ligação.
+
+Exemplo\+: \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}} $\ast$gv = new \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer(600, 600, false, 3000)}}; instancia um grafo 600x600, onde a posição dos nós é determinada pelo utilizador (usando a versão de add\+Node onde se pode especificar as coordenadas), sendo que a porta a usar para a comunicação é a 3000.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Inteiro que representa a lagura da área do grafo. \\
+\hline
+{\em height} & Inteiro que representa a altura da área do grafo. \\
+\hline
+{\em dynamic} & Booleano que determina se a localização dos nós é automaticamente. determinado pelo programa (true) ou se deve ser determinado pelo utilizador (false). \\
+\hline
+{\em port\+\_\+n} & Inteiro que determina a porta a utilizar. Deve-\/se ter cuidado para não utilizar uma porta já usada por outro programa ou pelo sistema. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_viewer_aad0c1448c37f744209ffb671f1bd0015}\label{class_graph_viewer_aad0c1448c37f744209ffb671f1bd0015}} 
+\index{GraphViewer@{GraphViewer}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{v1,  }\item[{int}]{v2,  }\item[{int}]{edge\+Type }\end{DoxyParamCaption})}
+
+Acrescenta uma aresta à representação do grafo. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$add\+Edge(0, 1, 2, Edge\+Type\+::\+U\+N\+D\+I\+R\+E\+C\+T\+E\+D); adiciona uma aresta não-\/dirigida com ID 0 que liga os nós com os I\+Ds 1 e 2
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta. \\
+\hline
+{\em v1} & Identificador único do nó de origem da aresta. \\
+\hline
+{\em v2} & Identificador único do nó de destino da aresta. \\
+\hline
+{\em edge\+Type} & Edge\+Type.\+D\+I\+R\+E\+C\+T\+ED caso a aresta seja unidirecional ou Edge\+Type.\+U\+N\+D\+I\+R\+E\+C\+T\+ED caso a aresta seja bidirecional. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ab9be856eb5f45284719a3bb119ec01ea}\label{class_graph_viewer_ab9be856eb5f45284719a3bb119ec01ea}} 
+\index{GraphViewer@{GraphViewer}!addNode@{addNode}}
+\index{addNode@{addNode}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::add\+Node (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Acrescenta um nó à representação do grafo, numa posição ao critério do programa. Só pode ser usado se o grafo for dinâmico, ou seja, se as posições de todos os nós forem atribuídas automaticamente. Caso contrário, não adiciona o nó. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}} com is\+Dynamic = true\+: gv-\/$>$add\+Node(0); adiciona um nó com ID 0
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a5421e86ac76433876309236ba96e70a2}\label{class_graph_viewer_a5421e86ac76433876309236ba96e70a2}} 
+\index{GraphViewer@{GraphViewer}!addNode@{addNode}}
+\index{addNode@{addNode}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::add\+Node (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Acrescenta um nó à representação do grafo, numa posição específica, irrelevante se o grafo for dinâmico. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}} com is\+Dynamic = false\+: gv-\/$>$add\+Node(0, 1, 2); adiciona um nó com ID 0 na posição (x, y) = (1, 2)
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó. \\
+\hline
+{\em x} & Posição horizontal do nó. \\
+\hline
+{\em y} & Posição vertical do nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a5a03467a98312f2fef5b337677b104a8}\label{class_graph_viewer_a5a03467a98312f2fef5b337677b104a8}} 
+\index{GraphViewer@{GraphViewer}!clearBackground@{clearBackground}}
+\index{clearBackground@{clearBackground}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearBackground()}{clearBackground()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Background (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Apaga a imagem de fundo do grafo, se tiver sido previamente definida. \mbox{\Hypertarget{class_graph_viewer_a0e3bb8f6d7290e141c141ca83c9eb67a}\label{class_graph_viewer_a0e3bb8f6d7290e141c141ca83c9eb67a}} 
+\index{GraphViewer@{GraphViewer}!clearEdgeColor@{clearEdgeColor}}
+\index{clearEdgeColor@{clearEdgeColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearEdgeColor()}{clearEdgeColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Edge\+Color (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Função que apaga a cor de uma aresta, caso tenha sido definida.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com a cor a apagar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a8b90527371bd990806eb32620be765be}\label{class_graph_viewer_a8b90527371bd990806eb32620be765be}} 
+\index{GraphViewer@{GraphViewer}!clearEdgeLabel@{clearEdgeLabel}}
+\index{clearEdgeLabel@{clearEdgeLabel}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearEdgeLabel()}{clearEdgeLabel()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Edge\+Label (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Função que apaga o texto de uma aresta, caso o mesmo tenha sido definido anteriormente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com o texto a apagar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a70e2f6cc24e545a66312a92cf5839d25}\label{class_graph_viewer_a70e2f6cc24e545a66312a92cf5839d25}} 
+\index{GraphViewer@{GraphViewer}!clearVertexColor@{clearVertexColor}}
+\index{clearVertexColor@{clearVertexColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearVertexColor()}{clearVertexColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Vertex\+Color (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Função que apaga a cor de um vértice, colocando-\/a com o valor por omissão.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com a cor a apagar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_aecbeec01205b7f93cf73a65282f2daba}\label{class_graph_viewer_aecbeec01205b7f93cf73a65282f2daba}} 
+\index{GraphViewer@{GraphViewer}!clearVertexIcon@{clearVertexIcon}}
+\index{clearVertexIcon@{clearVertexIcon}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearVertexIcon()}{clearVertexIcon()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Vertex\+Icon (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Função que apaga o ícone de um nó, caso tenha sido definido.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com o ícone a apagar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a007bd78a6959ac37119eb18a8e8bca4c}\label{class_graph_viewer_a007bd78a6959ac37119eb18a8e8bca4c}} 
+\index{GraphViewer@{GraphViewer}!clearVertexLabel@{clearVertexLabel}}
+\index{clearVertexLabel@{clearVertexLabel}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{clearVertexLabel()}{clearVertexLabel()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::clear\+Vertex\+Label (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Função que apaga o texto de um nó, caso o mesmo tenha sido definido anteriormente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com o texto a apagar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a85990c1eaac7feed3950960d4bd2fd4c}\label{class_graph_viewer_a85990c1eaac7feed3950960d4bd2fd4c}} 
+\index{GraphViewer@{GraphViewer}!closeWindow@{closeWindow}}
+\index{closeWindow@{closeWindow}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{closeWindow()}{closeWindow()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::close\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fecha a janela a ser utilizada para visualização. \mbox{\Hypertarget{class_graph_viewer_ae5247dc66449dcd21fc5d531bbbaddfa}\label{class_graph_viewer_ae5247dc66449dcd21fc5d531bbbaddfa}} 
+\index{GraphViewer@{GraphViewer}!createWindow@{createWindow}}
+\index{createWindow@{createWindow}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{createWindow()}{createWindow()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::create\+Window (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+Função que cria a janela para visualização. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$create\+Window(600, 600); abre uma janela 600x600 onde mostra o grafo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Largura da janela a criar. \\
+\hline
+{\em height} & Altura da janela a criar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a4102580b69826ba83251ef7bb262f8be}\label{class_graph_viewer_a4102580b69826ba83251ef7bb262f8be}} 
+\index{GraphViewer@{GraphViewer}!defineEdgeColor@{defineEdgeColor}}
+\index{defineEdgeColor@{defineEdgeColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineEdgeColor()}{defineEdgeColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Edge\+Color (\begin{DoxyParamCaption}\item[{string}]{color }\end{DoxyParamCaption})}
+
+Função que define a cor global das arestas. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Edge\+Color(\+G\+R\+A\+Y); modifica a cor por defeito das arestas para cinzento
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Nova cor das arestas, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a08f362be0e682d91e7506dca8caae1b8}\label{class_graph_viewer_a08f362be0e682d91e7506dca8caae1b8}} 
+\index{GraphViewer@{GraphViewer}!defineEdgeCurved@{defineEdgeCurved}}
+\index{defineEdgeCurved@{defineEdgeCurved}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineEdgeCurved()}{defineEdgeCurved()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Edge\+Curved (\begin{DoxyParamCaption}\item[{bool}]{curved }\end{DoxyParamCaption})}
+
+Função que define se as arestas do grafo serão desenhadas como curvas ou retas. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Edge\+Curved(false); faz com que as arestas sejam desenhadas como retas
+
+
+\begin{DoxyParams}{Parameters}
+{\em curved} & Booleano que representa se as arestas serão curvas (true) ou retas (false), sendo o valor por defeito é true. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_af785279b5c204df0e274b20c36276fc3}\label{class_graph_viewer_af785279b5c204df0e274b20c36276fc3}} 
+\index{GraphViewer@{GraphViewer}!defineEdgeDashed@{defineEdgeDashed}}
+\index{defineEdgeDashed@{defineEdgeDashed}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineEdgeDashed()}{defineEdgeDashed()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Edge\+Dashed (\begin{DoxyParamCaption}\item[{bool}]{dashed }\end{DoxyParamCaption})}
+
+Função que define globalmente se as arestas são desenhadas, ou não, a tracejado. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Edge\+Dashed(true); faz com que por defeito as arestas sejam desenhadas a tracejado
+
+
+\begin{DoxyParams}{Parameters}
+{\em dashed} & Booleano que representa se as arestas vão estar, ou não, todas a tracejado (o valor por defeito é false). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a76de8676b7a93d72af514b84cdaa4d21}\label{class_graph_viewer_a76de8676b7a93d72af514b84cdaa4d21}} 
+\index{GraphViewer@{GraphViewer}!defineVertexColor@{defineVertexColor}}
+\index{defineVertexColor@{defineVertexColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineVertexColor()}{defineVertexColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Vertex\+Color (\begin{DoxyParamCaption}\item[{string}]{color }\end{DoxyParamCaption})}
+
+Função que define a cor global dos nós. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Vertex\+Color(\+R\+E\+D); modifica a cor por defeito dos nós para vermelho
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Nova cor dos nós, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_af1adb6a361457187a820e01dcf0a34b7}\label{class_graph_viewer_af1adb6a361457187a820e01dcf0a34b7}} 
+\index{GraphViewer@{GraphViewer}!defineVertexIcon@{defineVertexIcon}}
+\index{defineVertexIcon@{defineVertexIcon}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineVertexIcon()}{defineVertexIcon()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Vertex\+Icon (\begin{DoxyParamCaption}\item[{string}]{filepath }\end{DoxyParamCaption})}
+
+Função que define um ícone global para os nós. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Vertex\+Icon(\char`\"{}icon.\+gif\char`\"{}); faz com que por defeito os nós, quando desenhados, não sejam um círculo, mas sim a imagem icon.\+gif
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & Caminho do ficheiro a utilizar como novo ícone do nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ac4b2a9fec74d38e64088aa79ca4b7d9b}\label{class_graph_viewer_ac4b2a9fec74d38e64088aa79ca4b7d9b}} 
+\index{GraphViewer@{GraphViewer}!defineVertexSize@{defineVertexSize}}
+\index{defineVertexSize@{defineVertexSize}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{defineVertexSize()}{defineVertexSize()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::define\+Vertex\+Size (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+Função que define o tamanho global dos nós. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$define\+Vertex\+Size(20); modifica o tamanho por defeito dos nós para 20
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Nova cor dos nós, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a3009a66958686ccb7e78b68e37c3c423}\label{class_graph_viewer_a3009a66958686ccb7e78b68e37c3c423}} 
+\index{GraphViewer@{GraphViewer}!rearrange@{rearrange}}
+\index{rearrange@{rearrange}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{rearrange()}{rearrange()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::rearrange (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Função que actualiza a visualização do grafo. \mbox{\Hypertarget{class_graph_viewer_a9a8ee68c7c12b373affbe4069dd95d72}\label{class_graph_viewer_a9a8ee68c7c12b373affbe4069dd95d72}} 
+\index{GraphViewer@{GraphViewer}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{removeEdge()}{removeEdge()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::remove\+Edge (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Remove uma aresta da representação do grafo. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$remove\+Edge(0) remove a aresta com ID 0
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta a remover. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a0c418639bb911eb827cabf895915f775}\label{class_graph_viewer_a0c418639bb911eb827cabf895915f775}} 
+\index{GraphViewer@{GraphViewer}!removeNode@{removeNode}}
+\index{removeNode@{removeNode}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{removeNode()}{removeNode()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::remove\+Node (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Remove um nó da representação do grafo e todas as arestas ligadas a este. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$remove\+Node(0) remove o nó com ID 0
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó a a remover. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a1df1a30f4668bf70364fac232f8d0600}\label{class_graph_viewer_a1df1a30f4668bf70364fac232f8d0600}} 
+\index{GraphViewer@{GraphViewer}!resetEdgeColor@{resetEdgeColor}}
+\index{resetEdgeColor@{resetEdgeColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{resetEdgeColor()}{resetEdgeColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::reset\+Edge\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Função que restaura a cor global das arestas. \mbox{\Hypertarget{class_graph_viewer_acd95eee309d5e9b1935ec39c5ed45cac}\label{class_graph_viewer_acd95eee309d5e9b1935ec39c5ed45cac}} 
+\index{GraphViewer@{GraphViewer}!resetVertexColor@{resetVertexColor}}
+\index{resetVertexColor@{resetVertexColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{resetVertexColor()}{resetVertexColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::reset\+Vertex\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Função que restaura a cor global dos nós. \mbox{\Hypertarget{class_graph_viewer_ae2b602cfdfb49ec0a67f2bcd11b0fbdb}\label{class_graph_viewer_ae2b602cfdfb49ec0a67f2bcd11b0fbdb}} 
+\index{GraphViewer@{GraphViewer}!resetVertexIcon@{resetVertexIcon}}
+\index{resetVertexIcon@{resetVertexIcon}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{resetVertexIcon()}{resetVertexIcon()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::reset\+Vertex\+Icon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Função que apaga o ícone global para os nós. \mbox{\Hypertarget{class_graph_viewer_a02437b5fecd8b90de24436068312d593}\label{class_graph_viewer_a02437b5fecd8b90de24436068312d593}} 
+\index{GraphViewer@{GraphViewer}!setBackground@{setBackground}}
+\index{setBackground@{setBackground}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setBackground()}{setBackground()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Background (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+Função que altera a imagem de fundo do grafo. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Back\+Ground(\char`\"{}fundo.\+png\char`\"{}); faz com que o fundo da janela seja a imagem fundo.\+png, em vez de cinzento
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Caminho para o ficheiro com a imagem. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a07ccc96707efae4aa5f3ced3dca015af}\label{class_graph_viewer_a07ccc96707efae4aa5f3ced3dca015af}} 
+\index{GraphViewer@{GraphViewer}!setEdgeColor@{setEdgeColor}}
+\index{setEdgeColor@{setEdgeColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeColor()}{setEdgeColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Color (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{color }\end{DoxyParamCaption})}
+
+Função que define a cor de uma aresta. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Color(0, B\+L\+U\+E); modifica a cor da aresta com ID 0 para azul
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com a cor a alterar. \\
+\hline
+{\em color} & Nova cor da aresta, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a1698f1c6b3a8e7cabc7b7d7cf42fc7f0}\label{class_graph_viewer_a1698f1c6b3a8e7cabc7b7d7cf42fc7f0}} 
+\index{GraphViewer@{GraphViewer}!setEdgeDashed@{setEdgeDashed}}
+\index{setEdgeDashed@{setEdgeDashed}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeDashed()}{setEdgeDashed()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Dashed (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{bool}]{dashed }\end{DoxyParamCaption})}
+
+Função que define se uma aresta é desenhada, ou não, a tracejado. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Dashed(0, false); faz com que a aresta com ID 0 seja desenhada a traço contínuo
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com a cor a alterar. \\
+\hline
+{\em dashed} & Nova cor da aresta, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a69eb065145063e4dea41961e92e35c8e}\label{class_graph_viewer_a69eb065145063e4dea41961e92e35c8e}} 
+\index{GraphViewer@{GraphViewer}!setEdgeFlow@{setEdgeFlow}}
+\index{setEdgeFlow@{setEdgeFlow}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeFlow()}{setEdgeFlow()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Flow (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{flow }\end{DoxyParamCaption})}
+
+Função que define o fluxo de uma aresta na representação do grafo, a ser visualizado como f\+: valor\+\_\+do\+\_\+fluxo, precedido pelo peso e seguido por texto definido pelo utilizador. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Flow(0, 20); modifica o fluxo da aresta com ID 0 para 20
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta a modificar. \\
+\hline
+{\em flow} & Fluxo associado à aresta. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a447cca0064e785654c2105602c2961ca}\label{class_graph_viewer_a447cca0064e785654c2105602c2961ca}} 
+\index{GraphViewer@{GraphViewer}!setEdgeLabel@{setEdgeLabel}}
+\index{setEdgeLabel@{setEdgeLabel}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeLabel()}{setEdgeLabel()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Label (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{label }\end{DoxyParamCaption})}
+
+Função que define o texto de uma aresta. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Label(0, \char`\"{}\+Isto é uma aresta\char`\"{}); adiciona o texto \char`\"{}\+Isto é uma aresta\char`\"{} à aresta com ID 0
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com o texto a alterar. \\
+\hline
+{\em label} & Novo texto da aresta. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a07f598272fe3515455eab13be749604a}\label{class_graph_viewer_a07f598272fe3515455eab13be749604a}} 
+\index{GraphViewer@{GraphViewer}!setEdgeThickness@{setEdgeThickness}}
+\index{setEdgeThickness@{setEdgeThickness}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeThickness()}{setEdgeThickness()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Thickness (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{thickness }\end{DoxyParamCaption})}
+
+Função que define a espessura de uma aresta. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Thickness(0, 20); modifica a espessura da aresta com ID 0 para 20
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta com a espessura a alterar. \\
+\hline
+{\em thickness} & Nova espessura da aresta, sendo que por base, as arestas são criadas com a espessura de 1. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ac211de009a0afe2e6d44f4f8d030a2cc}\label{class_graph_viewer_ac211de009a0afe2e6d44f4f8d030a2cc}} 
+\index{GraphViewer@{GraphViewer}!setEdgeWeight@{setEdgeWeight}}
+\index{setEdgeWeight@{setEdgeWeight}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setEdgeWeight()}{setEdgeWeight()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Edge\+Weight (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{weight }\end{DoxyParamCaption})}
+
+Função que define o peso de uma aresta na representação do grafo, a ser visualizado como w\+: valor\+\_\+do\+\_\+peso, seguido de qualquer outro texto associado à aresta. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Edge\+Weight(0, 20); modifica o peso da aresta com ID 0 para 20
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único da aresta a modificar. \\
+\hline
+{\em weight} & Peso associado à aresta. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a8b542d7e09e81a45a74760c19233beb0}\label{class_graph_viewer_a8b542d7e09e81a45a74760c19233beb0}} 
+\index{GraphViewer@{GraphViewer}!setVertexColor@{setVertexColor}}
+\index{setVertexColor@{setVertexColor}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setVertexColor()}{setVertexColor()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Vertex\+Color (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{color }\end{DoxyParamCaption})}
+
+Função que define a cor de um nó. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Vertex\+Color(0, G\+R\+E\+E\+N); modifica a cor do nó com ID 0 para verde
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com a cor a alterar. \\
+\hline
+{\em color} & Nova cor do nó, utilizar as constantes definidas no \mbox{\hyperlink{graphviewer_8h_source}{graphviewer.\+h}} para conveniência. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_a02d5f7393eab9a2d1b66719039597a64}\label{class_graph_viewer_a02d5f7393eab9a2d1b66719039597a64}} 
+\index{GraphViewer@{GraphViewer}!setVertexIcon@{setVertexIcon}}
+\index{setVertexIcon@{setVertexIcon}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setVertexIcon()}{setVertexIcon()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Vertex\+Icon (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{filepath }\end{DoxyParamCaption})}
+
+Função que define um ícone para um nó. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Vertex\+Icon(0, \char`\"{}icon.\+png\char`\"{}); faz com que o nó, quando desenhado, não seja um círculo, mas sim a imagem icon.\+png
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com o ícone a alterar. \\
+\hline
+{\em filepath} & Caminho do ficheiro a utilizar como novo ícone do nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ac25d7d007022fda16799808ba136e909}\label{class_graph_viewer_ac25d7d007022fda16799808ba136e909}} 
+\index{GraphViewer@{GraphViewer}!setVertexLabel@{setVertexLabel}}
+\index{setVertexLabel@{setVertexLabel}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setVertexLabel()}{setVertexLabel()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Vertex\+Label (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{label }\end{DoxyParamCaption})}
+
+Função que define o texto de um nó. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Vertex\+Label(0, \char`\"{}\+Isto é um nó\char`\"{}); adiciona o texto \char`\"{}\+Isto é um nó\char`\"{} ao nó com ID 0
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com o texto a alterar. \\
+\hline
+{\em label} & Novo texto do nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_viewer_ae930dfdfcdeb7a871eefb6028d74b9f9}\label{class_graph_viewer_ae930dfdfcdeb7a871eefb6028d74b9f9}} 
+\index{GraphViewer@{GraphViewer}!setVertexSize@{setVertexSize}}
+\index{setVertexSize@{setVertexSize}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{setVertexSize()}{setVertexSize()}}
+{\footnotesize\ttfamily bool Graph\+Viewer\+::set\+Vertex\+Size (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+Função que define o tamanho de um nó. Exemplo, para um apontador gv onde foi instanciada a classe \mbox{\hyperlink{class_graph_viewer}{Graph\+Viewer}}\+: gv-\/$>$set\+Vertex\+Size(0, 10); modifica o tamanho do nó com ID 0 para 40
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do nó com o tamanho a alterar. \\
+\hline
+{\em size} & Novo tamanho do nó. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_graph_viewer_a89d0abe75f41feededc49497cc514342}\label{class_graph_viewer_a89d0abe75f41feededc49497cc514342}} 
+\index{GraphViewer@{GraphViewer}!port@{port}}
+\index{port@{port}!GraphViewer@{GraphViewer}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily short Graph\+Viewer\+::port = 7772\hspace{0.3cm}{\ttfamily [static]}}
+
+Variável que guarda a próxima porta que o programa vai usar. O valor inicial é 7772. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/graphviewer.\+h\item 
+lib/graphviewer.\+cpp\end{DoxyCompactItemize}

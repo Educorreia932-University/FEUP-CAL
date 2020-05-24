@@ -1,0 +1,7 @@
+<map id="Vertex::getID" name="Vertex::getID">
+<area shape="rect" id="node1" title=" " alt="" coords="633,115,732,141"/>
+<area shape="rect" id="node2" href="$class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f" title="Finds the index of an ID in the vertexSet." alt="" coords="445,60,585,87"/>
+<area shape="rect" id="node4" href="$class_graph.html#add45a53107247994afaa6b939a6e8ee7" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,56,156,83"/>
+<area shape="rect" id="node5" href="$class_graph.html#aaa74471a9b36343d96347fd2daf20021" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="209,107,393,149"/>
+<area shape="rect" id="node3" href="$class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,5,397,32"/>
+</map>

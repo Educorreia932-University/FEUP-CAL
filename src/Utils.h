@@ -8,8 +8,12 @@
 
 using namespace std;
 
+
+/**
+ * @file Utils.h
+ */
 #define INF std::numeric_limits<double>::max()
-#define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
+#define ERRORS(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
 
 /**
  * Message shows where the error happended. Invoked with ERROR

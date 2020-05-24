@@ -1,0 +1,88 @@
+\hypertarget{class_error}{}\doxysection{Error Class Reference}
+\label{class_error}\index{Error@{Error}}
+
+
+Class made to throw types of errors.  
+
+
+
+
+{\ttfamily \#include $<$Errors.\+h$>$}
+
+
+
+Inheritance diagram for Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_error__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_error_a0d333bb759a0b4d6bbea67992fc28771}{Error}} (std\+::string Info)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_error}{Error}} object. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_error_a5d8cd200f64d67c4ffa88d444762eab9}{get\+Info}} () const
+\begin{DoxyCompactList}\small\item\em Get the Info parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_error_a1c73f743818468f438501560afe738eb}{info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class made to throw types of errors. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_error_a0d333bb759a0b4d6bbea67992fc28771}\label{class_error_a0d333bb759a0b4d6bbea67992fc28771}} 
+\index{Error@{Error}!Error@{Error}}
+\index{Error@{Error}!Error@{Error}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily Error\+::\+Error (\begin{DoxyParamCaption}\item[{std\+::string}]{Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{class_error}{Error}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Info} & Information about the error \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_error_a5d8cd200f64d67c4ffa88d444762eab9}\label{class_error_a5d8cd200f64d67c4ffa88d444762eab9}} 
+\index{Error@{Error}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!Error@{Error}}
+\doxysubsubsection{\texorpdfstring{getInfo()}{getInfo()}}
+{\footnotesize\ttfamily virtual std\+::string Error\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the Info parameter. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_wrong_input__option_a5ad8a61deebc3b5a376c208cc915eabc}{Wrong\+Input\+\_\+option}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_error_a1c73f743818468f438501560afe738eb}\label{class_error_a1c73f743818468f438501560afe738eb}} 
+\index{Error@{Error}!info@{info}}
+\index{info@{info}!Error@{Error}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily std\+::string Error\+::info\hspace{0.3cm}{\ttfamily [protected]}}
+
+string containing the cause of the error 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_errors_8h}{Errors.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,14 @@
+<map id="src/Utils.h" name="src/Utils.h">
+<area shape="rect" id="node1" title=" " alt="" coords="469,5,551,32"/>
+<area shape="rect" id="node2" href="$_edge_8h.html" title="File containing the implementation of the edges for the graph." alt="" coords="199,80,323,107"/>
+<area shape="rect" id="node4" href="$_graph_8h.html" title="File containing Graph class responsible for storing the graph of the city." alt="" coords="280,229,409,256"/>
+<area shape="rect" id="node6" href="$_graph_factory_8h.html" title="File containing the class GraphFactory responsible for creating the graph by reading information for ..." alt="" coords="610,304,783,331"/>
+<area shape="rect" id="node7" href="$_graph_factory_8cpp.html" title="file responsible for reading the edges and notes. With this it generates a new graph" alt="" coords="665,379,851,405"/>
+<area shape="rect" id="node8" href="$_user_interface_8h.html" title="File responsible for showing and handle the user interface." alt="" coords="375,304,586,331"/>
+<area shape="rect" id="node11" href="$_vertex_8h.html" title=" " alt="" coords="5,155,137,181"/>
+<area shape="rect" id="node12" href="$_poi_storage_8h.html" title="This file contains the classes: PoiStorage and POI." alt="" coords="426,155,594,181"/>
+<area shape="rect" id="node3" href="$_edge_8cpp.html" title="File containing the implementation for the edges." alt="" coords="162,155,301,181"/>
+<area shape="rect" id="node5" href="$_graph_8cpp.html" title="this file contains the implementation of graph functions and algorithms described in Graph...." alt="" coords="267,379,409,405"/>
+<area shape="rect" id="node9" href="$_floyd_storage_8h.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="119,304,301,331"/>
+<area shape="rect" id="node10" href="$_floyd_storage_8cpp.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="47,379,242,405"/>
+</map>
