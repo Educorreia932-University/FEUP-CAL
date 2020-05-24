@@ -71,6 +71,8 @@ void UserInterface::mainMenuSelection() {
 
                 toVisit = POIsSelection();
 
+
+
                 break;
             case 2:
                 cout << endl
@@ -158,8 +160,16 @@ vector<POI*> UserInterface::POIsSelection() {
     if (toVisit.empty() || toVisit.size() == 1)
         return toVisit;
 
-    res1 = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTime);
-    res2 = graph->travelingSalesperson_preProcess(TSP_toVisit, maxTime);
+    double maxTimeGreedy = maxTime;
+    double maxTimeDynamic = maxTime;
+
+    res1 = graph->trajectoryOrder(toVisit[0]->getID(), toVisit, maxTimeGreedy);
+    res2 = graph->travelingSalesperson_preProcess(TSP_toVisit, maxTimeDynamic);
+
+    cout << "Greedy " << maxTimeGreedy << endl;
+    cout << "Dynamic " << maxTimeDynamic << endl;
+
+    pauseInterface();
 
     return toVisit;
 }

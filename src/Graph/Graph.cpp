@@ -165,7 +165,7 @@ vector<ulli> Graph::getFloydWarshallPath(const ulli &origin, const ulli &dest) c
 				  exceeds the maxTime given by the user. 
  * =====================================================================================
  */
-vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime) {
+vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double &maxTime) {
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
     visited[findVertexIdx(origin)] = true;
@@ -174,20 +174,24 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTi
 
     //the poi vector must contain the INDEX of the POIS in the vertexSet => to accelerate the process
     origin = findVertexIdx(origin);
-    for (int i = 0; i < poi.size(); i++){
-        poi[i]->setIndex(findVertexIdx(poi[i]->getID()));
-    }
 
+    for (auto & i : poi)
+        i->setIndex(findVertexIdx(i->getID()));
 
     for (int i = 1; i < poi.size(); i++) {
         idNext = nextPoi(origin, poi, visited, initialTime);                //get the id of the next poi to be visited
-        if (idNext == -1) return order;                                          // no sufficient time to visit all pois
+
+        if (idNext == -1)
+            return order;                                          // no sufficient time to visit all pois
+
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
         order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
         visited[idNext] = true;
         origin = idNext;                                                        //the new vertex now is the origin
     }
+
+    maxTime -= initialTime;
 
     return order;
 }
@@ -230,7 +234,7 @@ vector<Vertex *> Graph::getVertexSet() {
  * =====================================================================================
  */
 
-vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double time) {
+vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double &time) {
     for (int i = 0 ; i < poi.size(); i++){
         poi[i].setVisited(false);
         poi[i].setIndex(findVertexIdx(poi[i].getID()));
@@ -238,8 +242,12 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double time
 
     double minDistance = 0;
     int nodes = 0;              /*<Number of nodes visited*/
-    return travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
-    
+
+    vector<ulli> result = travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
+
+    time = minDistance + poi[0].getTime();
+
+    return result;
 }
 
 vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,

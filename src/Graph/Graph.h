@@ -102,9 +102,9 @@ public:
      * @param maxTime the maximum time the user has to spend doing the  touristic circuit
      * @return returns the path as an array of IDS
      */
-    vector<ulli> trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTime);
+    vector<ulli> trajectoryOrder(ulli origin, vector<POI*> &poi, double &maxTime);
 
-/*
+    /**
      * @brief Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array setVertex
      * @param origin ID of the actual position
      * @param poi list of the POIS INDEX's which the user wants to visit
@@ -121,7 +121,7 @@ public:
      * @param time Total time that the person has to visit the points of interest
      * @return Returns the IDs of each vertex to be visit in order
      */
-    vector<ulli> travelingSalesperson_preProcess(vector<POI> poi, double time );
+    vector<ulli> travelingSalesperson_preProcess(vector<POI> poi, double &time );
     /**
      * @brief Recursive function to solve the traveling salesperson problem with dynamic programming approach
      * @param actualPoint The actual point of interest (POI) to be analysed
@@ -133,7 +133,6 @@ public:
      * @return Returns the ID's of each Vertex to be visited in order
      */
     vector<ulli> travelingSalesperson(lli actualPoint, vector<POI> poi, lli available, double & minDistance, double time, int& nodes);
-
 };
 
 #endif //GRAPH_H
