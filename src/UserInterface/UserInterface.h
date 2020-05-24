@@ -26,6 +26,7 @@ class UserInterface {
 
         // Settings
         bool showAll = false;
+        bool showID = false;
         double maxTime = INF;
         int animationDelay = 100;
 

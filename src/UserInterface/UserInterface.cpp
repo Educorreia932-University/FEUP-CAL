@@ -171,7 +171,9 @@ void UserInterface::showSettings() {
          << " ===================================" << endl
          << " Show all?                      [1]" << endl
          << "     CURRENT: " << (showAll? "YES" : "NO ") << endl
-         << " Change animation delay         [2]" << endl
+         << " Show ID?                       [2]" << endl
+         << "     CURRENT: " << (showID? "YES" : "NO ") << endl
+         << " Change animation delay         [3]" << endl
          << "     CURRENT: " << animationDelay << " ms" << endl
          << " Exit                           [0]" << endl
          << endl;
@@ -181,15 +183,19 @@ void UserInterface::settingsSelection() {
     while (true) {
         showSettings();
 
-        int selected = readOption(0, 2);
+        int selected = readOption(0, 3);
 
         switch (selected) {
             case 1:
                 showAll = !showAll;
                 break;
             case 2:
+                showID = !showID;
+                break;
+            case 3:
                 cout << "Insert the new value for the delay, in miliseconds:" << endl;
                 cin >> animationDelay;
+                break;
             case 0:
                 return;
         }
@@ -289,6 +295,9 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color, v
                     (v->lon - min_lon) / (max_lon - min_lon) * 900,
                     (v->lat - min_lat) / (max_lat - min_lat) * 900
             );
+
+            if (showID)
+                gv->setVertexLabel(v->getID(), to_string(v->getID()));
         }
     }
 
