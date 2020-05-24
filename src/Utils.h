@@ -46,5 +46,5 @@ double checkNumber();
 /**
  * @brief Function makes the user waits until it presses enter
  */
-void wait();
+
 #endif //TOURMATEAPP_UTILS_H

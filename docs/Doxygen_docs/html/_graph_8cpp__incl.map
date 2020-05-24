@@ -1,5 +1,5 @@
-<map id="src/Graph/Graph.cpp" name="src/Graph/Graph.cpp">
-<area shape="rect" id="node1" title="this file contains the implementation of graph functions and algorithms described in Graph...." alt="" coords="851,5,994,32"/>
+<map id="Graph/Graph.cpp" name="Graph/Graph.cpp">
+<area shape="rect" id="node1" title="this file contains the implementation of graph functions and algorithms described in Graph...." alt="" coords="862,5,983,32"/>
 <area shape="rect" id="node2" href="$_graph_8h.html" title="File containing Graph class responsible for storing the graph of the city." alt="" coords="573,155,641,181"/>
 <area shape="rect" id="node21" href="$_floyd_storage_8h.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="997,80,1155,107"/>
 <area shape="rect" id="node3" href="$_edge_8h.html" title="File containing the implementation of the edges for the graph." alt="" coords="619,304,682,331"/>

@@ -1,5 +1,5 @@
-<map id="src/Graph/Vertex.h" name="src/Graph/Vertex.h">
-<area shape="rect" id="node1" title=" " alt="" coords="139,5,271,32"/>
+<map id="Graph/Vertex.h" name="Graph/Vertex.h">
+<area shape="rect" id="node1" title=" " alt="" coords="150,5,261,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,229,61,256"/>
 <area shape="rect" id="node3" title=" " alt="" coords="227,304,282,331"/>
 <area shape="rect" id="node4" href="$_edge_8h.html" title="File containing the implementation of the edges for the graph." alt="" coords="209,80,271,107"/>

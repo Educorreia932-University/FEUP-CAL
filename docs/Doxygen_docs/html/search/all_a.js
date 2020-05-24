@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['readdest_52',['readDest',['../class_floyd_storage.html#ae79124d1bd487b2ecd10c70b6200d5a3',1,'FloydStorage']]],
-  ['readedges_53',['readEdges',['../class_graph_factory.html#ac3fa26d8297cdb6beb854506a04e77ce',1,'GraphFactory']]],
-  ['readpred_54',['readPred',['../class_floyd_storage.html#a2deb5400e59bb8daf3ce3132125b746f',1,'FloydStorage']]],
-  ['readvertex_55',['readVertex',['../class_graph_factory.html#a812d35d29036c94245ed94f4dfc39f0b',1,'GraphFactory']]],
-  ['rearrange_56',['rearrange',['../class_graph_viewer.html#a3009a66958686ccb7e78b68e37c3c423',1,'GraphViewer']]],
-  ['removeedge_57',['removeEdge',['../class_graph_viewer.html#a9a8ee68c7c12b373affbe4069dd95d72',1,'GraphViewer']]],
-  ['removenode_58',['removeNode',['../class_graph_viewer.html#a0c418639bb911eb827cabf895915f775',1,'GraphViewer']]],
-  ['resetedgecolor_59',['resetEdgeColor',['../class_graph_viewer.html#a1df1a30f4668bf70364fac232f8d0600',1,'GraphViewer']]],
-  ['resetvertexcolor_60',['resetVertexColor',['../class_graph_viewer.html#acd95eee309d5e9b1935ec39c5ed45cac',1,'GraphViewer']]],
-  ['resetvertexicon_61',['resetVertexIcon',['../class_graph_viewer.html#ae2b602cfdfb49ec0a67f2bcd11b0fbdb',1,'GraphViewer']]]
+  ['safedivision_36',['safeDivision',['../_utils_8h.html#a96915edb26d179a32d25bcad199c61ee',1,'Utils.cpp']]],
+  ['setamountoftime_5finterface_37',['setAmountOfTime_Interface',['../class_user_interface.html#a9e225219095ac82ec9d07d6e8ca55174',1,'UserInterface']]],
+  ['sortvertexset_38',['sortVertexSet',['../class_graph.html#ab7f2c34c4bc98a91aca5b05cd52687b8',1,'Graph']]],
+  ['storedest_39',['storeDest',['../class_floyd_storage.html#afed385af1c2ad58de896175e501e7498',1,'FloydStorage']]],
+  ['storepred_40',['storePred',['../class_floyd_storage.html#a502aeae6f05d0ac917445b7110455f0f',1,'FloydStorage']]]
 ];

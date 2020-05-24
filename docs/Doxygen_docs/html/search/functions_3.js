@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['edge_134',['Edge',['../class_edge.html#a041d500f644a54f195d4d1bc56787cac',1,'Edge::Edge(Vertex *d, double w)'],['../class_edge.html#ace9b17dd9a4cdf6ead1cfd9d100b49be',1,'Edge::Edge(Vertex *d, double w, const std::string &amp;streetName)']]],
-  ['error_135',['Error',['../class_error.html#a0d333bb759a0b4d6bbea67992fc28771',1,'Error']]]
+  ['findvertex_78',['findVertex',['../class_graph.html#a4246d857bca5ec24e391ca379687c992',1,'Graph']]],
+  ['findvertexidx_79',['findVertexIdx',['../class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f',1,'Graph']]],
+  ['floydwarshallshortestpath_80',['floydWarshallShortestPath',['../class_graph.html#a2af3d166166a5d00d07becb33d35332e',1,'Graph']]]
 ];

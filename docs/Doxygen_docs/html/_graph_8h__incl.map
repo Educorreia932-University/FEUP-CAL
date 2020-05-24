@@ -1,5 +1,5 @@
-<map id="src/Graph/Graph.h" name="src/Graph/Graph.h">
-<area shape="rect" id="node1" title="File containing Graph class responsible for storing the graph of the city." alt="" coords="482,5,611,32"/>
+<map id="Graph/Graph.h" name="Graph/Graph.h">
+<area shape="rect" id="node1" title="File containing Graph class responsible for storing the graph of the city." alt="" coords="493,5,600,32"/>
 <area shape="rect" id="node2" href="$_edge_8h.html" title="File containing the implementation of the edges for the graph." alt="" coords="159,155,222,181"/>
 <area shape="rect" id="node3" title=" " alt="" coords="163,379,218,405"/>
 <area shape="rect" id="node4" href="$_utils_8h.html" title=" " alt="" coords="237,229,296,256"/>

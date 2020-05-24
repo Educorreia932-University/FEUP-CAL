@@ -1,5 +1,5 @@
-<map id="src/Storage/FloydStorage.cpp" name="src/Storage/FloydStorage.cpp">
-<area shape="rect" id="node1" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="345,5,540,32"/>
+<map id="Storage/FloydStorage.cpp" name="Storage/FloydStorage.cpp">
+<area shape="rect" id="node1" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="356,5,529,32"/>
 <area shape="rect" id="node2" href="$_floyd_storage_8h.html" title="this file is responsible to load the floydWarshall matrix case it exists. It has also a function whic..." alt="" coords="363,80,522,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,304,75,331"/>
 <area shape="rect" id="node4" title=" " alt="" coords="738,528,793,555"/>

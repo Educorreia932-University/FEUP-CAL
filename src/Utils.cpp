@@ -27,12 +27,6 @@ double checkNumber() {
     }
 }
 
-void wait() {
-    cout << endl << "[PRESS ENTER]";
-    cin.ignore();
-    while (cin.get() != '\n') {};
-}
-
 void clear_screen() {
 #ifdef WINDOWS
     std::system("cls");

@@ -1,5 +1,5 @@
-<map id="src/Graph/GraphFactory.cpp" name="src/Graph/GraphFactory.cpp">
-<area shape="rect" id="node1" title="file responsible for reading the edges and notes. With this it generates a new graph" alt="" coords="449,5,636,32"/>
+<map id="Graph/GraphFactory.cpp" name="Graph/GraphFactory.cpp">
+<area shape="rect" id="node1" title="file responsible for reading the edges and notes. With this it generates a new graph" alt="" coords="460,5,625,32"/>
 <area shape="rect" id="node2" href="$_graph_factory_8h.html" title="File containing the class GraphFactory responsible for creating the graph by reading information for ..." alt="" coords="1025,80,1137,107"/>
 <area shape="rect" id="node3" href="$_utils_8h.html" title=" " alt="" coords="85,379,144,405"/>
 <area shape="rect" id="node4" title=" " alt="" coords="497,453,569,480"/>

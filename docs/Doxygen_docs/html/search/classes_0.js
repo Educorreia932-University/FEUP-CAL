@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['connection_90',['Connection',['../class_connection.html',1,'']]]
+  ['edge_51',['Edge',['../class_edge.html',1,'']]],
+  ['error_52',['Error',['../class_error.html',1,'']]]
 ];

@@ -1,19 +1,6 @@
 var searchData=
 [
-  ['safedivision_159',['safeDivision',['../_utils_8h.html#a96915edb26d179a32d25bcad199c61ee',1,'Utils.cpp']]],
-  ['setamountoftime_5finterface_160',['setAmountOfTime_Interface',['../class_user_interface.html#a9e225219095ac82ec9d07d6e8ca55174',1,'UserInterface']]],
-  ['setbackground_161',['setBackground',['../class_graph_viewer.html#a02437b5fecd8b90de24436068312d593',1,'GraphViewer']]],
-  ['setedgecolor_162',['setEdgeColor',['../class_graph_viewer.html#a07ccc96707efae4aa5f3ced3dca015af',1,'GraphViewer']]],
-  ['setedgedashed_163',['setEdgeDashed',['../class_graph_viewer.html#a1698f1c6b3a8e7cabc7b7d7cf42fc7f0',1,'GraphViewer']]],
-  ['setedgeflow_164',['setEdgeFlow',['../class_graph_viewer.html#a69eb065145063e4dea41961e92e35c8e',1,'GraphViewer']]],
-  ['setedgelabel_165',['setEdgeLabel',['../class_graph_viewer.html#a447cca0064e785654c2105602c2961ca',1,'GraphViewer']]],
-  ['setedgethickness_166',['setEdgeThickness',['../class_graph_viewer.html#a07f598272fe3515455eab13be749604a',1,'GraphViewer']]],
-  ['setedgeweight_167',['setEdgeWeight',['../class_graph_viewer.html#ac211de009a0afe2e6d44f4f8d030a2cc',1,'GraphViewer']]],
-  ['setvertexcolor_168',['setVertexColor',['../class_graph_viewer.html#a8b542d7e09e81a45a74760c19233beb0',1,'GraphViewer']]],
-  ['setvertexicon_169',['setVertexIcon',['../class_graph_viewer.html#a02d5f7393eab9a2d1b66719039597a64',1,'GraphViewer']]],
-  ['setvertexlabel_170',['setVertexLabel',['../class_graph_viewer.html#ac25d7d007022fda16799808ba136e909',1,'GraphViewer']]],
-  ['setvertexsize_171',['setVertexSize',['../class_graph_viewer.html#ae930dfdfcdeb7a871eefb6028d74b9f9',1,'GraphViewer']]],
-  ['sortvertexset_172',['sortVertexSet',['../class_graph.html#ab7f2c34c4bc98a91aca5b05cd52687b8',1,'Graph']]],
-  ['storedest_173',['storeDest',['../class_floyd_storage.html#afed385af1c2ad58de896175e501e7498',1,'FloydStorage']]],
-  ['storepred_174',['storePred',['../class_floyd_storage.html#a502aeae6f05d0ac917445b7110455f0f',1,'FloydStorage']]]
+  ['trajectoryorder_99',['trajectoryOrder',['../class_graph.html#add45a53107247994afaa6b939a6e8ee7',1,'Graph']]],
+  ['travelingsalesperson_100',['travelingSalesperson',['../class_graph.html#a7d7eb6a4b7f26fcef6f553472b09f6cb',1,'Graph']]],
+  ['travelingsalesperson_5fpreprocess_101',['travelingSalesperson_preProcess',['../class_graph.html#aaa74471a9b36343d96347fd2daf20021',1,'Graph']]]
 ];
