@@ -16,7 +16,8 @@ Conteúdo:
     matrix_PORTO_pred					:Arquivo em que a matriz de paths do floyd Warshall será armazenada.
     matrix_PORTO_dest					:Arquivo em que a matrix das distancias do floydWarshall será armazenada
     POI_PORTO.txt					:Arquivo contendo informações sobre pontos turisticos
-+ lib/							:Libary GraphViewer
++ lib/							:Library GraphViewer
++ docs/							:Documentação e relatório sobre o programa
 ~ src/
   ~ Graph/						:Classes relacionadas ao grafo
       Edge.cpp
