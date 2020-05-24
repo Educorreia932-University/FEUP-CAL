@@ -11,14 +11,14 @@ Conteúdo:
 
 ~ data/
     edges_PORTO.csv					:Arquivos contendo os edges da cidade do Porto. edges_<CIDADE>.csv
-    map.png							:Imagem de background da cidade do Porto
+    map.png						:Imagem de background da cidade do Porto
     nodes_PORTO.csv					:Matriz contendo os nodes da cidade do Porto. nodes_<CIDADE>.csv
-    matrix_PORTO_pred				:Arquivo em que a matriz de paths do floyd Warshall será armazenada.
-    matrix_PORTO_dest				:Arquivo em que a matrix das distancias do floydWarshall será armazenada
+    matrix_PORTO_pred					:Arquivo em que a matriz de paths do floyd Warshall será armazenada.
+    matrix_PORTO_dest					:Arquivo em que a matrix das distancias do floydWarshall será armazenada
     POI_PORTO.txt					:Arquivo contendo informações sobre pontos turisticos
-+ lib/								:Libary GraphViewer
++ lib/							:Libary GraphViewer
 ~ src/
-  ~ Graph/							:Classes relacionadas ao grafo
+  ~ Graph/						:Classes relacionadas ao grafo
       Edge.cpp
       Edge.h
       Graph.cpp
@@ -28,9 +28,9 @@ Conteúdo:
       Vertex.cpp
       Vertex.h
   ~ Storage/						:Classes relacionadas ao armazenamento de dados 
-      FloydStorage.cpp				:Armazena em arquivos as matrizes do FloydWarshall
+      FloydStorage.cpp					:Armazena em arquivos as matrizes do FloydWarshall
       FloydStorage.h
-      PoiStorage.cpp				:Representa e lê pontos de interesses a partir de arquivos
+      PoiStorage.cpp					:Representa e lê pontos de interesses a partir de arquivos
       PoiStorage.h
   ~ UserInterface/					:Classe responsável por criar e gerenciar interface do usuario 
       UserInterface.cpp
