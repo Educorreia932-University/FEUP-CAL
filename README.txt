@@ -53,7 +53,7 @@ Conteúdo:
 	cmake -G "MinGW Makefiles"
 	mingw32-make.exe all
 	
-	E então basta executa o arquivo src.exe
+	E então basta executar o arquivo src.exe
 
 
 Notas e instruções de uso:
