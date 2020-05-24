@@ -245,7 +245,7 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double &tim
 
     vector<ulli> result = travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
 
-    time = minDistance + poi[0].getTime();
+    time = minDistance;
 
     return result;
 }
@@ -253,9 +253,11 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double &tim
 vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
                                          double &minDistance, double time, int& nodes) {
 
+    int maxNodes = 0;           //max number of nodes visited
+
     vector<ulli> answer;
     poi[actualPoint].setVisited(true);
-
+    minDistance = poi[actualPoint].getTime();
     /*<Case there is no time to visit this poi*/
     if (time < 0) {
         minDistance = INF;
@@ -264,18 +266,16 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
 
     nodes ++;
     /*<Case all the vertices from poi has been visited*/
-    if (available == 1) {
-        minDistance = poi[actualPoint].getTime();
-        return {};
-    }
+    if (available == 1) return {};
+
 
     lli nextPOI = -1;
 
 
     for (int i = 0 ; i < poi.size(); i++){
         if (!poi[i].getVisited()){
-            double actualDistance = 0;
-            int auxNodes = nodes;
+            double actualDistance =  0;
+            int auxNodes = nodes;                       /*<Get the actual level*/
 
             /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
             double auxTime = time - dist[poi[actualPoint].getIndex()][poi[i].getIndex()] - poi[i].getTime();
@@ -284,14 +284,14 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
             /*<Update the actual distance*/
             lli source = poi[actualPoint].getIndex();
             lli dest = poi[i].getIndex();
-            actualDistance += dist[source][dest];
+            actualDistance += dist[source][dest] + poi[actualPoint].getTime();
 
             /*<Update the min distance*/
             /*<The auxNodes guarantees that we have the max number of pois visited and the distance guarantees the min time*/
-            if ((minDistance > actualDistance && auxNodes >= nodes) || auxNodes > nodes){
+            if ((minDistance > actualDistance && auxNodes >= maxNodes) || auxNodes > maxNodes){
                 answer = tempVector;
                 minDistance = actualDistance;
-                nodes = auxNodes;
+                maxNodes = auxNodes;
                 nextPOI = i;
             }
         }
