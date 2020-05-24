@@ -4,17 +4,17 @@
 #include <chrono>
 
 void clearScreen() {
-    #ifdef __unix__
-        system("clear");
-    #endif
+#ifdef __unix__
+    system("clear");
+#endif
 
-    #ifdef _WIN32
-        system("cls");
-    #endif
+#ifdef _WIN32
+    system("cls");
+#endif
 }
 
 UserInterface::UserInterface(Graph *graph, PoiStorage *poiStorage) : graph(graph), poiStorage(poiStorage) {}
- 
+
 /*
  * ===  FUNCTIONALITY  ======================================================================
  *         Name:  DisplayMenu
@@ -28,7 +28,8 @@ void UserInterface::showMainMenu() {
          << " ===================================" << endl
          << " Choose a tourist route         [1]" << endl
          << " Show the map                   [2]" << endl
-         << " Adjust the settings            [3]" << endl    // Like disabling showing all of the edges and showing only those who are part of the route
+         << " Adjust the settings            [3]"
+         << endl    // Like disabling showing all of the edges and showing only those who are part of the route
          << " Set amount of time             [4]" << endl
          << " Exit                           [0]" << endl
          << endl;
@@ -36,7 +37,7 @@ void UserInterface::showMainMenu() {
 
 void UserInterface::mainMenuSelection() {
     bool calculated = false;
-    vector<POI*> toVisit;
+    vector<POI *> toVisit;
 
     while (true) {
         chrono::steady_clock::time_point begin;
@@ -72,7 +73,6 @@ void UserInterface::mainMenuSelection() {
                 toVisit = POIsSelection();
 
 
-
                 break;
             case 2:
                 cout << endl
@@ -94,7 +94,7 @@ void UserInterface::mainMenuSelection() {
     }
 }
 
-POI* UserInterface::showPOIs(vector<POI*> toVisit) {
+POI *UserInterface::showPOIs(vector<POI *> toVisit) {
     clearScreen();
     int index = 0;
 
@@ -103,7 +103,7 @@ POI* UserInterface::showPOIs(vector<POI*> toVisit) {
     cout << "============================================" << endl;
 
     // Iterate over POIs
-    for (pair<string, POI*> p : poiStorage->getMap()) {
+    for (pair<string, POI *> p : poiStorage->getMap()) {
         cout << left << setw(40) << p.first;
 
         // POI is already selected
@@ -120,12 +120,12 @@ POI* UserInterface::showPOIs(vector<POI*> toVisit) {
     cout << endl;
 
     index = 0;
-    POI* result = nullptr;
+    POI *result = nullptr;
 
     do {
         int selected = readOption(0, poiStorage->getMap().size());
 
-        for (pair<string, POI*> p : poiStorage->getMap()) {
+        for (pair<string, POI *> p : poiStorage->getMap()) {
             if (index == selected) {
                 result = p.second;
                 break;
@@ -138,7 +138,7 @@ POI* UserInterface::showPOIs(vector<POI*> toVisit) {
     return result;
 }
 
-void UserInterface::setAmountOfTime_Interface(){
+void UserInterface::setAmountOfTime_Interface() {
     clearScreen();
 
     cout << "================== SET TIME ===================" << endl
@@ -146,8 +146,8 @@ void UserInterface::setAmountOfTime_Interface(){
          << "Negative numbers will be converted to positive: " << endl;
 }
 
-vector<POI*> UserInterface::POIsSelection() {
-    vector<POI*> toVisit = {};
+vector<POI *> UserInterface::POIsSelection() {
+    vector<POI *> toVisit = {};
     vector<POI> TSP_toVisit = {};
     POI *selected;
 
@@ -180,9 +180,9 @@ void UserInterface::showSettings() {
     cout << "                MENU                " << endl
          << " ===================================" << endl
          << " Show all?                      [1]" << endl
-         << "     CURRENT: " << (showAll? "YES" : "NO ") << endl
+         << "     CURRENT: " << (showAll ? "YES" : "NO ") << endl
          << " Show ID?                       [2]" << endl
-         << "     CURRENT: " << (showID? "YES" : "NO ") << endl
+         << "     CURRENT: " << (showID ? "YES" : "NO ") << endl
          << " Change animation delay         [3]" << endl
          << "     CURRENT: " << animationDelay << " ms" << endl
          << " Exit                           [0]" << endl
@@ -212,9 +212,9 @@ void UserInterface::settingsSelection() {
     }
 }
 
-vector<POI*> UserInterface::getToVisitPOIS(vector<ulli> res) {
-    vector<POI*> aux = {};
-    POI* poi;
+vector<POI *> UserInterface::getToVisitPOIS(vector<ulli> res) {
+    vector<POI *> aux = {};
+    POI *poi;
 
     for (ulli id : res) {
         poi = poiStorage->findPOI(id);
@@ -223,7 +223,7 @@ vector<POI*> UserInterface::getToVisitPOIS(vector<ulli> res) {
             aux.push_back(poi);
     }
 
-    vector<POI*> result = {};
+    vector<POI *> result = {};
     vector<ulli> alreadyAdded = {};
 
     result.push_back(aux[0]);
@@ -267,11 +267,11 @@ void UserInterface::showMap() {
 
     auto gv = new GraphViewer(900, 900, false);
 
-    #ifdef __unix__
-        gv->setBackground("../../data/map.png");
-    #else
-        gv->setBackground("../data/map.png");
-    #endif
+#ifdef __unix__
+    gv->setBackground("../../data/map.png");
+#else
+    gv->setBackground("../data/map.png");
+#endif
 
     gv->createWindow(900, 900);
 
@@ -288,14 +288,14 @@ void UserInterface::showMap() {
     // gv->closeWindow();
 }
 
-void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit) {
+void UserInterface::showRoute(GraphViewer *gv, vector<ulli> res, string color, vector<POI *> toVisit) {
     double min_lon = -8.6226691;
     double max_lon = -8.5989075;
     double min_lat = 41.1584432;
     double max_lat = 41.14049;
 
     // Add nodes
-    for (Vertex* v : graph->getVertexSet()) {
+    for (Vertex *v : graph->getVertexSet()) {
         gv->setVertexSize(v->getID(), 9);
         gv->setVertexColor(v->getID(), "WHITE");
 
@@ -314,9 +314,10 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color, v
     int edge_id = 0;
 
     // Add edges
-    for (Vertex* v : graph->getVertexSet())
+    for (Vertex *v : graph->getVertexSet())
         for (const Edge &w : v->getAdj()) {
-            if (showAll || (find(res.begin(), res.end(), v->getID()) != res.end() && find(res.begin(), res.end(), w.getDest()->getID()) != res.end()))
+            if (showAll || (find(res.begin(), res.end(), v->getID()) != res.end() &&
+                            find(res.begin(), res.end(), w.getDest()->getID()) != res.end()))
                 gv->addEdge(edge_id, v->getID(), w.getDest()->getID(), EdgeType::UNDIRECTED);
 
             edge_id++;
@@ -334,11 +335,11 @@ void UserInterface::showRoute(GraphViewer* gv, vector<ulli> res, string color, v
         if (path == 0)
             return;
 
-        animatePath(gv, res, color, toVisit[path - 1]->getID(),toVisit[path]->getID());
+        animatePath(gv, res, color, toVisit[path - 1]->getID(), toVisit[path]->getID());
     };
 }
 
-int UserInterface::showPaths(vector<POI*> toVisit) {
+int UserInterface::showPaths(vector<POI *> toVisit) {
     clearScreen();
 
     cout << "Which path do you want to see?" << endl
@@ -346,7 +347,7 @@ int UserInterface::showPaths(vector<POI*> toVisit) {
 
     for (int i = 0; i < toVisit.size() - 1; i++) {
         cout << left << setw(40) << (toVisit[i]->getName() + " -> " + toVisit[i + 1]->getName());
-        cout << "[" << i + 1 << "]" <<  endl;
+        cout << "[" << i + 1 << "]" << endl;
     }
 
     cout << "Go back                                 [0]" << endl
@@ -357,7 +358,7 @@ int UserInterface::showPaths(vector<POI*> toVisit) {
     return selected;
 }
 
-void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color, ulli begin, ulli end) {
+void UserInterface::animatePath(GraphViewer *gv, vector<ulli> res, string color, ulli begin, ulli end) {
     vector<ulli> POI_route;
     bool begun = false;
 
@@ -368,7 +369,11 @@ void UserInterface::animatePath(GraphViewer* gv, vector<ulli> res, string color,
 
             POI_route.push_back(id);
 
+#ifdef __unix__
+            usleep(animationDelay);
+#else
             Sleep(animationDelay);
+#endif
 
             gv->rearrange();
         }
@@ -403,9 +408,7 @@ int readOption(int min, unsigned int max) {
         if (cin >> option && option >= min && option <= max) {
             cin.ignore(1000, '\n');
             return option;
-        }
-
-        else {
+        } else {
             cin.clear();
             cin.ignore(1000, '\n');
             cerr << endl
