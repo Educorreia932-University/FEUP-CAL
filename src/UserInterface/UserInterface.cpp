@@ -119,10 +119,11 @@ POI *UserInterface::showPOIs(vector<POI *> toVisit) {
     cout << left << setw(40) << "None" << "[" << index << "]" << endl;
     cout << endl;
 
-    index = 0;
     POI *result = nullptr;
 
     do {
+        index = 0;
+
         int selected = readOption(0, poiStorage->getMap().size());
 
         for (pair<string, POI *> p : poiStorage->getMap()) {
