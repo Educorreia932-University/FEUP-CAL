@@ -179,10 +179,13 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double &maxT
         i->setIndex(findVertexIdx(i->getID()));
 
     for (int i = 1; i < poi.size(); i++) {
+        double previousInitialTime = initialTime;                                  //Not necessary for the algorithm, but we want to show letter the time the person will spend
         idNext = nextPoi(origin, poi, visited, initialTime);                //get the id of the next poi to be visited
 
-        if (idNext == -1)
-            return order;                                          // no sufficient time to visit all pois
+        if (idNext == -1) {
+            maxTime = previousInitialTime;
+            return order;
+        }// no sufficient time to visit all pois
 
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
@@ -241,32 +244,34 @@ vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double &tim
     }
 
     double minDistance = 0;
-    int nodes = 0;              /*<Number of nodes visited*/
+    int level = 0;              /*<Number of nodes visited*/
 
-    vector<ulli> result = travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
+    vector<ulli> result = travelingSalesperson( 0, poi, minDistance, time - poi[0].getTime(), level );
 
     time = minDistance;
 
     return result;
 }
 
-vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
-                                         double &minDistance, double time, int& nodes) {
+vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi,
+                                         double &minDistance, double time, int& level) {
 
-    int maxNodes = 0;           //max number of nodes visited
+    int maxLevel = 0;           //max number of level visited
 
     vector<ulli> answer;
     poi[actualPoint].setVisited(true);
     minDistance = poi[actualPoint].getTime();
+
+
     /*<Case there is no time to visit this poi*/
     if (time < 0) {
         minDistance = INF;
         return {};
     }
 
-    nodes ++;
+    level ++;
     /*<Case all the vertices from poi has been visited*/
-    if (available == 1) return {};
+    if (level == poi.size()) return {};
 
 
     lli nextPOI = -1;
@@ -275,11 +280,11 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
     for (int i = 0 ; i < poi.size(); i++){
         if (!poi[i].getVisited()){
             double actualDistance =  0;
-            int auxNodes = nodes;                       /*<Get the actual level*/
+            int auxNodes = level;                       /*<Get the actual level*/
 
             /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
             double auxTime = time - dist[poi[actualPoint].getIndex()][poi[i].getIndex()] - poi[i].getTime();
-            vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
+            vector<ulli> tempVector = travelingSalesperson(i, poi, actualDistance, auxTime, auxNodes);
 
             /*<Update the actual distance*/
             lli source = poi[actualPoint].getIndex();
@@ -288,10 +293,10 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
 
             /*<Update the min distance*/
             /*<The auxNodes guarantees that we have the max number of pois visited and the distance guarantees the min time*/
-            if ((minDistance > actualDistance && auxNodes >= maxNodes) || auxNodes > maxNodes){
+            if ((minDistance > actualDistance && auxNodes >= maxLevel) || (auxNodes > maxLevel && actualDistance != INF)){
                 answer = tempVector;
                 minDistance = actualDistance;
-                maxNodes = auxNodes;
+                maxLevel = auxNodes;
                 nextPOI = i;
             }
         }

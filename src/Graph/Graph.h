@@ -132,7 +132,7 @@ public:
      * @param nodes Algorithm features: number of nodes visited
      * @return Returns the ID's of each Vertex to be visited in order
      */
-    vector<ulli> travelingSalesperson(lli actualPoint, vector<POI> poi, lli available, double & minDistance, double time, int& nodes);
+    vector<ulli> travelingSalesperson(lli actualPoint, vector<POI> poi, double & minDistance, double time, int& level);
 };
 
 #endif //GRAPH_H
