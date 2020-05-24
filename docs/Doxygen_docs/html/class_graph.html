@@ -107,18 +107,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a964eebc503768d962f6c2b504ba07063"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a964eebc503768d962f6c2b504ba07063">getFloydWarshallPath</a> (const ulli &amp;origin, const ulli &amp;dest) const</td></tr>
 <tr class="memdesc:a964eebc503768d962f6c2b504ba07063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path.  <a href="class_graph.html#a964eebc503768d962f6c2b504ba07063">More...</a><br /></td></tr>
 <tr class="separator:a964eebc503768d962f6c2b504ba07063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add45a53107247994afaa6b939a6e8ee7"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#add45a53107247994afaa6b939a6e8ee7">trajectoryOrder</a> (ulli origin, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> * &gt; &amp;poi, double maxTime)</td></tr>
-<tr class="memdesc:add45a53107247994afaa6b939a6e8ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the path given the points of interest using the greedy strategy.  <a href="class_graph.html#add45a53107247994afaa6b939a6e8ee7">More...</a><br /></td></tr>
-<tr class="separator:add45a53107247994afaa6b939a6e8ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae769065624214e53fa80bbef23c7930b"><td class="memItemLeft" align="right" valign="top"><a id="ae769065624214e53fa80bbef23c7930b"></a>
-ulli&#160;</td><td class="memItemRight" valign="bottom"><b>nextPoi</b> (const ulli &amp;origin, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> * &gt; &amp;poi, vector&lt; bool &gt; visited, double &amp;maxTime)</td></tr>
+<tr class="memitem:af9f3b2c916be90abc1b4145de9322fb2"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af9f3b2c916be90abc1b4145de9322fb2">trajectoryOrder</a> (ulli origin, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> * &gt; &amp;poi, double &amp;maxTime)</td></tr>
+<tr class="memdesc:af9f3b2c916be90abc1b4145de9322fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the path given the points of interest using the greedy strategy.  <a href="class_graph.html#af9f3b2c916be90abc1b4145de9322fb2">More...</a><br /></td></tr>
+<tr class="separator:af9f3b2c916be90abc1b4145de9322fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae769065624214e53fa80bbef23c7930b"><td class="memItemLeft" align="right" valign="top">ulli&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae769065624214e53fa80bbef23c7930b">nextPoi</a> (const ulli &amp;origin, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> * &gt; &amp;poi, vector&lt; bool &gt; visited, double &amp;maxTime)</td></tr>
+<tr class="memdesc:ae769065624214e53fa80bbef23c7930b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array setVertex.  <a href="class_graph.html#ae769065624214e53fa80bbef23c7930b">More...</a><br /></td></tr>
 <tr class="separator:ae769065624214e53fa80bbef23c7930b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa74471a9b36343d96347fd2daf20021"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aaa74471a9b36343d96347fd2daf20021">travelingSalesperson_preProcess</a> (vector&lt; <a class="el" href="class_p_o_i.html">POI</a> &gt; poi, double time)</td></tr>
-<tr class="memdesc:aaa74471a9b36343d96347fd2daf20021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that treat data for the recursive function for the problem of traveling salesperson.  <a href="class_graph.html#aaa74471a9b36343d96347fd2daf20021">More...</a><br /></td></tr>
-<tr class="separator:aaa74471a9b36343d96347fd2daf20021"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d7eb6a4b7f26fcef6f553472b09f6cb"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7d7eb6a4b7f26fcef6f553472b09f6cb">travelingSalesperson</a> (lli actualPoint, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> &gt; poi, lli available, double &amp;minDistance, double time, int &amp;nodes)</td></tr>
-<tr class="memdesc:a7d7eb6a4b7f26fcef6f553472b09f6cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursive function to solve the traveling salesperson problem with dynamic programming approach.  <a href="class_graph.html#a7d7eb6a4b7f26fcef6f553472b09f6cb">More...</a><br /></td></tr>
-<tr class="separator:a7d7eb6a4b7f26fcef6f553472b09f6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0b58eb37d678d2a491158e0a3ece83"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83">travelingSalesperson_preProcess</a> (vector&lt; <a class="el" href="class_p_o_i.html">POI</a> &gt; poi, double &amp;time)</td></tr>
+<tr class="memdesc:a4d0b58eb37d678d2a491158e0a3ece83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that treat data for the recursive function for the problem of traveling salesperson.  <a href="class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83">More...</a><br /></td></tr>
+<tr class="separator:a4d0b58eb37d678d2a491158e0a3ece83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ee9f2c206f53317840701350064360"><td class="memItemLeft" align="right" valign="top">vector&lt; ulli &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ab6ee9f2c206f53317840701350064360">travelingSalesperson</a> (lli actualPoint, vector&lt; <a class="el" href="class_p_o_i.html">POI</a> &gt; poi, double &amp;minDistance, double time, int &amp;level)</td></tr>
+<tr class="memdesc:ab6ee9f2c206f53317840701350064360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursive function to solve the traveling salesperson problem with dynamic programming approach.  <a href="class_graph.html#ab6ee9f2c206f53317840701350064360">More...</a><br /></td></tr>
+<tr class="separator:ab6ee9f2c206f53317840701350064360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -312,8 +312,8 @@ Here is the caller graph for this function:</div>
 <map name="class_graph_a15cdde77d0c9b297b0254e1b74ae624f_icgraph" id="class_graph_a15cdde77d0c9b297b0254e1b74ae624f_icgraph">
 <area shape="rect" title="Finds the index of an ID in the vertexSet." alt="" coords="445,56,585,83"/>
 <area shape="rect" href="class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,5,397,32"/>
-<area shape="rect" href="class_graph.html#add45a53107247994afaa6b939a6e8ee7" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,31,156,57"/>
-<area shape="rect" href="class_graph.html#aaa74471a9b36343d96347fd2daf20021" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="209,107,393,149"/>
+<area shape="rect" href="class_graph.html#af9f3b2c916be90abc1b4145de9322fb2" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,31,156,57"/>
+<area shape="rect" href="class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="209,107,393,149"/>
 </map>
 </div>
 
@@ -363,7 +363,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_graph_a964eebc503768d962f6c2b504ba07063_icgraph.png" border="0" usemap="#class_graph_a964eebc503768d962f6c2b504ba07063_icgraph" alt=""/></div>
 <map name="class_graph_a964eebc503768d962f6c2b504ba07063_icgraph" id="class_graph_a964eebc503768d962f6c2b504ba07063_icgraph">
 <area shape="rect" title="Get the path." alt="" coords="204,5,397,32"/>
-<area shape="rect" href="class_graph.html#add45a53107247994afaa6b939a6e8ee7" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,5,156,32"/>
+<area shape="rect" href="class_graph.html#af9f3b2c916be90abc1b4145de9322fb2" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,5,156,32"/>
 </map>
 </div>
 
@@ -422,8 +422,69 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="add45a53107247994afaa6b939a6e8ee7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add45a53107247994afaa6b939a6e8ee7">&#9670;&nbsp;</a></span>trajectoryOrder()</h2>
+<a id="ae769065624214e53fa80bbef23c7930b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae769065624214e53fa80bbef23c7930b">&#9670;&nbsp;</a></span>nextPoi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ulli Graph::nextPoi </td>
+          <td>(</td>
+          <td class="paramtype">const ulli &amp;&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_p_o_i.html">POI</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>poi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; bool &gt;&#160;</td>
+          <td class="paramname"><em>visited</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>maxTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array setVertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>ID of the actual position </td></tr>
+    <tr><td class="paramname">poi</td><td>list of the POIS INDEX's which the user wants to visit </td></tr>
+    <tr><td class="paramname">visited</td><td>BOOLEAN array containing the <a class="el" href="class_p_o_i.html" title="This is a data class responsible for storing the POIS information.">POI</a>'s already visited. The index = 0 is already visited by default, since it's the origin </td></tr>
+    <tr><td class="paramname">maxTime</td><td>The maximum time the user has to spend in tourism </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>it returns next poi index to be visited. The index is relative to the array setVertex </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_graph_ae769065624214e53fa80bbef23c7930b_icgraph.png" border="0" usemap="#class_graph_ae769065624214e53fa80bbef23c7930b_icgraph" alt=""/></div>
+<map name="class_graph_ae769065624214e53fa80bbef23c7930b_icgraph" id="class_graph_ae769065624214e53fa80bbef23c7930b_icgraph">
+<area shape="rect" title="Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array set..." alt="" coords="204,5,313,32"/>
+<area shape="rect" href="class_graph.html#af9f3b2c916be90abc1b4145de9322fb2" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,5,156,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af9f3b2c916be90abc1b4145de9322fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f3b2c916be90abc1b4145de9322fb2">&#9670;&nbsp;</a></span>trajectoryOrder()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -443,7 +504,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">double &amp;&#160;</td>
           <td class="paramname"><em>maxTime</em>&#160;</td>
         </tr>
         <tr>
@@ -467,19 +528,20 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_graph_add45a53107247994afaa6b939a6e8ee7_cgraph.png" border="0" usemap="#class_graph_add45a53107247994afaa6b939a6e8ee7_cgraph" alt=""/></div>
-<map name="class_graph_add45a53107247994afaa6b939a6e8ee7_cgraph" id="class_graph_add45a53107247994afaa6b939a6e8ee7_cgraph">
-<area shape="rect" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,24,156,51"/>
-<area shape="rect" href="class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f" title="Finds the index of an ID in the vertexSet." alt="" coords="445,24,585,51"/>
-<area shape="rect" href="class_vertex.html#a129f885d5d05711dea3d7356c4a20c32" title=" " alt="" coords="633,49,732,76"/>
-<area shape="rect" href="class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,24,397,51"/>
+<div class="center"><img src="class_graph_af9f3b2c916be90abc1b4145de9322fb2_cgraph.png" border="0" usemap="#class_graph_af9f3b2c916be90abc1b4145de9322fb2_cgraph" alt=""/></div>
+<map name="class_graph_af9f3b2c916be90abc1b4145de9322fb2_cgraph" id="class_graph_af9f3b2c916be90abc1b4145de9322fb2_cgraph">
+<area shape="rect" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,53,156,80"/>
+<area shape="rect" href="class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f" title="Finds the index of an ID in the vertexSet." alt="" coords="445,28,585,54"/>
+<area shape="rect" href="class_vertex.html#a129f885d5d05711dea3d7356c4a20c32" title=" " alt="" coords="633,53,732,80"/>
+<area shape="rect" href="class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,28,397,54"/>
+<area shape="rect" href="class_graph.html#ae769065624214e53fa80bbef23c7930b" title="Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array set..." alt="" coords="246,129,355,156"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a7d7eb6a4b7f26fcef6f553472b09f6cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d7eb6a4b7f26fcef6f553472b09f6cb">&#9670;&nbsp;</a></span>travelingSalesperson()</h2>
+<a id="ab6ee9f2c206f53317840701350064360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ee9f2c206f53317840701350064360">&#9670;&nbsp;</a></span>travelingSalesperson()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -499,12 +561,6 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">lli&#160;</td>
-          <td class="paramname"><em>available</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">double &amp;&#160;</td>
           <td class="paramname"><em>minDistance</em>, </td>
         </tr>
@@ -518,7 +574,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>nodes</em>&#160;</td>
+          <td class="paramname"><em>level</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -544,17 +600,17 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_graph_a7d7eb6a4b7f26fcef6f553472b09f6cb_icgraph.png" border="0" usemap="#class_graph_a7d7eb6a4b7f26fcef6f553472b09f6cb_icgraph" alt=""/></div>
-<map name="class_graph_a7d7eb6a4b7f26fcef6f553472b09f6cb_icgraph" id="class_graph_a7d7eb6a4b7f26fcef6f553472b09f6cb_icgraph">
+<div class="center"><img src="class_graph_ab6ee9f2c206f53317840701350064360_icgraph.png" border="0" usemap="#class_graph_ab6ee9f2c206f53317840701350064360_icgraph" alt=""/></div>
+<map name="class_graph_ab6ee9f2c206f53317840701350064360_icgraph" id="class_graph_ab6ee9f2c206f53317840701350064360_icgraph">
 <area shape="rect" title="Recursive function to solve the traveling salesperson problem with dynamic programming approach." alt="" coords="237,13,421,39"/>
-<area shape="rect" href="class_graph.html#aaa74471a9b36343d96347fd2daf20021" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="5,5,189,47"/>
+<area shape="rect" href="class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="5,5,189,47"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aaa74471a9b36343d96347fd2daf20021"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa74471a9b36343d96347fd2daf20021">&#9670;&nbsp;</a></span>travelingSalesperson_preProcess()</h2>
+<a id="a4d0b58eb37d678d2a491158e0a3ece83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0b58eb37d678d2a491158e0a3ece83">&#9670;&nbsp;</a></span>travelingSalesperson_preProcess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,7 +624,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">double &amp;&#160;</td>
           <td class="paramname"><em>time</em>&#160;</td>
         </tr>
         <tr>
@@ -592,12 +648,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_graph_aaa74471a9b36343d96347fd2daf20021_cgraph.png" border="0" usemap="#class_graph_aaa74471a9b36343d96347fd2daf20021_cgraph" alt=""/></div>
-<map name="class_graph_aaa74471a9b36343d96347fd2daf20021_cgraph" id="class_graph_aaa74471a9b36343d96347fd2daf20021_cgraph">
+<div class="center"><img src="class_graph_a4d0b58eb37d678d2a491158e0a3ece83_cgraph.png" border="0" usemap="#class_graph_a4d0b58eb37d678d2a491158e0a3ece83_cgraph" alt=""/></div>
+<map name="class_graph_a4d0b58eb37d678d2a491158e0a3ece83_cgraph" id="class_graph_a4d0b58eb37d678d2a491158e0a3ece83_cgraph">
 <area shape="rect" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="5,49,189,90"/>
 <area shape="rect" href="class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f" title="Finds the index of an ID in the vertexSet." alt="" coords="259,5,399,32"/>
 <area shape="rect" href="class_vertex.html#a129f885d5d05711dea3d7356c4a20c32" title=" " alt="" coords="469,31,568,57"/>
-<area shape="rect" href="class_graph.html#a7d7eb6a4b7f26fcef6f553472b09f6cb" title="Recursive function to solve the traveling salesperson problem with dynamic programming approach." alt="" coords="237,107,421,133"/>
+<area shape="rect" href="class_graph.html#ab6ee9f2c206f53317840701350064360" title="Recursive function to solve the traveling salesperson problem with dynamic programming approach." alt="" coords="237,107,421,133"/>
 </map>
 </div>
 

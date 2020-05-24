@@ -1,6 +1,0 @@
-<map id="Graph::trajectoryOrder" name="Graph::trajectoryOrder">
-<area shape="rect" id="node1" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,24,156,51"/>
-<area shape="rect" id="node2" href="$class_graph.html#a15cdde77d0c9b297b0254e1b74ae624f" title="Finds the index of an ID in the vertexSet." alt="" coords="445,24,585,51"/>
-<area shape="rect" id="node3" href="$class_vertex.html#a129f885d5d05711dea3d7356c4a20c32" title=" " alt="" coords="633,49,732,76"/>
-<area shape="rect" id="node4" href="$class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,24,397,51"/>
-</map>

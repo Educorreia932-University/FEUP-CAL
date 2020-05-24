@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7egraph_50',['~Graph',['../class_graph.html#a902c5b3eacb66d60752525ab23297a95',1,'Graph']]]
+  ['wronginput_5foption_51',['WrongInput_option',['../class_wrong_input__option.html',1,'']]]
 ];

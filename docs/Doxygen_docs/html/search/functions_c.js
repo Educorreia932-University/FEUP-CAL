@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7egraph_103',['~Graph',['../class_graph.html#a902c5b3eacb66d60752525ab23297a95',1,'Graph']]]
+  ['vertex_106',['Vertex',['../class_vertex.html#ad1c5b9cbf969b83795e42edba8737e02',1,'Vertex::Vertex(const ulli &amp;id)'],['../class_vertex.html#aa32b24f571dc31468e15947cb075b505',1,'Vertex::Vertex(const ulli &amp;id, double lon, double lat)']]]
 ];

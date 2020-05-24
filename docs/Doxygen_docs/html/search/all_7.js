@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c_28',['operator&lt;',['../class_vertex.html#ad4ccd48170a1530ec1db5eb306357a74',1,'Vertex']]]
+  ['nextpoi_29',['nextPoi',['../class_graph.html#ae769065624214e53fa80bbef23c7930b',1,'Graph']]]
 ];

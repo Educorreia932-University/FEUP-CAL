@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['vertex_102',['Vertex',['../class_vertex.html#ad1c5b9cbf969b83795e42edba8737e02',1,'Vertex::Vertex(const ulli &amp;id)'],['../class_vertex.html#aa32b24f571dc31468e15947cb075b505',1,'Vertex::Vertex(const ulli &amp;id, double lon, double lat)']]]
+  ['trajectoryorder_103',['trajectoryOrder',['../class_graph.html#af9f3b2c916be90abc1b4145de9322fb2',1,'Graph']]],
+  ['travelingsalesperson_104',['travelingSalesperson',['../class_graph.html#ab6ee9f2c206f53317840701350064360',1,'Graph']]],
+  ['travelingsalesperson_5fpreprocess_105',['travelingSalesperson_preProcess',['../class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83',1,'Graph']]]
 ];
