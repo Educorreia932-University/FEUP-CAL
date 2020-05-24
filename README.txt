@@ -61,3 +61,6 @@ Notas e instruções de uso:
  	-  Caso não seja inserido o tempo maximo do usuário [opção 4 do menu principal], o tempo será considerado infinito e o output de tempo gerado pelo greedy algorithm deve ser ignorado, pois o algoritmo deixa de considerá-lo para calcular rotas.
 	- O tempo é exibido em minutos
 	- O algoritmo de FloydWarshall será apenas executado casos os ficheiros matrix_<cidade>_dest ou matrix_<cidade_pred não existam. Caso contrário o programa irá reler o conteúdo destes. 
+	
+Preview: https://cdn.discordapp.com/attachments/679664591675850762/713512039271759912/1.gif
+
