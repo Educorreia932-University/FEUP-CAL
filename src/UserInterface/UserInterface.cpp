@@ -234,7 +234,7 @@ void UserInterface::showMap() {
     if (res1.empty()) {
         cout << "Choose a route first (Option [1] in the menu)" << endl
              << endl;
-        pause();
+        pauseInterface();
 
         return;
     }
@@ -267,7 +267,7 @@ void UserInterface::showMap() {
     else
         showRoute(gv, res2, "BLUE", getToVisitPOIS(res2));
 
-    pause();
+    pauseInterface();
 
     // gv->closeWindow();
 }

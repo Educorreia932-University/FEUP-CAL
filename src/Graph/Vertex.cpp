@@ -22,7 +22,7 @@ ulli Vertex::getID() const {
     return this->id;
 }
 
-
-
-
+vector<Edge> Vertex::getAdj() const {
+    return adj;
+}
 
