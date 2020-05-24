@@ -4,3 +4,6 @@ Aliados, 7134786669, 30
 Lello, 7134805724, 40
 Bolsa, 2356505225, 60
 Bolhao, 4356494336, 40
+Ponte D. Luis, 6497991995, 20
+Jardim Teofilo Braga, 4762419635, 30
+Jardim Paulo Vallada, 25632466, 30
