@@ -304,6 +304,7 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi,
     if (nextPOI != -1) {
         vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
         floydPath.insert(floydPath.end(), answer.begin(), answer.end());
+        level = maxLevel;
         return floydPath;
     }
     else{
