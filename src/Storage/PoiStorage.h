@@ -11,7 +11,7 @@ using namespace std;
 
 class POI;
 /**
- * @file PoiStorage
+ * @file PoiStorage.h
  * @brief This file contains the classes: PoiStorage and POI
  **/
 
@@ -31,29 +31,29 @@ public:
 	 */
     bool readPois();
     map<string, POI*> getMap() const;
-    string findPOI(ulli id) const;
+    POI * findPOI(ulli id) const;
 };
 
 
 /**
  * @brief This is a data class responsible for storing the POIS information
  */
-class POI{
-    ulli id;
-    string name;        /*<Name of the POI*/
-    ulli time;          /*<Time that a person spends in a POI*/
-    ulli index;         /*<position of the poi in the setVertex => to be used at trajectory order*/
-    bool visited;       /*<Variable used in the dynamic programming approach*/
-public:
-
-    POI(ulli id, const string& name, ulli time): id(id), name(name), time(time){index = 0;};
-    void setVisited(bool visited){this->visited = visited; }
-    bool getVisited(){return visited;}
-    ulli getID() {return id;}
-    ulli getTime(){return time;}
-    ulli getIndex(){return index;}
-    void setIndex(ulli index){this->index = index;}
-
+class POI {
+    private:
+        ulli id;
+        string name;        /*<Name of the POI*/
+        ulli time;          /*<Time that a person spends in a POI*/
+        ulli index;         /*<position of the poi in the setVertex => to be used at trajectory order*/
+        bool visited;       /*<Variable used in the dynamic programming approach*/
+    public:
+        POI(ulli id, const string& name, ulli time): id(id), name(name), time(time){index = 0;};
+        void setVisited(bool visited){this->visited = visited; }
+        bool getVisited(){return visited;}
+        ulli getID() {return id;}
+        string getName() const {return name;} ;
+        ulli getTime(){return time;}
+        ulli getIndex(){return index;}
+        void setIndex(ulli index){this->index = index;}
 };
 
 #endif //SRC_POISTORAGE_H

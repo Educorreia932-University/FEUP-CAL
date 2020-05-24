@@ -169,7 +169,7 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTi
     vector<ulli> order = {};
     vector<bool> visited(vertexSet.size());
     visited[findVertexIdx(origin)] = true;
-
+    double  initialTime = maxTime - poi[0]->getTime();
     ulli idNext;
 
     //the poi vector must contain the INDEX of the POIS in the vertexSet => to accelerate the process
@@ -180,8 +180,8 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double maxTi
 
 
     for (int i = 1; i < poi.size(); i++) {
-        idNext = nextPoi(origin, poi, visited, maxTime);                //get the id of the next poi to be visited
-        if (idNext == 0) return order;                                          // no sufficient time to visit all pois
+        idNext = nextPoi(origin, poi, visited, initialTime);                //get the id of the next poi to be visited
+        if (idNext == -1) return order;                                          // no sufficient time to visit all pois
         vector<ulli> floydPath = this->getFloydWarshallPath(vertexSet[origin]->getID(), vertexSet[idNext]->getID());    //path between these two points
 
         order.insert(order.end(), floydPath.begin(), floydPath.end());          //join the actual path two the vector
@@ -197,7 +197,6 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
     int actualIndex = origin;
     double minWeight = INF;
     ulli selectedPoiIndex = -1;
-    ulli poiIndex_inPOI = 0;
 
     for (int i = 0; i < poi.size(); i++) {
         ulli nextVertex = poi[i]->getIndex();
@@ -206,14 +205,12 @@ ulli Graph::nextPoi(const ulli &origin, vector<POI *> &poi, vector<bool> visited
         if (dist[actualIndex][nextVertex]+poi[i]->getTime() < minWeight && visited[nextVertex] == false) {
             minWeight = dist[actualIndex][nextVertex] + poi[i]->getTime();
             selectedPoiIndex = nextVertex;
-            poiIndex_inPOI = i;
         }
 
     }
     //update the time the person has to spend
-    maxTime -= poi[poiIndex_inPOI]->getTime() + dist[actualIndex][selectedPoiIndex];
-    if (maxTime == 0) maxTime = -1;                 //cannot be 0
-    if (maxTime < 0) return 0;
+    maxTime -= minWeight;
+    if (maxTime < 0) return -1;
 
 
     return selectedPoiIndex;
@@ -233,16 +230,16 @@ vector<Vertex *> Graph::getVertexSet() {
  * =====================================================================================
  */
 
-
-vector<ulli> Graph::travelingSalesperson_preProcess(const ulli &origin, vector<POI> poi, double time) {
-    for (auto i: poi){
-        i.setVisited(false);
-        i.setIndex(findVertexIdx(i.getID()));
+vector<ulli> Graph::travelingSalesperson_preProcess(vector<POI> poi, double time) {
+    for (int i = 0 ; i < poi.size(); i++){
+        poi[i].setVisited(false);
+        poi[i].setIndex(findVertexIdx(poi[i].getID()));
     }
-    double minDistance = INF;
-    int nodes = 1;
-    vector<ulli> resposta = travelingSalesperson( 0, poi, poi.size(), minDistance, time, nodes );
-    return resposta;
+
+    double minDistance = 0;
+    int nodes = 0;              /*<Number of nodes visited*/
+    return travelingSalesperson( 0, poi, poi.size(), minDistance, time - poi[0].getTime(), nodes );
+    
 }
 
 vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli available,
@@ -252,46 +249,55 @@ vector<ulli> Graph::travelingSalesperson(lli actualPoint, vector<POI> poi, lli a
     poi[actualPoint].setVisited(true);
 
     /*<Case there is no time to visit this poi*/
-    if (time < 0) return {};
+    if (time < 0) {
+        minDistance = INF;
+        return {};
+    }
+
     nodes ++;
     /*<Case all the vertices from poi has been visited*/
-   if (available == 1) {
-       minDistance = 0;
-       return {};
-   }
+    if (available == 1) {
+        minDistance = poi[actualPoint].getTime();
+        return {};
+    }
 
-   time -= poi[actualPoint].getTime(); /*<Decrease time be the period the person will spend at the poi*/
-   lli nextPOI = -1;
+    lli nextPOI = -1;
 
 
-   for (int i = 0 ; i < poi.size(); i++){
-
-       if (!poi[i].getVisited()){
-           double actualDistance = INF;
+    for (int i = 0 ; i < poi.size(); i++){
+        if (!poi[i].getVisited()){
+            double actualDistance = 0;
             int auxNodes = nodes;
-           /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
-           double auxTime = time - pred[poi[actualPoint].getIndex()][poi[i].getIndex()];
-           vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
 
-           /*<Update the actual distance*/
-           lli source = poi[actualPoint].getIndex();
-           lli dest = poi[i].getIndex();
-           actualDistance += pred[source][dest] + poi[dest].getTime();
+            /*<Value to be parsed to the next poi = actualTime - distance between next and actual*/
+            double auxTime = time - dist[poi[actualPoint].getIndex()][poi[i].getIndex()] - poi[i].getTime();
+            vector<ulli> tempVector = travelingSalesperson(i, poi, available-1, actualDistance, auxTime, auxNodes);
 
-           /*<Update the min distance*/
-           /*<The auxNodes guarantee that we have the max number of pois visited and the distance guarantees the min time*/
-           if (minDistance > actualDistance && auxNodes > nodes){
-               minDistance = actualDistance;
-               nodes = auxNodes;
-               answer = tempVector;
-               nextPOI = i;
-           }
-       }
-   }
+            /*<Update the actual distance*/
+            lli source = poi[actualPoint].getIndex();
+            lli dest = poi[i].getIndex();
+            actualDistance += dist[source][dest];
 
-   vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
-   answer.insert(answer.end(), floydPath.begin(), floydPath.end());
-   return answer;
+            /*<Update the min distance*/
+            /*<The auxNodes guarantees that we have the max number of pois visited and the distance guarantees the min time*/
+            if ((minDistance > actualDistance && auxNodes >= nodes) || auxNodes > nodes){
+                answer = tempVector;
+                minDistance = actualDistance;
+                nodes = auxNodes;
+                nextPOI = i;
+            }
+        }
+    }
+    if (nextPOI != -1) {
+        vector<ulli> floydPath = getFloydWarshallPath(poi[actualPoint].getID(), poi[nextPOI].getID());
+        floydPath.insert(floydPath.end(), answer.begin(), answer.end());
+        return floydPath;
+    }
+    else{
+        return {};
+    }
+
+
 }
 
 

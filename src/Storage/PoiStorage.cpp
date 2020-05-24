@@ -35,10 +35,7 @@ bool PoiStorage::readPois() {
         getline(is, tmp, TOKEN);
         stringstream(tmp) >> time;
 
-
         POIs.insert(pair<string, POI *>(name, new POI(id, name, time)));
-
-
     }
 
     inFile.close();
@@ -50,10 +47,10 @@ map<string, POI *> PoiStorage::getMap() const {
     return POIs;
 }
 
-string PoiStorage::findPOI(ulli id) const {
+POI* PoiStorage::findPOI(ulli id) const {
     for (const auto &POI : POIs)
         if (POI.second->getID() == id)
-            return POI.first;
+            return POI.second;
 
-    return "";
+    return nullptr;
 }

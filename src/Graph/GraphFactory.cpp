@@ -18,7 +18,7 @@ void GraphFactory::openFile(const string &filename, ifstream &inFile) {
     inFile.open(filename.c_str());
 
     if (!inFile.is_open())
-        ERROR("Not possible to open file of vertex");
+        ERRORS("Not possible to open file of vertex");
 }
 
 /**

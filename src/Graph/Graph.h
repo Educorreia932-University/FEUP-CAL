@@ -121,7 +121,7 @@ public:
      * @param time Total time that the person has to visit the points of interest
      * @return Returns the IDs of each vertex to be visit in order
      */
-    vector<ulli> travelingSalesperson_preProcess(const ulli& origin, vector<POI> poi, double time );
+    vector<ulli> travelingSalesperson_preProcess(vector<POI> poi, double time );
     /**
      * @brief Recursive function to solve the traveling salesperson problem with dynamic programming approach
      * @param actualPoint The actual point of interest (POI) to be analysed

@@ -8,8 +8,12 @@
 
 using namespace std;
 
+
+/**
+ * @file Utils.h
+ */
 #define INF std::numeric_limits<double>::max()
-#define ERROR(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
+#define ERRORS(message)      Error(__FUNCTION__, __FILE__, __LINE__,message)
 
 /**
  *
@@ -46,10 +50,5 @@ double safeDivision(double numerator, double denominator, double subst);
  * @return return the number case it's a number
  */
 double checkNumber();
-
-/**
- * @brief Function makes the user waits until it presses enter
- */
-void wait();
 
 #endif //TOURMATEAPP_UTILS_H

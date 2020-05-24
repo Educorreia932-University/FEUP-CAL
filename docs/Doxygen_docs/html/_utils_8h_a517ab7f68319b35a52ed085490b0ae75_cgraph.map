@@ -1,0 +1,4 @@
+<map id="checkNumber" name="checkNumber">
+<area shape="rect" id="node1" title="Checks if the input given is a number, not a string." alt="" coords="5,13,108,39"/>
+<area shape="rect" id="node2" href="$class_wrong_input__option.html#a5ad8a61deebc3b5a376c208cc915eabc" title="Get the Info parameter." alt="" coords="156,5,295,47"/>
+</map>

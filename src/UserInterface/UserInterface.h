@@ -8,35 +8,47 @@
 #include <locale>
 #include <iomanip>
 #include <map>
+#include <graphviewer.h>
 
 using namespace std;
 
+
+/**
+ * @file UserInterface.h
+ * @brief File responsible for showing and handle the user interface
+ */
 class UserInterface {
     private:
         Graph* graph;
-        vector<ulli> res;
-        PoiStorage* poiStorage;
+        vector<ulli> res1;      /*< Nearest neighbor*/
+        vector<ulli> res2;      /*<Dynamic approach*/
+        PoiStorage* poiStorage; /*<Class PoiStorage storing all the POIs of a city*/
 
         // Settings
         bool showAll = false;
         double maxTime = INF;
-
+        int animationDelay = 100;
 
         void showMainMenu();
-        void showGraph(const vector<ulli>& res);
+        void showMap();
+        void showRoute(GraphViewer* gv, vector<ulli> res, string color, vector<POI*> toVisit);
+        int showPaths(vector<POI*> toVisit);
+        void animatePath(GraphViewer *gv, vector<ulli> res, string color, ulli begin, ulli end);
+
         POI* showPOIs(vector<POI*> toVisit);
-        void POIsSelection();
+        vector<POI*> POIsSelection();
+        vector<POI *> getToVisitPOIS(vector<ulli> res);
+
         void showSettings();
         void settingsSelection();
     public:
         UserInterface(Graph* graph, PoiStorage *poiStorage);
         void mainMenuSelection();
+
         /**
          * @brief Visual menu for the user set the amount of time it has to spend making tourism
          */
         void setAmountOfTime_Interface();
-
-
 };
 
 int readOption(int min, unsigned int max);

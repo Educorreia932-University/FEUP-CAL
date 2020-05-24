@@ -50,7 +50,7 @@ bool FloydStorage::readDest(const string &cityName) {
 
         inFile.close();
     } catch (...) {
-        ERROR("Error trying to read dest file");
+        ERRORS("Error trying to read dest file");
         inFile.close();
         return false;
     }
@@ -90,7 +90,7 @@ bool FloydStorage::readPred(const string &cityName) {
         }
         inFile.close();
     } catch (...) {
-        ERROR("Error trying to read pred file");
+        ERRORS("Error trying to read pred file");
         inFile.close();
         return false;
     }
