@@ -183,7 +183,7 @@ vector<ulli> Graph::trajectoryOrder(ulli origin, vector<POI*> &poi, double &maxT
         idNext = nextPoi(origin, poi, visited, initialTime);                //get the id of the next poi to be visited
 
         if (idNext == -1) {
-            maxTime = previousInitialTime;
+            maxTime -= previousInitialTime;
             return order;
         }// no sufficient time to visit all pois
 
