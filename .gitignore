@@ -42,8 +42,6 @@ __latexindent_temp.tex
 
 *.fdb_latexmk
 
-report.pdf
-
 report.log
 
 utils/map_extraction/images/Trofa.png
