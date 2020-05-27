@@ -1,7 +1,0 @@
-<map id="GraphFactory::readVertex" name="GraphFactory::readVertex">
-<area shape="rect" id="node1" title="read all the vertex of a nodes_&lt;city&gt;.csv file" alt="" coords="5,56,177,83"/>
-<area shape="rect" id="node2" href="$class_graph.html#ac1fa76ffd48e171d8176629af24bc367" title="Adds a vertex to the graph." alt="" coords="236,31,360,57"/>
-<area shape="rect" id="node5" href="$class_graph.html#ab7f2c34c4bc98a91aca5b05cd52687b8" title="sorts the vertices according to the id&#39;s so that it can perform binary search to find a vertex Id" alt="" coords="225,81,371,108"/>
-<area shape="rect" id="node3" href="$class_graph.html#a4246d857bca5ec24e391ca379687c992" title="Finds a specific vertex in the vertexSet vector." alt="" coords="419,5,541,32"/>
-<area shape="rect" id="node4" href="$class_vertex.html#ad1c5b9cbf969b83795e42edba8737e02" title="Constructor." alt="" coords="427,56,533,83"/>
-</map>

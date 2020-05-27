@@ -1,9 +1,0 @@
-<map id="UserInterface" name="UserInterface">
-<area shape="rect" id="node1" href="dir_63490ba1699785134830aee158655eb3.html" title="UserInterface" alt="" coords="28,5,127,53"/>
-<area shape="rect" id="node2" href="dir_d29c5f5a2915d6c5388c9daae4f109c7.html" title="Storage" alt="" coords="5,101,77,149"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000008_000007.html" title="1" alt="" coords="61,80,69,95"/>
-<area shape="rect" id="node3" href="dir_45814856f36e01cbe959f35071d50d5a.html" title="Graph" alt="" coords="5,197,77,245"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000008_000006.html" title="1" alt="" coords="76,180,84,195"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000007_000006.html" title="1" alt="" coords="37,171,45,186"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000006_000007.html" title="2" alt="" coords="38,161,46,176"/>
-</map>

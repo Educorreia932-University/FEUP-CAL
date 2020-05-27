@@ -1,5 +1,0 @@
-<map id="Graph::addVertex" name="Graph::addVertex">
-<area shape="rect" id="node1" title="Adds a vertex to the graph." alt="" coords="5,31,129,57"/>
-<area shape="rect" id="node2" href="$class_graph.html#a4246d857bca5ec24e391ca379687c992" title="Finds a specific vertex in the vertexSet vector." alt="" coords="177,5,300,32"/>
-<area shape="rect" id="node3" href="$class_vertex.html#ad1c5b9cbf969b83795e42edba8737e02" title="Constructor." alt="" coords="185,56,292,83"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="Graph::findVertexIdx" name="Graph::findVertexIdx">
-<area shape="rect" id="node1" title="Finds the index of an ID in the vertexSet." alt="" coords="445,56,585,83"/>
-<area shape="rect" id="node2" href="$class_graph.html#a964eebc503768d962f6c2b504ba07063" title="Get the path." alt="" coords="204,5,397,32"/>
-<area shape="rect" id="node3" href="$class_graph.html#af9f3b2c916be90abc1b4145de9322fb2" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,31,156,57"/>
-<area shape="rect" id="node4" href="$class_graph.html#a4d0b58eb37d678d2a491158e0a3ece83" title="Function that treat data for the recursive function for the problem of traveling salesperson." alt="" coords="209,107,393,149"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Graph::nextPoi" name="Graph::nextPoi">
-<area shape="rect" id="node1" title="Auxiliar function to trajectoryPath. It gets the index of the next poi to be visited in the array set..." alt="" coords="204,5,313,32"/>
-<area shape="rect" id="node2" href="$class_graph.html#af9f3b2c916be90abc1b4145de9322fb2" title="Calculates the path given the points of interest using the greedy strategy." alt="" coords="5,5,156,32"/>
-</map>
