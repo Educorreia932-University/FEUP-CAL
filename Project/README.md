@@ -1,13 +1,13 @@
-Projecto de CAL - TourMateApp 2019/2020 
-Autores: Alexandre Abreu, Eduardo Correia, Juliane Marubayashi 
+**Projecto de CAL - TourMateApp 2019/2020**
+**Autores:** Alexandre Abreu, Eduardo Correia, Juliane Marubayashi 
 
 
-Descrição: 
+## Descrição
 	Projecto baseado em grafos, traveling Salesperson problem e 
 	visualização de grafos. Pode ser utilizado em windows e linux
 	com as devidas configurações feitas. 
 
-Conteúdo: 
+## Conteúdo
 
 ~ data/
     edges_PORTO.csv					:Arquivos contendo os edges da cidade do Porto. edges_<CIDADE>.csv
@@ -57,10 +57,10 @@ Conteúdo:
 	E então basta executar o arquivo src.exe
 
 
-Notas e instruções de uso:
+## Notas e instruções de uso
  	-  Caso não seja inserido o tempo maximo do usuário [opção 4 do menu principal], o tempo será considerado infinito e o output de tempo gerado pelo greedy algorithm deve ser ignorado, pois o algoritmo deixa de considerá-lo para calcular rotas.
 	- O tempo é exibido em minutos
 	- O algoritmo de FloydWarshall será apenas executado casos os ficheiros matrix_<cidade>_dest ou matrix_<cidade_pred não existam. Caso contrário o programa irá reler o conteúdo destes. 
 	
-Preview: https://cdn.discordapp.com/attachments/679664591675850762/713512039271759912/1.gif
+![Preview](https://cdn.discordapp.com/attachments/679664591675850762/713512039271759912/1.gif)
 
