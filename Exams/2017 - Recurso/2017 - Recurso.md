@@ -31,3 +31,23 @@ int f(int start) {
     return vec[start];
 }
 ```
+
+5\. a) 
+
+**XPTO:** A G G T A C T A C C C C A
+
+A G G T A C A C C C C A
+
+A G G A C A C C C C A
+
+A A G G A C A C C C C A
+
+**OPTX:** A A G G A C A C C C C A 
+
+A distância evolutiva é de 4.
+
+&nbsp;&nbsp;&nbsp;&nbsp;b) 
+
+| G | T | G | C | C |
+|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | 0 |
